@@ -1,0 +1,42 @@
+<?php
+class ModelCloudinvoiceCloudinvoice extends Model {
+
+	public function getSetting() {
+
+		$data['invoicesystem'] = '';		
+		$data['cloudinvoiceurl'] = '';
+		$data['cloudinvoiceapikey'] = '';		
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "platform_settings");
+
+		foreach ($query->rows as $result) {			
+		    $data['invoicesystem'] = $result['invoicesystem'];		  
+		    $data['cloudinvoiceurl'] = $result['url_platform'];
+		    $data['cloudinvoiceapikey'] = $result['license_key']; 
+		}
+		return $data;
+	}
+
+	public function editSettingValue($data) {
+		$this->db->query("DELETE FROM " . DB_PREFIX . "platform_settings");                
+                $invoicesystem = '';
+                if (isset($data['invoicesystem'])) {
+                    $invoicesystem = $data['invoicesystem'];
+                }               
+                $cloudinvoiceurl = '';
+                if (isset($data['cloudinvoiceurl'])) {
+                    $cloudinvoiceurl = $data['cloudinvoiceurl'];
+                }
+                $cloudinvoiceapikey = '';
+                if (isset($data['cloudinvoiceapikey'])) {
+                    $cloudinvoiceapikey = $data['cloudinvoiceapikey'];
+                }               
+
+		$updatequery = "INSERT INTO " . DB_PREFIX . "platform_settings SET".
+						 " invoicesystem = '" . $invoicesystem . "',".						
+						 " url_platform = '" . $this->db->escape($cloudinvoiceurl) . "',".
+						 " license_key = '" . $this->db->escape($cloudinvoiceapikey) . "'";						
+						 
+		$this->db->query($updatequery);
+	}
+
+}

@@ -1,0 +1,1 @@
+[18-May-2017 13:54:53 UTC] PHP Warning:  fopen(/home/uniterrene2015/public_html/dev/liteandsound_new/system/logs/): failed to open stream: Is a directory in /home/uniterrene2015/public_html/dev/liteandsound_new/system/library/log.php on line 6

@@ -1,0 +1,31 @@
+<?php
+// HTTP
+define('HTTP_SERVER', 'http://localhost/public_html/opencart2/admin/');
+define('HTTP_CATALOG', 'http://localhost/public_html/opencart2/');
+
+// HTTPS
+define('HTTPS_SERVER', 'http://localhost/public_html/opencart2/admin/');
+define('HTTPS_CATALOG', 'http://localhost/public_html/opencart2/');
+
+// DIR
+define('DIR_APPLICATION', '/home/web/public_html/opencart2/admin/');
+define('DIR_SYSTEM', '/home/web/public_html/opencart2/system/');
+define('DIR_IMAGE', '/home/web/public_html/opencart2/image/');
+define('DIR_LANGUAGE', '/home/web/public_html/opencart2/admin/language/');
+define('DIR_TEMPLATE', '/home/web/public_html/opencart2/admin/view/template/');
+define('DIR_CONFIG', '/home/web/public_html/opencart2/system/config/');
+define('DIR_CACHE', '/home/web/public_html/opencart2/system/storage/cache/');
+define('DIR_DOWNLOAD', '/home/web/public_html/opencart2/system/storage/download/');
+define('DIR_LOGS', '/home/web/public_html/opencart2/system/storage/logs/');
+define('DIR_MODIFICATION', '/home/web/public_html/opencart2/system/storage/modification/');
+define('DIR_UPLOAD', '/home/web/public_html/opencart2/system/storage/upload/');
+define('DIR_CATALOG', '/home/web/public_html/opencart2/catalog/');
+
+// DB
+define('DB_DRIVER', 'mysqli');
+define('DB_HOSTNAME', 'localhost');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');
+define('DB_DATABASE', 'open2');
+define('DB_PORT', '3306');
+define('DB_PREFIX', 'oc_');
