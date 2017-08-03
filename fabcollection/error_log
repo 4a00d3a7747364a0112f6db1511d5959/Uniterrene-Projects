@@ -1,0 +1,78 @@
+[31-Mar-2017 13:02:08 UTC] PHP Fatal error:  Uncaught exception 'Mage_Api_Exception' with message 'product_not_exists' in /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Api/Model/Resource/Abstract.php:103
+Stack trace:
+#0 /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Catalog/Model/Product/Attribute/Media/Api.php(410): Mage_Api_Model_Resource_Abstract->_fault('product_not_exi...')
+#1 /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Catalog/Model/Product/Attribute/Media/Api.php(119): Mage_Catalog_Model_Product_Attribute_Media_Api->_initProduct('1172', NULL, NULL)
+#2 /home/uniterrene2015/public_html/dev/fabcollection/image_upload_download.php(51): Mage_Catalog_Model_Product_Attribute_Media_Api->create('1172', Array)
+#3 {main}
+  thrown in /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Api/Model/Resource/Abstract.php on line 103
+[31-Mar-2017 13:03:10 UTC] PHP Fatal error:  Uncaught exception 'Mage_Api_Exception' with message 'product_not_exists' in /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Api/Model/Resource/Abstract.php:103
+Stack trace:
+#0 /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Catalog/Model/Product/Attribute/Media/Api.php(410): Mage_Api_Model_Resource_Abstract->_fault('product_not_exi...')
+#1 /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Catalog/Model/Product/Attribute/Media/Api.php(119): Mage_Catalog_Model_Product_Attribute_Media_Api->_initProduct('1172', NULL, NULL)
+#2 /home/uniterrene2015/public_html/dev/fabcollection/image_upload_download.php(51): Mage_Catalog_Model_Product_Attribute_Media_Api->create('1172', Array)
+#3 {main}
+  thrown in /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Api/Model/Resource/Abstract.php on line 103
+[31-Mar-2017 13:03:13 UTC] PHP Fatal error:  Uncaught exception 'Mage_Api_Exception' with message 'product_not_exists' in /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Api/Model/Resource/Abstract.php:103
+Stack trace:
+#0 /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Catalog/Model/Product/Attribute/Media/Api.php(410): Mage_Api_Model_Resource_Abstract->_fault('product_not_exi...')
+#1 /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Catalog/Model/Product/Attribute/Media/Api.php(119): Mage_Catalog_Model_Product_Attribute_Media_Api->_initProduct('1172', NULL, NULL)
+#2 /home/uniterrene2015/public_html/dev/fabcollection/image_upload_download.php(51): Mage_Catalog_Model_Product_Attribute_Media_Api->create('1172', Array)
+#3 {main}
+  thrown in /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Api/Model/Resource/Abstract.php on line 103
+[31-Mar-2017 13:05:51 UTC] PHP Fatal error:  Uncaught exception 'Mage_Api_Exception' with message 'product_not_exists' in /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Api/Model/Resource/Abstract.php:103
+Stack trace:
+#0 /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Catalog/Model/Product/Attribute/Media/Api.php(410): Mage_Api_Model_Resource_Abstract->_fault('product_not_exi...')
+#1 /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Catalog/Model/Product/Attribute/Media/Api.php(119): Mage_Catalog_Model_Product_Attribute_Media_Api->_initProduct('1172', NULL, NULL)
+#2 /home/uniterrene2015/public_html/dev/fabcollection/image_upload_download.php(52): Mage_Catalog_Model_Product_Attribute_Media_Api->create('1172', Array)
+#3 {main}
+  thrown in /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Api/Model/Resource/Abstract.php on line 103
+[31-Mar-2017 13:42:19 UTC] PHP Fatal error:  Uncaught exception 'Mage_Api_Exception' with message 'product_not_exists' in /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Api/Model/Resource/Abstract.php:103
+Stack trace:
+#0 /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Catalog/Model/Product/Attribute/Media/Api.php(410): Mage_Api_Model_Resource_Abstract->_fault('product_not_exi...')
+#1 /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Catalog/Model/Product/Attribute/Media/Api.php(119): Mage_Catalog_Model_Product_Attribute_Media_Api->_initProduct('1172', NULL, NULL)
+#2 /home/uniterrene2015/public_html/dev/fabcollection/image_upload_download.php(52): Mage_Catalog_Model_Product_Attribute_Media_Api->create('1172', Array)
+#3 {main}
+  thrown in /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Api/Model/Resource/Abstract.php on line 103
+[31-Mar-2017 13:42:25 UTC] PHP Fatal error:  Uncaught exception 'Mage_Api_Exception' with message 'product_not_exists' in /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Api/Model/Resource/Abstract.php:103
+Stack trace:
+#0 /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Catalog/Model/Product/Attribute/Media/Api.php(410): Mage_Api_Model_Resource_Abstract->_fault('product_not_exi...')
+#1 /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Catalog/Model/Product/Attribute/Media/Api.php(119): Mage_Catalog_Model_Product_Attribute_Media_Api->_initProduct('1172', NULL, NULL)
+#2 /home/uniterrene2015/public_html/dev/fabcollection/image_upload_download.php(52): Mage_Catalog_Model_Product_Attribute_Media_Api->create('1172', Array)
+#3 {main}
+  thrown in /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Api/Model/Resource/Abstract.php on line 103
+[31-Mar-2017 13:43:05 UTC] PHP Fatal error:  Call to undefined method Mage_Catalog_Model_Product_Attribute_Media_Api::setStoreId() in /home/uniterrene2015/public_html/dev/fabcollection/image_upload_download.php on line 13
+[31-Mar-2017 13:45:08 UTC] PHP Fatal error:  Uncaught exception 'Mage_Api_Exception' with message 'product_not_exists' in /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Api/Model/Resource/Abstract.php:103
+Stack trace:
+#0 /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Catalog/Model/Product/Attribute/Media/Api.php(410): Mage_Api_Model_Resource_Abstract->_fault('product_not_exi...')
+#1 /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Catalog/Model/Product/Attribute/Media/Api.php(119): Mage_Catalog_Model_Product_Attribute_Media_Api->_initProduct('1172', NULL, NULL)
+#2 /home/uniterrene2015/public_html/dev/fabcollection/image_upload_download.php(48): Mage_Catalog_Model_Product_Attribute_Media_Api->create('1172', Array)
+#3 {main}
+  thrown in /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Api/Model/Resource/Abstract.php on line 103
+[31-Mar-2017 13:45:43 UTC] PHP Fatal error:  Uncaught exception 'Mage_Api_Exception' with message 'product_not_exists' in /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Api/Model/Resource/Abstract.php:103
+Stack trace:
+#0 /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Catalog/Model/Product/Attribute/Media/Api.php(410): Mage_Api_Model_Resource_Abstract->_fault('product_not_exi...')
+#1 /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Catalog/Model/Product/Attribute/Media/Api.php(119): Mage_Catalog_Model_Product_Attribute_Media_Api->_initProduct('1172', NULL, NULL)
+#2 /home/uniterrene2015/public_html/dev/fabcollection/image_upload_download.php(48): Mage_Catalog_Model_Product_Attribute_Media_Api->create('1172', Array)
+#3 {main}
+  thrown in /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Api/Model/Resource/Abstract.php on line 103
+[31-Mar-2017 13:45:46 UTC] PHP Fatal error:  Uncaught exception 'Mage_Api_Exception' with message 'product_not_exists' in /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Api/Model/Resource/Abstract.php:103
+Stack trace:
+#0 /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Catalog/Model/Product/Attribute/Media/Api.php(410): Mage_Api_Model_Resource_Abstract->_fault('product_not_exi...')
+#1 /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Catalog/Model/Product/Attribute/Media/Api.php(119): Mage_Catalog_Model_Product_Attribute_Media_Api->_initProduct('1172', NULL, NULL)
+#2 /home/uniterrene2015/public_html/dev/fabcollection/image_upload_download.php(48): Mage_Catalog_Model_Product_Attribute_Media_Api->create('1172', Array)
+#3 {main}
+  thrown in /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Api/Model/Resource/Abstract.php on line 103
+[31-Mar-2017 13:46:47 UTC] PHP Fatal error:  Uncaught exception 'Mage_Api_Exception' with message 'product_not_exists' in /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Api/Model/Resource/Abstract.php:103
+Stack trace:
+#0 /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Catalog/Model/Product/Attribute/Media/Api.php(410): Mage_Api_Model_Resource_Abstract->_fault('product_not_exi...')
+#1 /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Catalog/Model/Product/Attribute/Media/Api.php(119): Mage_Catalog_Model_Product_Attribute_Media_Api->_initProduct('1172', NULL, NULL)
+#2 /home/uniterrene2015/public_html/dev/fabcollection/image_upload_download.php(52): Mage_Catalog_Model_Product_Attribute_Media_Api->create('1172', Array)
+#3 {main}
+  thrown in /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Api/Model/Resource/Abstract.php on line 103
+[31-Mar-2017 13:48:27 UTC] PHP Fatal error:  Uncaught exception 'Mage_Api_Exception' with message 'product_not_exists' in /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Api/Model/Resource/Abstract.php:103
+Stack trace:
+#0 /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Catalog/Model/Product/Attribute/Media/Api.php(410): Mage_Api_Model_Resource_Abstract->_fault('product_not_exi...')
+#1 /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Catalog/Model/Product/Attribute/Media/Api.php(119): Mage_Catalog_Model_Product_Attribute_Media_Api->_initProduct('1172', NULL, NULL)
+#2 /home/uniterrene2015/public_html/dev/fabcollection/image_upload_download.php(53): Mage_Catalog_Model_Product_Attribute_Media_Api->create('1172', Array)
+#3 {main}
+  thrown in /home/uniterrene2015/public_html/dev/fabcollection/app/code/core/Mage/Api/Model/Resource/Abstract.php on line 103

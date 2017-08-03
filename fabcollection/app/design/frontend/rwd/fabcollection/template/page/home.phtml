@@ -1,0 +1,120 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+
+<section id="link-area">
+  <div class="container clearfix">
+    <div class="best-seller clearfix">
+      <div class="best-seller-left"> <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('best_seller')->toHtml() ?>
+        <div class="seller_background">
+          <div class="seller_border">
+            <div class="seller-content">
+              <h2><?php $staticBlock = Mage::getModel('cms/block')->load('best_seller');
+                 $staticBlock_title =   $staticBlock->getTitle();
+         echo $small = substr($staticBlock_title, 0, 15);
+                  ?></h2>
+              <a href="#" class="banner-button2">SHOP NOW <i class="fa fa-caret-right" aria-hidden="true"></i> </a> </div>
+          </div>
+        </div>
+      </div>
+      <div class="best-seller-right"> <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('beads')->toHtml() ?>
+        <div class="beads_background">
+          <div class="seller_border">
+            <div class="seller-content">
+              <h2><?php $staticBlock = Mage::getModel('cms/block')->load('beads');
+                 $staticBlock_title =   $staticBlock->getTitle();
+         echo $small = substr($staticBlock_title, 0, 15);
+                  ?></h2>
+              <a href="#" class="banner-button2">SHOP NOW <i class="fa fa-caret-right" aria-hidden="true"></i> </a> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="summer clearfix">
+      <div class="summer-left"> <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('wedding')->toHtml() ?>
+        <div class="summer_background">
+          <div class="seller_border">
+            <div class="seller-content">
+              <h2><?php $staticBlock = Mage::getModel('cms/block')->load('wedding');
+                 $staticBlock_title =   $staticBlock->getTitle();
+         echo $small = substr($staticBlock_title, 0, 15);
+                  ?></h2>
+              <a href="#" class="banner-button2">SHOP NOW <i class="fa fa-caret-right" aria-hidden="true"></i> </a> </div>
+          </div>
+        </div>
+      </div>
+      <div class="summer-middle"> <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('chokers')->toHtml() ?>
+        <div class="summer_background">
+          <div class="seller_border">
+            <div class="seller-content choker_align">
+              <h2><?php $staticBlock = Mage::getModel('cms/block')->load('chokers');
+                 $staticBlock_title =   $staticBlock->getTitle();
+         echo $small = substr($staticBlock_title, 0, 15);
+                  ?></h2>
+              <a href="#" class="banner-button2">SHOP NOW <i class="fa fa-caret-right" aria-hidden="true"></i> </a> </div>
+          </div>
+        </div>
+      </div>
+      <div class="summer-right"> <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('summer_trends')->toHtml() ?>
+        <div class="summer_background">
+          <div class="seller_border">
+            <div class="seller-content">
+              <h2><?php $staticBlock = Mage::getModel('cms/block')->load('summer_trends');
+                 $staticBlock_title =   $staticBlock->getTitle();
+         echo $small = substr($staticBlock_title, 0, 15);
+                  ?></h2>
+              <a href="#" class="banner-button2">SHOP NOW <i class="fa fa-caret-right" aria-hidden="true"></i> </a> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- HOT HAPPENING -->
+<div id="hot-happening-div" class="hot-happening-div">
+  <h1><span><img src="<?php echo $this->getSkinUrl('images/instagram-icon.png')?>" /> </span> HOT & HAPPENING </h1>
+  <div class="container">
+    <div class="carousel-wrap">
+      <div class="owl-carousel">
+        <div class="item"><img src="<?php echo $this->getSkinUrl('images/instagram-1.jpg')?>" /> </div>
+        <div class="item"><img src="<?php echo $this->getSkinUrl('images/instagram-2.jpg')?>" /> </div>
+        <div class="item"><img src="<?php echo $this->getSkinUrl('images/instagram-3.jpg')?>" /> </div>
+        <div class="item"><img src="<?php echo $this->getSkinUrl('images/instagram-4.jpg')?>" /> </div>
+        <div class="item"><img src="<?php echo $this->getSkinUrl('images/instagram-1.jpg')?>" /> </div>
+        <div class="item"><img src="<?php echo $this->getSkinUrl('images/instagram-2.jpg')?>" /> </div>
+        <div class="item"><img src="<?php echo $this->getSkinUrl('images/instagram-3.jpg')?>" /> </div>
+        <div class="item"><img src="<?php echo $this->getSkinUrl('images/instagram-4.jpg')?>" /> </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- HOT HAPPENING End -->
+

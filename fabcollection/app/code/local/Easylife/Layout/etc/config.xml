@@ -1,0 +1,28 @@
+<?xml version="1.0"?> 
+<config>
+    <modules>
+        <Easylife_Layout>
+            <version>0.0.1</version>
+        </Easylife_Layout>
+    </modules>
+    <global>
+        <page>
+            <layouts> 
+                <lookbook module="page" translate="label">
+                    <label>Lookbook</label>
+                    <template>page/1column-lookbook.phtml</template>
+                    <layout_handle>lookbook</layout_handle>
+                </lookbook> 
+            </layouts>
+        </page>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <easylife_layout>
+                    <file>easylife_layout.xml</file>
+                </easylife_layout>
+            </updates>
+        </layout>
+    </frontend>
+</config>

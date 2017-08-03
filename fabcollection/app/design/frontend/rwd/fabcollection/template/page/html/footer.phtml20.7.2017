@@ -1,0 +1,252 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php /*?><div class="footer-container">
+    <div class="footer">
+        <?php echo $this->getChildHtml() ?>
+        <address class="copyright"><?php echo $this->getCopyright() ?></address>
+    </div>
+</div><?php */?>
+<footer>
+  <div class="footer-top clearfix">
+    <div class="container clearfix">
+      <div class="footer-top-total clearfix">
+        <div class="footer-top-left"> 100% Secure Shopping </div>
+        <div class="footer-top-right"> We Accept:
+          <ul>
+            <li> <img src="<?php echo $this->getSkinUrl('images/cart-1.png')?>" /> </li>
+            <li> <img src="<?php echo $this->getSkinUrl('images/cart-2.png')?>" /> </li>
+            <li> <img src="<?php echo $this->getSkinUrl('images/cart-3.png')?>" /> </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom clearfix">
+    <div class="footer-bottom-top">
+      <div class="container">
+       <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('assistance')->toHtml() ?>
+      </div>
+    </div>
+    <div class="footer-bottom-bottom clearfix">
+      <div class="container">
+        <div class="one-column footer-bottom-heding">
+          <h4> <?php $staticBlock = Mage::getModel('cms/block')->load('custome_service');
+                 echo $staticBlock_title =   $staticBlock->getTitle();
+         
+                  ?> </h4>
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('custome_service')->toHtml() ?>
+          
+        </div>
+        <!---------------->
+        <div class="two-column footer-bottom-heding">
+          <h4> <?php $staticBlock = Mage::getModel('cms/block')->load('part_comm');
+                 echo $staticBlock_title =   $staticBlock->getTitle();
+         
+                  ?> </h4>
+          <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('part_comm')->toHtml() ?>
+          <div class="footer-country-name-div">
+            <ul>
+              <li> <a href="#"><span><img src="<?php echo $this->getSkinUrl('images/country-icon.png')?>" /> </span> 33 Day Price Match </a></li>
+              <li> <a href="#"><span><img src="<?php echo $this->getSkinUrl('images/country-icon.png')?>" /> </span> 100% Secure </a></li>
+            </ul>
+          </div>
+        </div>
+        <!---------------->
+        <div class="three-column footer-bottom-heding">
+          <h4> <?php $staticBlock = Mage::getModel('cms/block')->load('account');
+                 echo $staticBlock_title =   $staticBlock->getTitle();
+         
+                  ?>  </h4>
+           <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('account')->toHtml() ?>
+        </div>
+        <!---------------->
+        <div class="four-column footer-bottom-heding">
+          <h4> GET THE EXCLUSIVE </h4>
+          <p> Join Our Newsletter </p>
+          <?php echo $this->getChildHtml('footer.newsletter'); ?>
+          <h5> <a href="#">LATEST NEWSLETTER</a> </h5>
+          <h5> NOW SHOPPING: <span> <a href="#"><img src="<?php echo $this->getSkinUrl('images/logoheader_icon.png')?>" /></a> </span></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="copy-right-div">
+  <div class="container">
+  <div class="footer-logo"> <a href="#"> <img src="<?php echo $this->getSkinUrl('images/logo.png')?>" /> </a>
+    <p> © 2016 Fabcollection.ca, All rights reserved </p>
+  </div>
+  <div class="live-chat">
+    <button class="chat-close-btn">X</button>
+    <div class="chat-box">
+      <div class="chat-icon-div"> <a href="#"><img src="<?php echo $this->getSkinUrl('images/live-chat-icon.png')?>" /> </a> </div>
+      <div class="chat-text"> <span class="chat-time"><a href="#"> 24X7 </a></span> <span><a href="#"> Chat with us </a></span> </div>
+    </div>
+  </div>
+  <div class="back-top-top-div"> <a href="javascript:" id="return-to-top"><i class="fa fa-angle-up" aria-hidden="true"></i></a> </div>
+  </div>
+  </div>
+</footer>
+</body>
+
+
+<!--BANNER-->
+<script src="<?php echo $this->getSkinUrl(); ?>js/index.js"></script>
+<!-- search -->
+
+<!-- search End-->
+<!--Mobile menu-->
+<script type="text/javascript" src="<?php echo $this->getSkinUrl(); ?>js/sidenav.js"></script>
+<!--HOT & HAPPENING SLIDER-->
+<script type="text/javascript" src="<?php echo $this->getSkinUrl(); ?>js/owl.carousel.min.js"></script>
+<script>
+jQuery('.owl-carousel').owlCarousel({
+  loop: true,
+  margin: 10,
+  nav: true,
+  navText: [
+    "<i class='fa fa-angle-left'></i>",
+    "<i class='fa fa-angle-right'></i>"
+  ],
+  autoplay: false,
+  autoplayHoverPause: true,
+  responsive: {
+    0: {
+      items: 1
+    },
+    600: {
+      items: 2
+    },
+    1000: {
+      items: 4
+    }
+  }
+})
+</script>
+
+<!--- Scroll to Top ----->
+<script>
+jQuery(window).scroll(function() {
+    if (jQuery(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+        jQuery('#return-to-top').fadeIn(200);    // Fade in the arrow
+    } else {
+        jQuery('#return-to-top').fadeOut(200);   // Else fade out the arrow
+    }
+});
+jQuery('#return-to-top').click(function() {      // When arrow is clicked
+    jQuery('body,html').animate({
+        scrollTop : 0                       // Scroll to top of body
+    }, 500);
+});
+</script>
+<!--- Scroll to Top End ----->
+<!--Chat close-->
+<script type="text/javascript">	
+			jQuery(function() {
+				jQuery('.chat-close-btn').click(function(e) {
+					jQuery(this).next().hide();
+                   jQuery(this).hide();
+                });
+			});
+				</script>
+<script src="<?php echo $this->getSkinUrl(); ?>js/custom.js"></script>
+<script>
+    function init() {
+        window.addEventListener('scroll', function(e){
+			
+			if(scrollY>58){
+				jQuery(".steky-div").addClass("smaller");
+			}
+			else{
+				 jQuery(".steky-div").removeClass("smaller");
+			}
+            /*var distanceY = window.pageYOffset || document.documentElement.scrollTop,
+                shrinkOn = 58,
+                header = document.querySelector(".steky-div");
+            if (distanceY > shrinkOn) {
+                classie.add(header,"smaller");
+            } else {
+                if (classie.has(header,"smaller")) {
+                    classie.remove(header,"smaller");
+                }
+            }*/
+        });
+    }
+    window.onload = init();
+</script>
+
+<!-- products page list toggle -->
+<script>
+jQuery(document).ready(function(){
+  jQuery(".toggle-filter").click(function(){
+    jQuery(".toggle-content").slideToggle(500);
+  });
+});
+</script>
+
+<!-- Responsive menu start--->
+
+<script>
+ jQuery(function(){
+    var responsiveWidth = 767;
+    var _widthResize;
+
+    jQuery(window).resize(function() {
+        _widthResize = jQuery(this).width() > responsiveWidth;
+    }).resize();
+
+    jQuery('.navBox >ul >li').hover(function(){
+      if(_widthResize){
+        var _this = jQuery(this);
+        _this.addClass('active').children('cbp-hrsub').stop(true, true).slideDown(300);        
+      }  
+    } , function(){
+      if(_widthResize){
+        jQuery(this).removeClass('active').children('cbp-hrsub').stop(true, true).hide();
+      }   
+    });
+
+    jQuery('.cbp-hrsub').parent('li').click(function(e) {
+      if(!_widthResize){
+        jQuery(this).children('.cbp-hrsub').stop(true, true).slideToggle(300);
+        e.preventDefault();
+      }    
+    });
+
+    jQuery("#openPageslide").sideNav();
+
+}); 
+</script>
+<script>
+  jQuery(function(){
+   jQuery('.menu-close').click(function(e) {
+	 jQuery('.pageslideBg').click();
+    });
+  });
+</script>
+<!-- Responsive menu end --->
+
+</html>
