@@ -1,0 +1,190 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php if($this->getItems()->getSize()): ?>
+
+
+<div class="block block-related">
+    <div class="block-title">
+        <h2><?php echo $this->__('Related Products') ?></h2>
+    </div>
+    
+   <div id="related-item" class="owl-carousel">
+							 <?php foreach($this->getItems() as $_item): ?>		  
+							<!-- For each Start Here -->
+							<div class="product_row">
+                                        <div class="item products-grid">
+                                           <div class="item-inner">
+                                              <div class="image-container product-item-info">
+                                                 <span class='hot-sale'>sale</span>	
+                                                 <a href="<?php echo $_item->getProductUrl(); ?>" class="product-item-photo">
+                                                 <span class="product-image-container"
+                                                    style="width:400px;">
+                                                 <span class="product-image-wrapper"
+                                                    style="padding-bottom: 100%;">
+                                                 <img class="product-image-photo"
+                                                    src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail'); ?>"
+                                                    
+                                                    alt="Crown Summit Backpack"/></span>
+                                                 </span>
+                                                 </a>
+                                                 <div class="product-item-details">
+                                                    <div class="product-name">
+                                                       <div class="title-name">
+                                                          Sample Category														
+                                                       </div>
+                                                       <strong class="product-item-name">
+                                                       <a title="Crown Summit Backpack"
+                                                          href="<?php echo $_item->getProductUrl(); ?>"
+                                                          class="product-item-link">
+                                                        <?php echo $_item->getName(); ?>
+                                                        </a>
+                                                       </strong>
+                                                    </div>
+                                                    
+                                                    <div class="price-box price-final_price" data-role="priceBox" data-product-id="19">
+                                                       <span class="special-price">
+                                                       <span class="price-container price-final_price tax weee"
+                                                          >
+                                                       <span class="price-label">Special Price</span>
+                                                       <span
+                                                          data-price-amount="35"
+                                                          data-price-type="finalPrice"
+                                                          class="price-wrapper "
+                                                          >
+                                                       <span class="price">$35.00</span>    </span>
+                                                       </span>
+                                                       </span>
+                                                       <span class="old-price">
+                                                       <span class="price-container price-final_price tax weee"
+                                                          >
+                                                       <span class="price-label">Regular Price</span>
+                                                       <span
+                                                          data-price-amount="38"
+                                                          data-price-type="oldPrice"
+                                                          class="price-wrapper "
+                                                          >
+                                                       <span class="price">$38.00</span>    </span>
+                                                       </span>
+                                                       </span>
+                                                    </div>
+                                                 </div>
+                                                 <div class="box-hover">
+                                                    <div class="actions-primary">
+                                                       <button class="action tocart primary"
+                                                          type="button" title="Add to cart">
+                                                       <span>Add to cart</span>
+                                                       </button>
+                                                    </div>
+                                                    <div class="add-to-links actions-secondary" data-role="add-to-links">
+                                                       <a href="#"
+                                                          class="action towishlist" data-action="add-to-wishlist"
+                                                          title="Add to Wishlist">
+                                                       <span>Wishlist</span>
+                                                       </a>
+                                                       <a href="#" class="action tocompare"
+                                                          title="Add to Compare">
+                                                       <span>Compare</span>
+                                                       </a>
+                                                    </div>
+                                                 </div>
+                                              </div>
+                                           </div>
+                                        </div>
+                                     </div>
+									  
+									  
+				<?php endforeach ?>					  
+									  
+	   </div>								  
+									  
+    
+    
+<!--
+    <div class="block-content">
+        <p class="block-subtitle"><?php echo $this->__('Check items to add to the cart or') ?>&nbsp;<a href="#" onclick="selectAllRelated(this); return false;"><?php echo $this->__('select all') ?></a></p>
+        <ol class="mini-products-list" id="block-related">
+        <?php foreach($this->getItems() as $_item): ?>
+            <li class="item">
+                <?php if(!$_item->isComposite() && $_item->isSaleable()): ?>
+                    <?php if (!$_item->getRequiredOptions()): ?>
+                        <input type="checkbox" class="checkbox related-checkbox" id="related-checkbox<?php echo $_item->getId() ?>" name="related_products[]" value="<?php echo $_item->getId() ?>" />
+                    <?php endif; ?>
+                <?php endif; ?>
+                <div class="product">
+                    <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_item->getName()) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(75) ?>" width="75" height="75" alt="<?php echo $this->escapeHtml($_item->getName()) ?>" /></a>
+                    <div class="product-details">
+                        <p class="product-name"><a href="<?php echo $_item->getProductUrl() ?>"><?php echo $this->escapeHtml($_item->getName()) ?></a></p>
+                        <?php echo $this->getPriceHtml($_item, true, '-related') ?>
+                        <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                            <a href="<?php echo $this->getAddToWishlistUrl($_item) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </li>
+        <?php endforeach ?>
+        </ol>
+        <script type="text/javascript">decorateList('block-related', 'none-recursive')</script>
+    </div>
+-->
+    <script type="text/javascript">
+    //<![CDATA[
+    $$('.related-checkbox').each(function(elem){
+        Event.observe(elem, 'click', addRelatedToProduct)
+    });
+
+    var relatedProductsCheckFlag = false;
+    function selectAllRelated(txt){
+        if (relatedProductsCheckFlag == false) {
+            $$('.related-checkbox').each(function(elem){
+                elem.checked = true;
+            });
+            relatedProductsCheckFlag = true;
+            txt.innerHTML="<?php echo Mage::helper('core')->jsQuoteEscape($this->__('unselect all')) ?>";
+        } else {
+            $$('.related-checkbox').each(function(elem){
+                elem.checked = false;
+            });
+            relatedProductsCheckFlag = false;
+            txt.innerHTML="<?php echo Mage::helper('core')->jsQuoteEscape($this->__('select all')) ?>";
+        }
+        addRelatedToProduct();
+    }
+
+    function addRelatedToProduct(){
+        var checkboxes = $$('.related-checkbox');
+        var values = [];
+        for(var i=0;i<checkboxes.length;i++){
+            if(checkboxes[i].checked) values.push(checkboxes[i].value);
+        }
+        if($('related-products-field')){
+            $('related-products-field').value = values.join(',');
+        }
+    }
+    //]]>
+    </script>
+</div>
+<?php endif ?>

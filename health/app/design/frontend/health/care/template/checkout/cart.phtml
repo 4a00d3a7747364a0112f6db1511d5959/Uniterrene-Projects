@@ -1,0 +1,2051 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Shopping cart template
+ *
+ * @var $this Mage_Checkout_Block_Cart
+ */
+?>
+<?php $_priceDisplay = ($this->helper('tax')->displayCartBothPrices()) ? 'display-both-prices' : 'display-single-price'; ?>
+
+<div class="cart <?php echo $_priceDisplay; ?>">
+  <div class="page-title title-buttons">
+    <h1><?php echo $this->__('Shopping Cart') ?></h1>
+    <?php if(!$this->hasError()): ?>
+    <div class="express-order-box">
+      <h4> Express Order and Checkout </h4>
+      <p> Try our NEW! <a href="#">Express Order & Checkout!</a> Avoid system delays with this quick and easy rapid entry form! <a href="javascript:void(0);" id="limitations">Some limitations apply <span> <i class="fa fa-sort-desc"></i> </span></a> </p>
+      <div id="divLimits" class="express-order-details" style="display:none;">
+        <ul>
+          <li><span> <i class="fa fa-check"></i></span> You cannot use Offer Codes (but you CAN include Product Specials). </li>
+          <li><span> <i class="fa fa-check"></i></span> You will not be able to see your total order cost which includes taxes, shipping and any applicable discounts. </li>
+          <li><span> <i class="fa fa-check"></i></span> Limited payment options. (Cannot use two Credit Cards or a combination of Bank Draft and Credit Card.)</li>
+          <li><span> <i class="fa fa-check"></i></span> Standard Shipping or Warehouse pickup only. (You cannot ship 2nd-Day or Overnight.) </li>
+        </ul>
+        <div class="express-order-btn"><a href="javascript:void(0);" class="buttonStrong">Continue to Express Order &amp; Checkout</a></div>
+      </div>
+    </div>
+    <ul class="checkout-types top customButtons">
+      <?php foreach ($this->getMethods('top_methods') as $method): ?>
+      <?php if ($methodHtml = $this->getMethodHtml($method)): ?>
+      <li><?php echo $methodHtml; ?></li>
+      <?php endif; ?>
+      <?php endforeach; ?>
+    </ul>
+    <?php endif; ?>
+  </div>
+  <?php echo $this->getMessagesBlock()->toHtml() ?> <?php echo $this->getChildHtml('form_before') ?>
+  <form action="<?php echo $this->getFormActionUrl() ?>" method="post">
+    <?php echo $this->getBlockHtml('formkey'); ?>
+    <table id="shopping-cart-table" class="cart-table data-table customCartTable">
+      <col width="1" />
+      <col width="1" />
+      <col width="1" />
+      <col width="1" />
+      <col width="1" />
+      <col width="1" />
+      <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
+      <col width="1" />
+      <col width="1" />
+      <?php endif; ?>
+      <?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
+      <thead>
+        <tr>
+          <th rowspan="<?php echo $mergedCells; ?>"><span class="nobr"><?php echo $this->__('Product') ?></span></th>
+          <th rowspan="<?php echo $mergedCells; ?>">&nbsp;</th>
+          <th class="a-center cart-price-head" colspan="<?php echo $mergedCells; ?>"> <!--                            <div class="cart-price-placeholder">--> 
+            <span class="nobr"><?php echo $this->__('Price') ?></span> 
+            <!--                            </div>--> </th>
+          <th rowspan="<?php echo $mergedCells; ?>" class="a-center"> <?php echo $this->__('Qty') ?>
+            <?php /*if ($this->helper('wishlist')->isAllowInCart()) : ?>
+                            <span class="nobr"><?php echo $this->__('Move to Wishlist') ?></span>
+                        <?php endif*/ ?>
+          </th>
+          <th class="a-center cart-total-head" colspan="<?php echo $mergedCells; ?>"> <!--                            <div class="cart-total-placeholder">--> 
+            <?php echo $this->__('Subtotal') ?> 
+            <!--                            </div>--> </th>
+          <th class="a-center" rowspan="<?php echo $mergedCells; ?>">&nbsp;</th>
+        </tr>
+        <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
+        <tr>
+          <th class="a-center cart-price-head"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+          <th class="a-center cart-price-head"><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+          <th class="a-center cart-total-head"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+          <th class="a-center cart-total-head"><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+        </tr>
+        <?php endif; ?>
+      </thead>
+      <tfoot>
+        <tr>
+          <td colspan="50" class="a-right cart-footer-actions customCart"><!-- Make this button the first responder rather than empty cart --> 
+            <!-- <button type="submit" style="visibility:hidden;" data-cart-item-update name="update_cart_action" value="update_qty" title="<?php echo $this->quoteEscape($this->__('Update Shopping Cart')); ?>" class="button2 btn-update"><span><span><?php echo $this->__('Update Shopping Cart'); ?></span></span></button> -->
+            
+            <button type="submit" name="update_cart_action" data-cart-empty value="empty_cart" title="<?php echo $this->quoteEscape($this->__('Empty Cart')); ?>" class="button2 btn-empty" id="empty_cart_button"><span><span><?php echo $this->__('Empty Cart'); ?></span></span></button>
+            <button type="submit" name="update_cart_action" data-cart-item-update value="update_qty" title="<?php echo $this->quoteEscape($this->__('Update Shopping Cart')); ?>" class="button2 btn-update"><span><span><?php echo $this->__('Update Shopping Cart'); ?></span></span></button>
+            <span class="or">-<?php echo $this->__('or'); ?>-</span>
+            <?php if($this->getContinueShoppingUrl()): ?>
+            <button type="button" title="<?php echo $this->quoteEscape($this->__('Continue Shopping')) ?>" class="button2 btn-continue" onclick="setLocation('<?php echo Mage::helper('core')->quoteEscape($this->getContinueShoppingUrl()) ?>')"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+            <?php endif; ?>
+            
+            <!--[if lt IE 8]>
+                        <input type="hidden" id="update_cart_action_container" data-cart-item-update />
+                        <script type="text/javascript">
+                        //<![CDATA[
+                            Event.observe(window, 'load', function()
+                            {
+                                // Internet Explorer (lt 8) does not support value attribute in button elements
+                                $emptyCartButton = $('empty_cart_button');
+                                $cartActionContainer = $('update_cart_action_container');
+                                if ($emptyCartButton && $cartActionContainer) {
+                                    Event.observe($emptyCartButton, 'click', function()
+                                    {
+                                        $emptyCartButton.setAttribute('name', 'update_cart_action_temp');
+                                        $cartActionContainer.setAttribute('name', 'update_cart_action');
+                                        $cartActionContainer.setValue('empty_cart');
+                                    });
+                                }
+
+                            });
+                        //]]>
+                        </script>
+                        <![endif]--></td>
+        </tr>
+      </tfoot>
+      <tbody>
+        <?php foreach($this->getItems() as $_item): ?>
+        <?php echo $this->getItemHtml($_item) ?>
+        <?php endforeach ?>
+      </tbody>
+    </table>
+    <script type="text/javascript">decorateTable('shopping-cart-table')</script>
+  </form>
+  <?php echo $this->getChildHtml('shopping.cart.table.after'); ?>
+ 
+  <div class="cart-payment-box clearfix">
+   <div class="cart-payment-box-left">    
+     <div id="success-message" class="successMessageContainer clearFix"> <strong>
+    <h3>Become a Member and Save up to 33%! </h3>
+    Save <span id="litMembershipUpsellSavingsAmount">$65.00</span> by becoming a Member today! </strong>
+    <div id="divShoppingCart_MinimumVolumeContainer" style="display: block;">
+      <hr>
+      <h4> Two Steps to Becoming a Member</h4>
+      <p><strong>Step 1:</strong> Include&nbsp;<span id="spanShoppingCart_MinimumVolumeRequiredAmount">40</span> + of product (Volume) in your Cart.</p>
+    </div>
+    <div id="divShoppingCart_ItemRequiredContainer" style="display: none;">
+      <hr>
+      <h4> Two Steps to Becoming a Member</h4>
+      <p><strong>Step 1:</strong>Include one of the following products in your Cart.</p>
+      <a class="shoppingCart_ViewRequiredItemsButton buttonNormal window" data-contentsourcetype="Ajax" data-contentsourcevalue="/us/Shop/GetActivationItems" data-height="650" data-ismodal="true" data-width="750" data-windowtitle="Item Required Options" id="lbtnViewItems" maxlength="500" type="text" data-windowenabled="true">view items</a> </div>
+    <p><strong>Step 2:</strong> Continue to Checkout and select the 'Become a Member' option. </p>
+    <p><em>Member discounts will be applied to today's order.</em></p>
+    <p><a href="/us/shop/c1/benefits10/membership-benefits" onclick="_gaq.push(['_trackEvent', 'LinkTracker', 'Signup', 'ShoppingCart-LinktoBenefits-en']); ">Member Benefits</a>.</p>
+  </div>  
+   </div>
+   <div class="cart-payment-box-right">
+    <div class="cart-forms" id="customCartForms"> <strong class="summary title">Summary</strong>
+    <?php /* Extensions placeholder */ ?>
+    <?php echo $this->getChildHtml('checkout_cart_widget') ?>
+    <div class="customCoupon"> <?php echo $this->getChildHtml('coupon') ?> </div>
+    <?php echo $this->getChildHtml('checkout.cart.extra') ?>
+    <?php if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping'); endif; ?>
+  </div>
+    <div class="cart-totals-wrapper" id="custom_cart_total_wrap">
+    <div class="cart-totals"> <?php echo $this->getChildHtml('totals'); ?>
+      <?php if(!$this->hasError()): ?>
+      <ul class="checkout-types bottom">
+        <?php foreach ($this->getMethods('methods') as $method): ?>
+        <?php if ($methodHtml = $this->getMethodHtml($method)): ?>
+        <li class="method-<?php echo preg_replace("/[^_a-zA-Z0-9-]/", '-', $method); ?>"><?php echo $methodHtml; ?></li>
+        <?php endif; ?>
+        <?php endforeach; ?>
+      </ul>
+      <?php endif; ?>
+    </div>
+  </div>
+   </div>
+  </div>
+  <?php echo $this->getChildHtml('crosssell') ?> </div>
+  
+  
+
+
+
+
+<div id="immune-support" class="cart-category-section"> 
+ <div id="cart-product-section">
+  <div class="category-title">
+     <h1>Immune Support </h1>
+  </div>
+  <div id="cart-product-1" class="owl-carousel">
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+   
+  </div>
+ </div>
+</div>
+
+<div id="buying-today" class="cart-category-section"> 
+ <div id="cart-product-section">
+  <div class="category-title">
+     <h1>What others are buying today </h1>
+  </div>
+  <div id="cart-product-2" class="owl-carousel">
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+   
+  </div>
+ </div>
+</div>
+
+<div id="children-products" class="cart-category-section"> 
+ <div id="cart-product-section">
+  <div class="category-title">
+     <h1> Chewable Children's Products  </h1>
+  </div>
+  <div id="cart-product-3" class="owl-carousel">
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+   
+  </div>
+ </div>
+</div>
+
+<div id="peace-earth" class="cart-category-section"> 
+ <div id="cart-product-section">
+  <div class="category-title">
+     <h1>Find Your Inner Peace on Earth</h1>
+  </div>
+  <div id="cart-product-4" class="owl-carousel">
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+   
+  </div>
+ </div>
+</div>
+
+<div id="program-everyone" class="cart-category-section"> 
+ <div id="cart-product-section">
+  <div class="category-title">
+     <h1>A Balanced Program For Everyone </h1>
+  </div>
+  <div id="cart-product-5" class="owl-carousel">
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+    <div class="item">
+        <div class="item-inner">
+          <div class="image-container product-item-info"> <span class="hot-sale">sale</span> <a href="http://www.uniterreneprojects.com/dev/health/index.php/dummy-product-22.html" class="product-item-photo"> <span class="product-image-container" style="width:400px;"> <span class="product-image-wrapper" style="padding-bottom: 100%;"> <img class="product-image-photo" src="http://www.uniterreneprojects.com/dev/health/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/1/11_1_2.jpg" alt="Joust Duffle Bag1" height="400" width="400"></span> </span> </a>
+            <div class="product-item-details">
+              <div class="product-name"> 
+                <!-- <div class="title-name">
+               Sample Category              
+            </div> --> 
+                <strong class="product-item-name"> <a title="Joust Duffle Bag1" href="http://www.uniterreneprojects.com/dev/health/index.php/shop/joust-duffle-bag1.html" class="product-item-link"> Joust Duffle Bag1 </a> </strong> </div>
+              <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                <div class="product-item-price-box">
+                  <ul>
+                    <li> Stock Number: <span> 1666 </span> </li>
+                    <li> Retail Cost: <span> $25.15 </span> </li>
+                    <li> Member Cost:
+                      
+                      <span> $16.75 </span> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box-hover">
+              <div class="actions-primary">
+                <button class="action tocart primary" type="button" title="Add to cart"> <span>Add to cart</span> </button>
+              </div>
+              <div class="add-to-links actions-secondary" data-role="add-to-links"> <a href="http://www.uniterreneprojects.com/dev/health/index.php/wishlist/index/add/product/1/form_key/lBMQTMDmYTKp1L9q/" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist"> <span>Wishlist</span> </a> <a href="http://www.uniterreneprojects.com/dev/health/index.php/catalog/product_compare/add/product/1/uenc/aHR0cDovL3d3dy51bml0ZXJyZW5lcHJvamVjdHMuY29tL2Rldi9oZWFsdGgvc2hvcC5odG1s/form_key/lBMQTMDmYTKp1L9q/" class="action tocompare" title="Add to Compare"> <span>Compare</span> </a> </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+   
+  </div>
+ </div>
+</div>
+
+<script>
+jQuery('#cart-product-1').owlCarousel({
+  loop: true,
+  margin: 10,
+  nav: true,
+  navText: [
+    "<i class='fa fa-caret-left'></i>",
+    "<i class='fa fa-caret-right'></i>"
+  ],
+  autoplay: false,
+  autoplayHoverPause: true,
+  responsive: {
+    0: {
+      items: 1
+    },
+	600: {
+      items: 2
+    },
+    768: {
+      items: 3
+    },	
+    1000: {
+      items: 4
+    }
+  }
+})
+</script> 
+
+<script>
+jQuery('#cart-product-2').owlCarousel({
+  loop: true,
+  margin: 10,
+  nav: true,
+  navText: [
+    "<i class='fa fa-caret-left'></i>",
+    "<i class='fa fa-caret-right'></i>"
+  ],
+  autoplay: false,
+  autoplayHoverPause: true,
+  responsive: {
+    0: {
+      items: 1
+    },
+	600: {
+      items: 2
+    },
+    768: {
+      items: 3
+    },
+    1000: {
+      items: 4
+    }
+  }
+})
+</script> 
+
+<script>
+jQuery('#cart-product-3').owlCarousel({
+  loop: true,
+  margin: 10,
+  nav: true,
+  navText: [
+    "<i class='fa fa-caret-left'></i>",
+    "<i class='fa fa-caret-right'></i>"
+  ],
+  autoplay: false,
+  autoplayHoverPause: true,
+  responsive: {
+    0: {
+      items: 1
+    },
+	600: {
+      items: 2
+    },
+    768: {
+      items: 3
+    },
+    1000: {
+      items: 4
+    }
+  }
+})
+</script> 
+
+<script>
+jQuery('#cart-product-4').owlCarousel({
+  loop: true,
+  margin: 10,
+  nav: true,
+  navText: [
+    "<i class='fa fa-caret-left'></i>",
+    "<i class='fa fa-caret-right'></i>"
+  ],
+  autoplay: false,
+  autoplayHoverPause: true,
+  responsive: {
+    0: {
+      items: 1
+    },
+	600: {
+      items: 2
+    },
+    768: {
+      items: 3
+    },
+    1000: {
+      items: 4
+    }
+  }
+})
+</script> 
+
+<script>
+jQuery('#cart-product-5').owlCarousel({
+  loop: true,
+  margin: 10,
+  nav: true,
+  navText: [
+    "<i class='fa fa-caret-left'></i>",
+    "<i class='fa fa-caret-right'></i>"
+  ],
+  autoplay: false,
+  autoplayHoverPause: true,
+  responsive: {
+    0: {
+      items: 1
+    },
+	600: {
+      items: 2
+    },
+    768: {
+      items: 3
+    },
+    1000: {
+      items: 4
+    }
+  }
+})
+</script> 
+
+
+<script>
+jQuery(document).ready(function(){
+    jQuery('#limitations').live('click', function(event) {        
+         jQuery('#divLimits').toggle('show');
+    });
+});
+</script>

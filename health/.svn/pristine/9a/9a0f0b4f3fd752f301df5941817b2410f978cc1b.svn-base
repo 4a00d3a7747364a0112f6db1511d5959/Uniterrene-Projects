@@ -1,0 +1,28 @@
+<?xml version="1.0"?> 
+<config>
+    <modules>
+        <Company_DropdownLayout>
+            <version>1.0.0</version>
+        </Company_DropdownLayout>
+    </modules>
+    <global>
+        <page>
+            <layouts> 
+                <newlayout module="page" translate="label">
+                    <label>Home Page layout</label>
+                    <template>page/full-width.phtml</template>
+                    <layout_handle>full-width</layout_handle>
+                </newlayout> 
+            </layouts>
+        </page>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <Company_DropdownLayout>
+                    <file>Company_DropdownLayout.xml</file>
+                </Company_DropdownLayout>
+            </updates>
+        </layout>
+    </frontend>
+</config>

@@ -1,0 +1,43 @@
+<layout version="0.1.0">
+    <default>
+ 
+        <reference name="head">
+            <!--Adding JS Files Styles-->
+            <action method="addItem"><type>skin_js</type><name>js/bootstrap.min.js</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>js/jquery.carouFredSel-6.2.1-packed.js</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>js/jquery.easing.1.3.js</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>js/jquery.elevatezoom.js</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>js/jquery.flexslider.js</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>js/owl.carousel.js</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>js/jquery.sequence-min.js</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>js/script.min.js</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>js/countdown.js</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>js/jquery.bpopup.min.js</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>js/mixins.js</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>js/require.js</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>js/requirejs-config.js</name><params/></action>
+ 
+            <!--Adding CSS Files Styles-->
+            <action method="addCss"><stylesheet>css/bootstrap.css</stylesheet><params/></action>
+            <action method="addCss"><stylesheet>css/animate.css</stylesheet><params/></action>
+            <action method="addCss"><stylesheet>css/bootstrap-theme.css</stylesheet><params/></action>
+            <action method="addCss"><stylesheet>css/font-awesome.min.css</stylesheet><params/></action>
+            <action method="addCss"><stylesheet>css/flexslider.css</stylesheet><params/></action>
+            <action method="addCss"><stylesheet>css/owl.carousel.css</stylesheet><params/></action>
+            <action method="addCss"><stylesheet>css/owl.theme.css</stylesheet><params/></action>
+            <action method="addCss"><stylesheet>css/sequence-looptheme.css</stylesheet><params/></action>
+            <action method="addCss"><stylesheet>css/style.css</stylesheet><params/></action>
+            <action method="addCss"><stylesheet>css/style8.css</stylesheet><params/></action>
+            <action method="addCss"><stylesheet>css/calendar.css</stylesheet><params/></action>
+            <action method="addCss"><stylesheet>css/gallery.css</stylesheet><params/></action>
+            <action method="addCss"><stylesheet>css/madisonisland.css</stylesheet><params/></action>
+            <action method="addCss"><stylesheet>css/madisonisland-ie8.css</stylesheet><params/></action>
+            <action method="addCss"><stylesheet>css/scaffold-forms.css</stylesheet><params/></action>
+            <action method="addCss"><stylesheet>css/styles.css</stylesheet><params/></action>	
+            <action method="addCss"><stylesheet>css/styles-ie8.css</stylesheet><params/></action>
+            <action method="addCss"><stylesheet>css/styles-l.css</stylesheet><params/></action>
+            <action method="addCss"><stylesheet>css/styles-m.css</stylesheet><params/></action>
+        </reference>
+ 
+    </default>
+</layout>

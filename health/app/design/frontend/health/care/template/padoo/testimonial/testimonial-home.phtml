@@ -1,0 +1,26 @@
+ <?php $testimonials = $this->getTestimonials(); ?>
+    <?php $i = 0;?>
+    <?php if ($testimonials->count() > 0): ?>
+    <?php foreach ($testimonials as $testimonial): ?>
+ <div class="item">
+                                  <div class="pt-testimonial">
+                                          <div class="content-tes">
+                                             <a href="#" class="image">
+                                             <img alt="utheya" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $testimonial->getTestimonialImg() ?>"/>
+                                             </a>
+                                          </div>
+                                          <div class="des">
+                                             <?php echo $testimonial->getTestimonialText(); ?> 							
+                                             <div class="info">
+                                                <a href="#" class="name"><?php echo $testimonial->getTestimonialName(); ?> 	</a>
+                                                
+                                             </div>
+                                             <div class="email"><?php echo $testimonial->getTestimonialEmail() ?></div>
+                                          </div>
+                                       </div>
+                                </div>
+
+
+ 
+ <?php $i++;endforeach; ?>
+ <?php endif;?> 

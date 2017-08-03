@@ -1,0 +1,132 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+
+<!DOCTYPE html>
+
+<!--[if lt IE 7 ]> <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js"> <!--<![endif]-->
+
+<head>
+
+<?php echo $this->getChildHtml('head') ?>
+
+<link  rel="stylesheet " type="text/css" href="https://fonts.googleapis.com/css?family=Roboto" />
+
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery(".pt-banner-container .ptowl").owlCarousel({
+			singleItem: true,
+			autoPlay : 500000000, 
+			//autoPlay : false,
+			items : 1,
+			itemsDesktop : [1199,1],
+			itemsDesktopSmall : [980,1],
+			itemsTablet: [768,1],
+			itemsMobile : [479,1],
+			slideSpeed : 500,
+			paginationSpeed : 500,
+			rewindSpeed : 500,
+			addClassActive: true,
+			navigation : true,
+			stopOnHover : true,
+			pagination : false,
+			scrollPerPage:true,
+			afterMove: nextslide,
+			afterInit: nextslide,
+		});
+		function nextslide() {
+			jQuery(".pt-banner-container .owl-item .pt-banner-caption").css('display','none');
+			jQuery(".pt-banner-container .owl-item .pt-banner-caption").removeClass('pt-caption')
+			jQuery(".pt-banner-container .owl-item.active .pt-banner-caption").css('display','block');
+			
+			var heading = $('.pt-banner-container .owl-item.active .pt-banner-caption').clone().removeClass();
+			jQuery('.pt-banner-container .owl-item.active .pt-banner-caption').remove();
+			jQuery('.pt-banner-container .owl-item.active>li').append(heading);
+			jQuery('.pt-banner-container .owl-item.active>li>div').addClass('pt-banner-caption pt-caption');
+		}
+	});
+</script>
+	  
+	  
+</head>
+<body data-container="body" data-mage-init='{"loaderAjax": {}, "loader": { "icon": "images/loader-2.gif"}}' <?php echo $this->getBodyClass()?'  class="cms-ma-organica-1-cosmetic-responsive-magento-theme cms-index-index page-layout-1column '.$this->getBodyClass().'"':'' ?>>    
+   
+      <div class="page-wrapper">
+         
+         <div id="banner-slider" class="pt-banner-container">
+            <ul class="ptowl">
+               <li>
+                  <a href="#" class="pt-url">
+                  <img alt="" src="http://127.0.0.1/public_html/health_care_magento/images/banner1-home1.jpg"/>
+                  </a>								
+                  <div id="pt-banner-caption1" class="pt-caption pt-banner-caption">
+                     <div class="pt-banner-content ptslider-1">
+                        <h1 class="pt-title1"><span>Face Cleanser</span></h1>
+                        <h2 class="pt-title2" ><span>Mega - Mushroom Skin Relief</span></h2>
+                        <div class="pt-banner-des">
+                           <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. </p>
+                        </div>
+                        <a href="#" class="pt-url">shop now</a>												
+                     </div>
+                  </div>
+               </li>
+               <li>
+                  <a href="#" class="pt-url">
+                  <img alt="" src="http://127.0.0.1/public_html/health_care_magento/images/banner2-home1.jpg"/>
+                  </a>									
+                  <div id="pt-banner-caption2" class="pt-caption pt-banner-caption">
+                     <div class="pt-banner-content ptslider-2">
+                        <h1 class="pt-title1"><span>Comes From Healthy.</span></h1>
+                        <h2 class="pt-title2" ><span>Rock And Glamour</span></h2>
+                        <div class="pt-banner-des">
+                           <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. </p>
+                        </div>
+                        <a href="#" class="pt-url">shop now</a>												
+                     </div>
+                  </div>
+               </li>
+            </ul>
+         </div>
+
+
+	<?php echo $this->getChildHtml('footer_before') ?>
+	<?php echo $this->getChildHtml('footer') ?> 
+	<?php echo $this->getChildHtml('global_cookie_notice') ?> 
+	<?php echo $this->getChildHtml('before_body_end') ?>
+	<?php echo $this->getAbsoluteFooter() ?>
+  </div>
+</body>
+</html>
+

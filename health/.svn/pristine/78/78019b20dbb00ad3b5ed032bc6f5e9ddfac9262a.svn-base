@@ -1,0 +1,409 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+         <footer class="page-footer">
+            <div class="footer-container">
+               <div class="top-footer">
+                  <div class="container-inner">
+                     <div class="static_footer_home1">
+                        <div class="static-footer">
+                           <div class="row">
+                              <div class="col-md-4 col-sm-12 col-xs-12">
+                                 <div class="box box1">
+                                    <div class="icon">
+                                       <i class="fa fa-phone" aria-hidden="true"></i><span>Do you have <span> a question?</span></span>
+                                    </div>
+                                    <div class="text">
+                                       +0123 456 789
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-4 col-sm-12 col-xs-12">
+                                 <div class="box box2">
+                                    <div class="icon">
+                                       <i class="fa fa-envelope-o" aria-hidden="true"></i><span>offer<span> question?</span></span>
+                                    </div>
+                                    <div class="text">
+                                       Contact@organica.com
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-4 col-sm-12 col-xs-12 ">
+                                 <div class="box box3">
+                                    <div class="icon">
+                                       <i class="fa fa-life-saver" aria-hidden="true"></i><span>SUpport<span> question?</span></span>
+                                    </div>
+                                    <div class="text">
+                                       support@organica.com
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="footer-top">
+                  <div class="container-inner">
+                     <div class="footer-static">
+                        <div class="row">
+                           <div class="col-xs col-sm-3 bos1">
+                              <div class="footer-static-title f-title5">
+                                 <h3>Information</h3>
+                              </div>
+                              <div class="footer-static-content">
+                                 <ul>
+                                    <li class="first"><a href="#">About us</a></li>
+                                    <li><a href="#">Delivery Information</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li class="last"><a href="#">Terms &amp; Conditions</a></li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="col-xs col-sm-3 bos2 ">
+                              <div class="footer-static-title f-title3">
+                                 <h3>My Account</h3>
+                              </div>
+                              <div class="footer-static-content">
+                                 <ul>
+                                    <li class="first"><a href="#">My Account</a></li>
+                                    <li><a href="#">Order History</a></li>
+                                    <li><a href="#">Returns</a></li>
+                                    <li class="last"><a href="#">Site Map</a></li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="col-xs col-sm-3 bos3 ">
+                              <div class="footer-static-title f-title4">
+                                 <h3>Customer Service</h3>
+                              </div>
+                              <div class="footer-static-content">
+                                 <ul>
+                                    <li class="first"><a href="#">Site Map</a></li>
+                                    <li><a href="#">Specials</a></li>
+                                    <li><a href="#">Order History</a></li>
+                                    <li class="last"><a href="#">My Account</a></li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="col-xs col-sm-3 bos4">
+                              <div class="footer-static-title f-title1">
+                                 <h3>Extras</h3>
+                              </div>
+                              <div class="footer-static-content">
+                                 <ul>
+                                    <li class="first"><a href="#">Wish List</a></li>
+                                    <li><a href="#">compare</a></li>
+                                    <li><a href="#">Contact Us</a></li>
+                                    <li class="last"><a href="#">Custom Service</a></li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="footer-bottom">
+                  <div class="container-inner">
+                     <div class="container-size">
+                        <small class="copyright">
+                        <span>Copyright © 2016 Magento. All rights reserved.</span>
+                        </small>
+                        <div class="switcher store switcher-store" id="switcher-store">
+                           <strong class="label switcher-label"><span>Select Store</span></strong>
+                           <div class="actions dropdown options switcher-options">
+                              <div class="action toggle switcher-trigger" data-mage-init='{"dropdown":{}}' data-toggle="dropdown" id="switcher-store-trigger">
+                                 <strong>
+                                 <span>cosmetic category</span>
+                                 </strong>
+                              </div>
+                              <ul class="dropdown switcher-dropdown" data-mage-init='{"dropdownDialog":{
+                                 "appendTo":"#switcher-store > .options",
+                                 "triggerTarget":"#switcher-store-trigger",
+                                 "closeOnMouseLeave": false,
+                                 "triggerClass":"active",
+                                 "parentClass":"active",
+                                 "buttons":null}}'>
+                                 <li class="switcher-option">
+                                    <a href="#">
+                                    Food coffee milk                    </a>
+                                 </li>
+                                 <li class="switcher-option">
+                                    <a href="#" >
+                                    nutritional food                    </a>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                        <div class="footer-payment pull-right">
+                           <p><img src="images/payment_1.png" alt="" /></p>
+                        </div>
+                        <div id="back_top">
+                           <a href="#"><span>>top</span></a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <script  type="text/javascript"  src="http://plazathemes.com/demo/organica/pub/static/frontend/organica/organica_default/en_US/Plazathemes_Testimonial/js/owl.carousel.js"></script>
+<script  type="text/javascript"  src="http://plazathemes.com/demo/organica/pub/static/frontend/organica/organica_default/en_US/Plazathemes_Recentproductslider/js/owl.carousel.js"></script>
+            <script>
+				
+				jQuery(document).ready(function(){
+			
+			jQuery("#banner-slider .ptowl").owlCarousel({
+					items : 1,
+					autoPlay : false,
+					slideSpeed : 1000,
+					navigation : true,
+					stopOnHover : true,
+					pagination : false,
+					pagination : false,
+					itemsDesktop : [1200,4],
+					itemsDesktopSmall : [1000,3],
+					itemsTablet: [680,2],
+					itemsMobile : [460,1],
+					addClassActive: true,
+					
+				}); 
+		});
+				</script>
+            
+
+			 <script type="text/javascript">
+				jQuery(document).ready(function(){
+				  jQuery(window).scroll(function() {
+					if(jQuery(this).scrollTop() > 300) {
+						jQuery('#back_top').fadeIn();   
+					} else {
+						jQuery('#back_top').fadeOut();
+					}
+				});
+				   jQuery('#back_top').click(function() {
+					jQuery('body,html').animate({scrollTop:0},500);
+				}); 
+				
+				if (jQuery(window).width() < 767) {   
+					jQuery('.footer-static .footer-static-title').click(function(){     
+						jQuery(this).parent('.col-xs').toggleClass('active').siblings().removeClass('active'); 
+						jQuery(this).next('.col-xs .footer-static-content').toggle(300);
+						jQuery(this).parent('.col-xs.active').siblings().children('.col-xs .footer-static-content').slideUp(300); 
+					}); 
+					 
+				}
+			   });
+			</script>
+			<script type="text/javascript">
+			   jQuery(document).ready(function() {
+					
+					
+					jQuery("#sale-products-slider .owl-carousel").owlCarousel({
+						autoPlay :          false,
+						slideSpeed :        3000,
+						items :             3,
+						itemsDesktop :      [1200,3],
+						itemsDesktopSmall : [1000,2],
+						itemsTablet:        [680,1],
+						itemsMobile :       [460,1],
+						navigation :        true,
+						stopOnHover :       true,
+						pagination :        false				
+					});
+				});
+			</script>
+			
+			</script>
+			<script type="text/javascript">
+			 jQuery(document).ready(function($){                     
+				$(".tab_content").hide();
+				$(".tab_content:first").show(); 
+				$("ul.tabs li").removeClass("active");
+				$("ul.tabs li:first-child").addClass("active");
+				$("ul.tabs li").click(function() {
+				$("ul.tabs li").removeClass("active");
+				$(this).addClass("active");
+				$(".tab_content").hide();
+				$(".tab_content").removeClass("animate1");
+				var activeTab = $(this).attr("rel"); 
+				$("#"+activeTab) .addClass("animate1");
+				$("#"+activeTab).fadeIn(); 
+				});
+				
+				jQuery(".productTabContent").owlCarousel({
+					items : 4,
+					autoPlay : false,
+					slideSpeed : 1000,
+					navigation : true,
+					stopOnHover : true,
+					pagination : false,
+					pagination : false,
+					itemsDesktop : [1200,4],
+					itemsDesktopSmall : [1000,3],
+					itemsTablet: [680,2],
+					itemsMobile : [460,1],
+					addClassActive: true,
+					afterAction : function() {
+						jQuery('.item-inner').removeClass().addClass('item-inner');
+						jQuery('.productTabContent .owl-item.active:first').addClass('first');
+						jQuery('.productTabContent .owl-item.active:last').addClass('last');
+					}
+				});                     	
+			 });
+			 
+		  </script> 
+          
+           <script>
+		    jQuery(document).ready(function() {
+              jQuery('#blog-item').owlCarousel({
+			  loop: true,
+			  margin: 10,
+			  nav: true,
+			  navText: [
+				"<i class='fa fa-long-arrow-left'></i>",
+				"<i class='fa fa-long-arrow-right'></i>"
+			  ],
+			  autoplay: true,
+			  autoplayHoverPause: true,
+			  responsive: {
+				0: {
+				  items: 1
+				},
+				600: {
+				  items: 2
+				},
+				1000: {
+				  items: 3
+				}
+			  }
+			})			 
+			});					
+		   </script>
+           
+           <script>
+		    jQuery(document).ready(function() {
+              jQuery('#brand-item').owlCarousel({
+			  loop: true,
+			  margin: 10,
+			  nav: true,
+			  navText: [
+				"<i class='fa fa-long-arrow-left'></i>",
+				"<i class='fa fa-long-arrow-right'></i>"
+			  ],
+			  autoplay: true,
+			  autoplayHoverPause: true,
+			  responsive: {
+				0: {
+				  items: 1
+				},
+				600: {
+				  items: 4
+				},
+				1000: {
+				  items: 6
+				}
+			  }
+			})			 
+			});					
+		   </script>
+           
+           <script>
+		    jQuery(document).ready(function() {
+              jQuery('#testimo-item').owlCarousel({
+			  loop: true,
+			  margin: 10,
+			  nav: true,
+			  navText: [
+				"<i class='fa fa-long-arrow-left'></i>",
+				"<i class='fa fa-long-arrow-right'></i>"
+			  ],
+			  autoplay: true,
+			  autoplayHoverPause: true,
+			  responsive: {
+				0: {
+				  items: 1
+				},
+				600: {
+				  items: 1
+				},
+				1000: {
+				  items: 1
+				}
+			  }
+			})			 
+			});					
+		   </script>
+          
+          
+		  <script type="text/javascript">                           
+			jQuery(document).ready(function(){
+				jQuery(".pt-testimonial-container .ptowl3").owlCarousel({
+					items : 1,
+					itemsDesktop : [1199,1],
+					itemsDesktopSmall : [980,1],
+					itemsTablet: [768,1],
+					itemsMobile : [479,1],
+					slideSpeed : 1000,
+					paginationSpeed : 1000,
+					rewindSpeed : 1000,
+					addClassActive: true,
+					navigation : true,
+					stopOnHover : true,
+					pagination : false,
+					scrollPerPage:true,
+				});
+				
+				
+				
+				
+				
+				
+			});
+			</script>
+			<script type="text/javascript">
+				jQuery(document).ready(function(){
+					jQuery(".block-recent-posts .ptowl1").owlCarousel({
+										items : 3,
+						itemsDesktop : [1199,3],
+						itemsDesktopSmall : [980,3],
+						itemsTablet: [768,2],
+						itemsMobile : [479,1],
+						slideSpeed : 500,
+						paginationSpeed : 500,
+						rewindSpeed : 500,
+						addClassActive: true,
+						navigation : true,
+						stopOnHover : true,
+						pagination : false,
+						scrollPerPage:true,
+					});
+				});
+		   </script>
+           
+           
+
+			
+                                    
+         </footer>

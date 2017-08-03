@@ -1,0 +1,484 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+         <footer class="page-footer">
+            <div class="footer-container">
+               <div class="top-footer">
+                  <div class="container-inner">
+                     <div class="static_footer_home1">
+                        <div class="static-footer">
+                           <div class="row">
+                              <div class="col-md-4 col-sm-12 col-xs-12">
+                                 <div class="box box1">
+                                    <div class="icon">
+                                       <i class="fa fa-phone" aria-hidden="true"></i><span>Do you have <span> a question?</span></span>
+                                    </div>
+                                    <div class="text">
+                                       +0123 456 789
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-4 col-sm-12 col-xs-12">
+                                 <div class="box box2">
+                                    <div class="icon">
+                                       <i class="fa fa-envelope-o" aria-hidden="true"></i><span>offer<span> question?</span></span>
+                                    </div>
+                                    <div class="text">
+                                       Contact@organica.com
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-4 col-sm-12 col-xs-12 ">
+                                 <div class="box box3">
+                                    <div class="icon">
+                                       <i class="fa fa-life-saver" aria-hidden="true"></i><span>SUpport<span> question?</span></span>
+                                    </div>
+                                    <div class="text">
+                                       support@organica.com
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="footer-top">
+                  <div class="container-inner">
+                     <div class="footer-static">
+                        <div class="row">
+                           <div class="col-xs col-sm-3 bos1">
+                              <div class="footer-static-title f-title5">
+                                 <h3>Information</h3>
+                              </div>
+                              <div class="footer-static-content">
+                                 <ul>
+                                    <li class="first"><a href="#">About us</a></li>
+                                    <li><a href="#">Delivery Information</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li class="last"><a href="#">Terms &amp; Conditions</a></li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="col-xs col-sm-3 bos2 ">
+                              <div class="footer-static-title f-title3">
+                                 <h3>My Account</h3>
+                              </div>
+                              <div class="footer-static-content">
+                                 <ul>
+                                    <li class="first"><a href="#">My Account</a></li>
+                                    <li><a href="#">Order History</a></li>
+                                    <li><a href="#">Returns</a></li>
+                                    <li class="last"><a href="#">Site Map</a></li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="col-xs col-sm-3 bos3 ">
+                              <div class="footer-static-title f-title4">
+                                 <h3>Customer Service</h3>
+                              </div>
+                              <div class="footer-static-content">
+                                 <ul>
+                                    <li class="first"><a href="#">Site Map</a></li>
+                                    <li><a href="#">Specials</a></li>
+                                    <li><a href="#">Order History</a></li>
+                                    <li class="last"><a href="#">My Account</a></li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="col-xs col-sm-3 bos4">
+                              <div class="footer-static-title f-title1">
+                                 <h3>Extras</h3>
+                              </div>
+                              <div class="footer-static-content">
+                                 <ul>
+                                    <li class="first"><a href="#">Wish List</a></li>
+                                    <li><a href="#">compare</a></li>
+                                    <li><a href="#">Contact Us</a></li>
+                                    <li class="last"><a href="#">Custom Service</a></li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="footer-bottom">
+                  <div class="container-inner">
+                     <div class="container-size">
+                        <small class="copyright">
+                        <span>Copyright © 2016 Magento. All rights reserved.</span>
+                        </small>
+                        <div class="switcher store switcher-store" id="switcher-store">
+                           <strong class="label switcher-label"><span>Select Store</span></strong>
+                           <div class="actions dropdown options switcher-options">
+                              <div class="action toggle switcher-trigger" data-mage-init='{"dropdown":{}}' data-toggle="dropdown" id="switcher-store-trigger">
+                                 <strong>
+                                 <span>cosmetic category</span>
+                                 </strong>
+                              </div>
+                              <ul class="dropdown switcher-dropdown" data-mage-init='{"dropdownDialog":{
+                                 "appendTo":"#switcher-store > .options",
+                                 "triggerTarget":"#switcher-store-trigger",
+                                 "closeOnMouseLeave": false,
+                                 "triggerClass":"active",
+                                 "parentClass":"active",
+                                 "buttons":null}}'>
+                                 <li class="switcher-option">
+                                    <a href="#">
+                                    Food coffee milk                    </a>
+                                 </li>
+                                 <li class="switcher-option">
+                                    <a href="#" >
+                                    nutritional food                    </a>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                        <div class="footer-payment pull-right">
+                           <p><img src="images/payment_1.png" alt="" /></p>
+                        </div>
+                        <div id="back_top">
+                           <a href="#"><span>>top</span></a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+			<script type="text/javascript">           
+				jQuery(document).ready(function(){
+					jQuery('#newsletter_pop_up').bPopup({
+						
+						position: ['auto', 120],
+						speed: 450,
+						transition: 'slideDown',
+						 onOpen: function() {								 
+								jQuery('#newsletter_popup_dont_show_again1').bind('click', function(){ 
+								console.log('click check box');
+								console.log(getCookie("shownewsletter"));
+								if(getCookie("shownewsletter") != 1){   
+									setCookie("shownewsletter",'1',1)
+								}else{
+									setCookie("shownewsletter",'0',1)
+								}
+							}); 
+								
+						}, 
+					}); 			
+				});            	
+			</script>
+			 <script type="text/javascript">
+				jQuery(document).ready(function(){
+				  jQuery(window).scroll(function() {
+					if(jQuery(this).scrollTop() > 300) {
+						jQuery('#back_top').fadeIn();   
+					} else {
+						jQuery('#back_top').fadeOut();
+					}
+				});
+				   jQuery('#back_top').click(function() {
+					jQuery('body,html').animate({scrollTop:0},500);
+				}); 
+				
+				if (jQuery(window).width() < 767) {   
+					jQuery('.footer-static .footer-static-title').click(function(){     
+						jQuery(this).parent('.col-xs').toggleClass('active').siblings().removeClass('active'); 
+						jQuery(this).next('.col-xs .footer-static-content').toggle(300);
+						jQuery(this).parent('.col-xs.active').siblings().children('.col-xs .footer-static-content').slideUp(300); 
+					}); 
+					 
+				}
+			   });
+			</script>
+			<script type="text/javascript">
+			   jQuery(document).ready(function() {
+					jQuery("#sale-products-slider .owl-carousel").owlCarousel({
+						autoPlay :          false,
+						slideSpeed :        3000,
+						items :             3,
+						itemsDesktop :      [1200,3],
+						itemsDesktopSmall : [1000,2],
+						itemsTablet:        [680,1],
+						itemsMobile :       [460,1],
+						navigation :        true,
+						stopOnHover :       true,
+						pagination :        false				
+					});
+				});
+			</script>
+			<script type ="text/javascript">
+			 jQuery(document).ready(function(){						
+				
+			  });	 
+			</script>
+			<script type="text/javascript">
+			 jQuery(document).ready(function(){                     
+				jQuery(".tab_content").hide();
+				jQuery(".tab_content:first").show(); 
+				jQuery("ul.tabs li").removeClass("active");
+				jQuery("ul.tabs li:first-child").addClass("active");
+				jQuery("ul.tabs li").click(function() {
+					jQuery("ul.tabs li").removeClass("active");
+					jQuery(this).addClass("active");
+					jQuery(".tab_content").hide();
+					jQuery(".tab_content").removeClass("animate1");
+					var activeTab = $(this).attr("rel"); 
+					jQuery("#"+activeTab) .addClass("animate1");
+					jQuery("#"+activeTab).fadeIn(); 
+				});
+				
+				jQuery(".productTabContent").owlCarousel({
+					items : 4,
+					autoPlay : false,
+					slideSpeed : 1000,
+					navigation : true,
+					stopOnHover : true,
+					pagination : false,
+					pagination : false,
+					itemsDesktop : [1200,4],
+					itemsDesktopSmall : [1000,3],
+					itemsTablet: [680,2],
+					itemsMobile : [460,1],
+					addClassActive: true,
+					afterAction : function() {
+						jQuery('.item-inner').removeClass().addClass('item-inner');
+						jQuery('.productTabContent .owl-item.active:first').addClass('first');
+						jQuery('.productTabContent .owl-item.active:last').addClass('last');
+					}
+				});                     	
+			 });
+			 
+		  </script> 
+		  <script type="text/javascript">                           
+			jQuery(document).ready(function(){
+				jQuery(".pt-testimonial-container .ptowl").owlCarousel({
+					items : 1,
+					itemsDesktop : [1199,1],
+					itemsDesktopSmall : [980,1],
+					itemsTablet: [768,1],
+					itemsMobile : [479,1],
+					slideSpeed : 1000,
+					paginationSpeed : 1000,
+					rewindSpeed : 1000,
+					addClassActive: true,
+					navigation : true,
+					stopOnHover : true,
+					pagination : false,
+					scrollPerPage:true,
+				});
+			});
+			</script>
+			<script type="text/javascript">
+				$(document).ready(function(){
+					jQuery(".block-recent-posts .ptowl").owlCarousel({
+										items : 3,
+						itemsDesktop : [1199,3],
+						itemsDesktopSmall : [980,3],
+						itemsTablet: [768,2],
+						itemsMobile : [479,1],
+						slideSpeed : 500,
+						paginationSpeed : 500,
+						rewindSpeed : 500,
+						addClassActive: true,
+						navigation : true,
+						stopOnHover : true,
+						pagination : false,
+						scrollPerPage:true,
+					});
+				});
+		   </script>
+		   <script type="text/javascript">
+				jQuery(document).ready(function(){
+					jQuery(".pt-brand-container .ptowl").owlCarousel({
+						items : 6,
+						itemsDesktop : [1199,5],
+						itemsDesktopSmall : [992,4],
+						itemsTablet: [767,3],
+						itemsMobile : [479,2],
+						slideSpeed : 500,
+						paginationSpeed : 500,
+						rewindSpeed : 500,
+						addClassActive: true,
+						navigation : true,
+						stopOnHover : true,
+						pagination : false,
+						scrollPerPage:true,
+					});
+				});
+            </script>
+			<script type="text/javascript">
+                                       
+											jQuery('document').ready(function(){
+                                       			 jQuery.fn.extend({  
+                                       				 mobilemenu: function() {       
+                                       					return this.each(function() {
+                                       						
+                                       						var jQueryul = jQuery(this);
+                                       						
+                                       						if(jQueryul.data('accordiated'))
+                                       							return false;
+                                       															
+                                       						jQuery.each(jQueryul.find('ul, li>div'), function(){
+                                       							jQuery(this).data('accordiated', true);
+                                       							jQuery(this).hide();
+                                       						});
+                                       						
+                                       						jQuery.each(jQueryul.find('span.head'), function(){
+                                       							jQuery(this).click(function(e){
+                                       								activate(this);
+                                       								return void(0);
+                                       							});
+                                       						});
+                                       						
+                                       						var active = (location.hash)?jQuery(this).find('a[href=' + location.hash + ']')[0]:'';
+                                       
+                                       						if(active){
+                                       							activate(active, 'toggle');
+                                       							jQuery(active).parents().show();
+                                       						}
+                                       						
+                                       						function activate(el,effect){
+                                       							jQuery(el).parent('li').toggleClass('active').siblings().removeClass('active').children('ul, div').slideUp('fast');
+                                       							jQuery(el).siblings('ul, div')[(effect || 'slideToggle')]((!effect)?'fast':null);
+                                       						}
+                                       						
+                                       					});
+                                       				} 
+                                       			}); 
+                                       		
+                                       
+                                       		jQuery("ul.mobilemenu li.level1, ul.level2 li").each(function(){ 
+                                       			if(jQuery(this).find('li').length > 0) {
+                                       				jQuery(this).addClass('have_sub');
+                                       				jQuery(this).append('<span class="head"><a href="javascript:void(0)"></a></span>');
+                                       			}
+                                       		  });			
+                                       		jQuery('ul.mobilemenu').mobilemenu();
+                                       		jQuery("ul.mobilemenu li.active").each(function(){
+                                       			jQuery(this).children().next("ul").css('display', 'block');
+                                       		});
+                                       		
+                                       		//mobile
+                                       		jQuery('.btn-navbar').click(function() {
+                                       			
+                                       			var chk = 0;
+                                       			if ( jQuery('#navbar-inner').hasClass('navbar-inactive') && ( chk==0 ) ) {
+                                       				jQuery('#navbar-inner').removeClass('navbar-inactive');
+                                       				jQuery('#navbar-inner').addClass('navbar-active');
+                                       				jQuery('#ma-mobilemenu').css('display','block');
+                                       				chk = 1;
+                                       			}
+                                       			if (jQuery('#navbar-inner').hasClass('navbar-active') && ( chk==0 ) ) {
+                                       				jQuery('#navbar-inner').removeClass('navbar-active');
+                                       				jQuery('#navbar-inner').addClass('navbar-inactive');			
+                                       				jQuery('#ma-mobilemenu').css('display','none');
+                                       				chk = 1;
+                                       			}
+                                       		}); 
+                                       	
+                                       
+                                       			jQuery(".pt_menu_link ul li").each(function(){
+                                       				var url = document.URL;
+                                       				jQuery(".pt_menu_link ul li a").removeClass("act");
+                                       				jQuery('.pt_menu_link ul li a[href="'+url+'"]').addClass('act');
+                                       			}); 
+                                       			
+                                       			jQuery('.pt_menu_no_child').hover(function(){
+                                       				jQuery(this).addClass("active");
+                                       			},function(){
+                                       				jQuery(this).removeClass("active");
+                                       			});
+                                       			
+                                       			jQuery('.pt_menu').hover(function(){
+                                       				if(jQuery(this).attr("id") != "pt_menu_link"){
+                                       					jQuery(this).addClass("active");
+                                       				}
+                                       			},function(){
+                                       				jQuery(this).removeClass("active");
+                                       			});
+                                       			
+                                       			jQuery('.pt_menu').hover(function(){
+                                       			   /*show popup to calculate*/
+                                       			  // jQuery(this).find('.popup').css('display','inline-block');
+                                       			   
+                                       			   /* get total padding + border + margin of the popup */
+                                       			   // var extraWidth       = 0
+                                       			   // var wrapWidthPopup   = jQuery(this).find('.popup').outerWidth(true); /*include padding + margin + border*/
+                                       			   // var actualWidthPopup = jQuery(this).find('.popup').width(); /*no padding, margin, border*/
+                                       			   // extraWidth           = wrapWidthPopup - actualWidthPopup;    
+                                       			   
+                                       			   // /* calculate new width of the popup*/
+                                       			   // var widthblock1 = jQuery(this).find('.popup .block1').outerWidth(true);
+                                       			   // var widthblock2 = jQuery(this).find('.popup .block2').outerWidth(true);
+                                       			   // var new_width_popup = 0;
+                                       			   // if(widthblock1 && !widthblock2){
+                                       				   // new_width_popup = widthblock1;
+                                       			   // }
+                                       			   // if(!widthblock1 && widthblock2){
+                                       				   // new_width_popup = widthblock2;
+                                       			   // }
+                                       			   // if(widthblock1 && widthblock2){
+                                       					// if(widthblock1 >= widthblock2){
+                                       						// new_width_popup = widthblock1;
+                                       					// }
+                                       					// if(widthblock1 < widthblock2){
+                                       						// new_width_popup = widthblock2;
+                                       					// }
+                                       			   // }
+                                       			   // var new_outer_width_popup = new_width_popup + extraWidth;
+                                       			   
+                                       			   // /*define top and left of the popup*/
+                                       			   // var wraper = jQuery('.pt_custommenu');
+                                       			   // var wWraper = wraper.outerWidth();
+                                       			   // var posWraper = wraper.offset();
+                                       			   // var pos = jQuery(this).offset();
+                                       			   
+                                       			   // var xTop = pos.top - posWraper.top + CUSTOMMENU_POPUP_TOP_OFFSET;
+                                       			   // var xLeft = pos.left - posWraper.left;
+                                       			   // if ((xLeft + new_outer_width_popup) > wWraper) xLeft = wWraper - new_outer_width_popup;
+                                       
+                                       			   // jQuery(this).find('.popup').css('top',xTop);
+                                       			   // jQuery(this).find('.popup').css('left',xLeft);
+                                       			   
+                                       			   // /*set new width popup*/
+                                       			   // jQuery(this).find('.popup').css('width',new_width_popup);
+                                       			   // jQuery(this).find('.popup .block1').css('width',new_width_popup);
+                                       			   
+                                       			   // /*return popup display none*/
+                                       			   // jQuery(this).find('.popup').css('display','none');
+                                       			   
+                                       			   // /*show hide popup*/
+                                       			   // if(CUSTOMMENU_POPUP_EFFECT == 0) jQuery(this).find('.popup').stop(true,true).slideDown('slow');
+                                       			   // if(CUSTOMMENU_POPUP_EFFECT == 1) jQuery(this).find('.popup').stop(true,true).fadeIn('slow');
+                                       			   // if(CUSTOMMENU_POPUP_EFFECT == 2) jQuery(this).find('.popup').stop(true,true).show();
+                                       			// },function(){
+                                       			   // if(CUSTOMMENU_POPUP_EFFECT == 0) jQuery(this).find('.popup').stop(true,true).slideUp();
+                                       			   // if(CUSTOMMENU_POPUP_EFFECT == 1) jQuery(this).find('.popup').stop(true,true).fadeOut('slow');
+                                       			   // if(CUSTOMMENU_POPUP_EFFECT == 2) jQuery(this).find('.popup').stop(true,true).hide('fast');
+                                       			// });
+											});	
+                                    </script>  
+         </footer>

@@ -1,0 +1,2967 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+
+<!DOCTYPE html>
+
+<!--[if lt IE 7 ]> <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js"> <!--<![endif]-->
+
+
+<head>
+
+<?php echo $this->getChildHtml('head') ?>
+<?php //echo $this->getChildHtml('header') ?>
+<link  rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700" />
+<link  rel="stylesheet " type="text/css" href="https://fonts.googleapis.com/css?family=Roboto" />
+
+<script type="text/javascript" src="http://www.uniterreneprojects.com/dev/fabcollection/skin/frontend/rwd/fabcollection/js/owl.carousel.min.js"></script>  
+<link rel="stylesheet" type="text/css" href="http://www.uniterreneprojects.com/dev/fabcollection/skin/frontend/rwd/fabcollection/css/owl.carousel.min.css" />
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="header-container">
+      <div class="top-bar visible-lg visible-md">
+        <div class="container-inner">
+          <div class="row">
+            <div class="col-md-4 col-sm-12">
+              <div class="logo-home"><span data-action="toggle-nav" class="action nav-toggle"><span>Toggle Nav</span></span>
+                <strong class="logo">
+                <img src="http://127.0.0.1/public_html/health_care_magento/images/logo.png" alt="Magento Commerce" width="198" height="57"/>
+                </strong>
+              </div>
+            </div>
+            <div class="col-md-8 col-sm-12">
+              <div class="iner-header">
+                <div class="right-header">
+                  <div class="header-top">
+                    <div class="hotline pull-left">
+                      <p>Order online or call us : <strong>+0123 456 789</strong></p>
+                    </div>
+                    <div class="switcher currency switcher-currency" id="switcher-currency">
+                      <div class="actions dropdown options switcher-options">
+                        <div class="action toggle switcher-trigger" id="switcher-currency-trigger">
+                          <strong class="language-USD">
+                          <span>US Dollar<i class="fa fa-angle-down">&nbsp;</i></span>
+                          </strong>
+                        </div>
+                        <ul class="dropdown switcher-dropdown" >
+                          <li class="currency-EUR switcher-option">
+                            <a href="#" >EUR</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="switcher language switcher-language" data-ui-id="language-switcher" id="switcher-language">
+                      <div class="actions dropdown options switcher-options">
+                        <div class="action toggle switcher-trigger" id="switcher-language-trigger">
+                          <strong class="view-english1">
+                          <span>English1<i class="fa fa-angle-down">&nbsp;</i></span>
+                          </strong>
+                        </div>
+                        <ul class="dropdown switcher-dropdown" >
+                          <li class="view-english2 switcher-option">
+                            <a href="#">
+                            English2							
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <form class="form minisearch" id="search_mini_form" action="http://plazathemes.com/demo/organica/english1/catalogsearch/result/" method="get">
+                      <div class="field search">
+                        <div class="control">
+                          <input id="search"
+                            data-mage-init='{"quickSearch":{
+                            "formSelector":"#search_mini_form",
+                            "url":"http://plazathemes.com/demo/organica/english1/search/ajax/suggest/",
+                            "destinationSelector":"#search_autocomplete"}
+                            }'
+                            type="text"
+                            name="q"
+                            value=""
+                            placeholder="Search for item..."
+                            class="input-text"
+                            maxlength="128"
+                            role="combobox"
+                            aria-haspopup="false"
+                            aria-autocomplete="both"
+                            aria-expanded="true"
+                            autocomplete="off"/>
+                          <button type="submit" title="Search" class="action search">
+                          <span>Search</span>
+                          </button>									
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="header-bottom nav-ozmegamenu">
+                    <div class="nav-ozmegamenu-inner">
+                      <nav class="nav-container visible-lg visible-md">
+                        <div id="pt_custommenu" class="pt_custommenu">
+                          <div id="pt_menu_home" class="pt_menu act">
+                            <div class="parentMenu">
+                              <a href="#">
+                              <span>Home</span>
+                              </a>
+                            </div>
+                          </div>
+                          <div id="pt_menu4" class="pt_menu nav-1">
+                            <div class="parentMenu" style="">
+                              <a href="#" class="pt_cate ">
+                              <span>Shop</span>
+                              <span class="is_sale"></span>
+                              <span class="is_new"></span>
+                              </a>
+                            </div>
+                            <div id="popup4"  class="popup" style="display: none; width: 1228px;">
+                              <div class="block1" id="block14">
+                                <div class="column first col1">
+                                  <div class="itemMenu level1">
+                                    <a class="itemMenuName level1" href="#">
+                                    <span>Tops & Tees</span><span class="is_sale"></span><span class="is_new"></span>
+                                    </a>
+                                    <div class="itemSubMenu level1">
+                                      <div class="itemMenu level2">
+                                        <a class="itemMenuName level2" href="#"><span>Polo Short Sleeve</span></a>
+                                        <a class="itemMenuName level2" href="#"><span>Sleeveless</span></a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="column col2">
+                                  <div class="itemMenu level1">
+                                    <a class="itemMenuName level1" href="#"><span>Jackets</span></a>
+                                    <div class="itemSubMenu level1">
+                                      <div class="itemMenu level2">
+                                        <a class="itemMenuName level2" href="#"><span>Sweaters</span></a>
+                                        <a class="itemMenuName level2" href="#"><span>Hoodies</span></a>
+                                        <a class="itemMenuName level2" href="#"><span>Wedges</span></a>
+                                        <a class="itemMenuName level2" href="#"><span>Vests</span></a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="column last col3">
+                                  <div class="itemMenu level1">
+                                    <a class="itemMenuName level1" href="#"><span>Jeans pants</span></a>
+                                    <div class="itemSubMenu level1">
+                                      <div class="itemMenu level2">
+                                        <a class="itemMenuName level2" href="#"><span>Polo Short Sleeve </span></a>
+                                        <a class="itemMenuName level2" href="#"><span>Sleeveless </span></a>
+                                        <a class="itemMenuName level2" href="#"><span>Graphic T-Shirts </span></a>
+                                        <a class="itemMenuName level2" href="#"><span>Hoodies</span></a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="clearBoth"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div id="pt_menu5" class="pt_menu nav-2">
+                            <div class="parentMenu" style="">
+                              <a href="#" class="pt_cate ">
+                              <span>Kids</span>
+                              </a>
+                            </div>
+                            <div id="popup5"  class="popup" style="display: none; width: 1228px;">
+                              <div class="block1" id="block15">
+                                <div class="column first col1">
+                                  <div class="itemMenu level1">
+                                    <a class="itemMenuName level1" href="#">
+                                    <span>Tops</span>
+                                    </a>
+                                    <div class="itemSubMenu level1">
+                                      <div class="itemMenu level2">
+                                        <a class="itemMenuName level2" href="#"><span>Shirts</span></a>
+                                        <a class="itemMenuName level2" href="#"><span>Florals</span></a>
+                                        <a class="itemMenuName level2" href="#"><span>Crochet</span></a>
+                                        <a class="itemMenuName level2" href="#"><span>Stripes</span></a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="column col2">
+                                  <div class="itemMenu level1">
+                                    <a class="itemMenuName level1" href="#"><span>Bottoms</span></a>
+                                    <div class="itemSubMenu level1">
+                                      <div class="itemMenu level2">
+                                        <a class="itemMenuName level2" href="#"><span>Shorts</span></a>
+                                        <a class="itemMenuName level2" href="#"><span>Dresses</span></a>
+                                        <a class="itemMenuName level2" href="#"><span>Jeans</span></a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="column last col3">
+                                  <div class="itemMenu level1">
+                                    <a class="itemMenuName level1" href="#"><span>Shoes</span></a>
+                                    <div class="itemSubMenu level1">
+                                      <div class="itemMenu level2">
+                                        <a class="itemMenuName level2" href="#">
+                                        <span>Heeled sandals</span>
+                                        </a>
+                                        <a class="itemMenuName level2" href="#"><span>Flat sandals</span></a>
+                                        <a class="itemMenuName level2" href="#"><span>Wedges</span></a>
+                                        <a class="itemMenuName level2" href="#"><span>Ankle boots</span></a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="clearBoth"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div id="pt_menu7" class="pt_menu nav-3">
+                            <div class="parentMenu" style="">
+                              <a href="#" class="pt_cate ">
+                              <span>womem's</span>
+                              <span class="is_sale"></span>
+                              <span class="is_new"></span>
+                              </a>
+                            </div>
+                            <div id="popup7"  class="popup" style="display: none; width: 1228px;">
+                              <div class="block1" id="block17">
+                                <div class="column first col1">
+                                  <div class="itemMenu level1">
+                                    <a class="itemMenuName level1" href="#">
+                                    <span>Books</span>
+                                    </a>
+                                  </div>
+                                </div>
+                                <div class="column col2">
+                                  <div class="itemMenu level1">
+                                    <a class="itemMenuName level1" href="#"><span>Electtronic</span></a>
+                                  </div>
+                                </div>
+                                <div class="column last col3">
+                                  <div class="itemMenu level1">
+                                    <a class="itemMenuName level1" href="#"><span>Tablet</span>
+                                    </a>
+                                  </div>
+                                </div>
+                                <div class="clearBoth"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="pt_menu_link pt_menu">
+                            <div class="parentMenu">
+                              <ul class="mobilemenu">
+                                <li><a href="#">Blog</a></li>
+                                <li class="last"><a href="#">Contact Us</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </nav>
+                      <div class="mobile-bar-icon">
+                        <span>mobile icon</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div data-block="minicart" class="minicart-wrapper">
+                    <a class="action showcart" href="#"
+                      data-bind="scope: 'minicart_content'">
+                    <span class="text">My Cart</span>
+                    <span class="counter qty empty"
+                      data-bind="css: { empty: !!getCartParam('summary_count') == false }, blockLoader: isLoading">
+                    <span class="counter-number"></span>
+                    <span class="counter-label"></span>
+                    </span>
+                    </a>
+                    <div class="block block-minicart empty"
+                      data-role="dropdownDialog"
+                      data-mage-init='{"dropdownDialog":{
+                      "appendTo":"[data-block=minicart]",
+                      "triggerTarget":".showcart",
+                      "timeout": "2000",
+                      "closeOnMouseLeave": false,
+                      "closeOnEscape": true,
+                      "triggerClass":"active",
+                      "parentClass":"active",
+                      "buttons":[]}}'>
+                      <div id="minicart-content-wrapper" data-bind="scope: 'minicart_content'">
+                        <!-- ko template: getTemplate() --><!-- /ko -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-bar-content">
+        <div class ="mobile-bar-close">Close</div>
+        <ul class = "tabs-mobile">
+          <li class="item item-menu">Menu</li>
+          <li class="item item-setting">Setting</li>
+        </ul>
+        <div class="tabs-content-mobile tabs-menu">
+          <nav class="ma-nav-mobile-container" >
+            <ul id="ma-mobilemenu" class="mobilemenu">
+              <li class="level1">
+                <a href= "#"><span class="name">Shop</span></a>
+                <ul class="level2">
+                  <li>
+                    <a href= "#"><span class="name">Tops & Tees</span></a>
+                    <ul class="level3">
+                      <li><a href= "#"><span class="name">Polo Short Sleeve</span></a></li>
+                      <li>
+                        <a href= "#"><span class="name">Sleeveless</span></a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href= "#">
+                    <span class="name">Jackets</span>
+                    </a>
+                    <ul class="level3">
+                      <li><a href= "#"><span class="name">Sweaters</span></a></li>
+                      <li><a href= "#"><span class="name">Hoodies</span></a></li>
+                      <li><a href= "#"><span class="name">Wedges</span></a></li>
+                      <li><a href= "#"><span class="name">Vests</span></a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href= "#"><span class="name">Jeans pants</span></a>
+                    <ul class="level3">
+                      <li><a href= "#"><span class="name">Polo Short Sleeve </span></a></li>
+                      <li><a href= "#"><span class="name">Sleeveless </span></a></li>
+                      <li><a href= "#"><span class="name">Graphic T-Shirts </span></a></li>
+                      <li><a href= "#"><span class="name">Hoodies</span></a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="level1">
+                <a href= "#"><span class="name">Kids</span></a>
+                <ul class="level2">
+                  <li>
+                    <a href= "#"><span class="name">Tops</span></a>
+                    <ul class="level3">
+                      <li><a href= "#"><span class="name">Shirts</span></a></li>
+                      <li><a href= "#"><span class="name">Florals</span></a></li>
+                      <li><a href= "#"><span class="name">Crochet</span></a></li>
+                      <li><a href= "#"><span class="name">Stripes</span></a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href= "#"><span class="name">Bottoms</span></a>
+                    <ul class="level3">
+                      <li><a href= "#"><span class="name">Shorts</span></a></li>
+                      <li><a href= "#"><span class="name">Dresses</span></a></li>
+                      <li><a href= "#"><span class="name">Jeans</span></a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href= "#"><span class="name">Shoes</span></a>
+                    <ul class="level3">
+                      <li><a href= "#"><span class="name">Heeled sandals</span></a></li>
+                      <li><a href= "#"><span class="name">Flat sandals</span></a></li>
+                      <li><a href= "#"><span class="name">Wedges</span></a></li>
+                      <li><a href= "#"><span class="name">Ankle boots</span></a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="level1">
+                <a href= "#"><span class="name">womem's</span></a>
+                <ul class="level2">
+                  <li>
+                    <a href= "#"><span class="name">Books</span></a>
+                    <ul class="level3"></ul>
+                  </li>
+                  <li>
+                    <a href= "#"><span class="name">Electtronic</span></a>
+                    <ul class="level3"></ul>
+                  </li>
+                  <li>
+                    <a href= "#"><span class="name">Tablet</span></a>
+                    <ul class="level3"></ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="tabs-content-mobile tabs-setting" style="display:none;">
+          <ul class="header links">
+            <li><a href="#" >My Account</a></li>
+            <li class="link wishlist" data-bind="scope: 'wishlist'">
+              <a href="#">
+                My Wish List        <!-- ko if: wishlist().counter -->
+                <span data-bind="text: wishlist().counter" class="counter qty"></span>
+              </a>
+            </li>
+            <li class="authorization-link" data-label="or">
+              <a href="#">Sign In    </a>
+            </li>
+          </ul>
+          <div class="switcher language switcher-language" data-ui-id="language-switcher" id="switchers-language">
+            <div class="actions dropdown options switcher-options">
+              <div class="action toggle switcher-trigger" id="switchers-language-trigger">
+                <strong class="view-english1">
+                <span>English1<i class="fa fa-angle-down">&nbsp;</i></span>
+                </strong>
+              </div>
+              <ul class="dropdown switcher-dropdown">
+                <li class="view-english2 switcher-option">
+                  <a href="#" >
+                  English2							
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="switcher currency switcher-currency" id="switchers-currency">
+            <div class="actions dropdown options switcher-options">
+              <div class="action toggle switcher-trigger" id="switchers-currency-trigger">
+                <strong class="language-USD">
+                <span>US Dollar<i class="fa fa-angle-down">&nbsp;</i></span>
+                </strong>
+              </div>
+              <ul class="dropdown switcher-dropdown" >
+                <li class="currency-EUR switcher-option">
+                  <a href="#" >EUR</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <script type="text/javascript">
+      jQuery(document).ready(function(){
+      	jQuery(".mobile-bar-icon").click(function(){
+      		jQuery(".mobile-bar-content").addClass("open");
+      	});
+      	jQuery(".mobile-bar-close").click(function(){
+      		jQuery(".mobile-bar-content").removeClass("open");
+      	});
+      	
+      	jQuery(".tabs-mobile .item-menu").addClass("active");
+      	jQuery(".tabs-mobile .item").click(function(){
+      		jQuery(".tabs-mobile .item").removeClass("active");
+      		jQuery(this).addClass("active");
+      	});
+      	jQuery(".tabs-mobile .item-menu").click(function(){
+      		jQuery(".tabs-content-mobile").css("display","none");
+      		jQuery(".tabs-menu").css("display","block");
+      	});
+      	jQuery(".tabs-mobile .item-account").click(function(){
+      		jQuery(".tabs-content-mobile").css("display","none");
+      		jQuery(".tabs-account").css("display","block");
+      	});
+      	jQuery(".tabs-mobile .item-setting").click(function(){
+      jQuery(".tabs-content-mobile").css("display","none");
+      		jQuery(".tabs-setting").css("display","block");
+      	});
+      	
+      });
+      
+      jQuery(window).scroll(function () {
+         if (jQuery(this).scrollTop() > 160) {
+      	 jQuery('.nav-ozmegamenu').addClass("fix-nav-ozmegamenu");
+         } else {
+      	jQuery('.nav-ozmegamenu').removeClass("fix-nav-ozmegamenu");
+         }
+      });          	
+    </script>
+    <div id="banner-slider" class="pt-banner-container">
+      <ul class="ptowl">
+        <li class="item">
+          <a href="#" class="pt-url">
+          <img alt="" src="http://127.0.0.1/public_html/health_care_magento/images/banner1-home1.jpg"/>
+          </a>								
+          <div id="pt-banner-caption1" class="pt-caption pt-banner-caption">
+            <div class="pt-banner-content ptslider-1">
+              <h1 class="pt-title1"><span>Face Cleanser</span></h1>
+              <h2 class="pt-title2" ><span>Mega - Mushroom Skin Relief</span></h2>
+              <div class="pt-banner-des">
+                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. </p>
+              </div>
+              <a href="#" class="pt-url">shop now</a>												
+            </div>
+          </div>
+        </li>
+        <li class="item">
+          <a href="#" class="pt-url">
+          <img alt="" src="http://127.0.0.1/public_html/health_care_magento/images/banner2-home1.jpg"/>
+          </a>									
+          <div id="pt-banner-caption2" class="pt-caption pt-banner-caption">
+            <div class="pt-banner-content ptslider-2">
+              <h1 class="pt-title1"><span>Comes From Healthy.</span></h1>
+              <h2 class="pt-title2" ><span>Rock And Glamour</span></h2>
+              <div class="pt-banner-des">
+                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. </p>
+              </div>
+              <a href="#" class="pt-url">shop now</a>												
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="banner-home-bottom">
+      <div class="row">
+        <div class="col-md-6 col-sm-12 col-xs-12 box1">
+          <div class="box-col"><a href="#"><img src="http://127.0.0.1/public_html/health_care_magento/images/img1_home1.jpg" alt="" /></a></div>
+        </div>
+        <div class="col-md-6 col-sm-12 col-xs-12 box2">
+          <div class="box-col"><a href="#"><img src="http://127.0.0.1/public_html/health_care_magento/images/img2_home1.jpg" alt="" /></a></div>
+        </div>
+      </div>
+    </div>
+    <div id="sale-products-slider" class="countdown" >
+      <div class="container-inner">
+        <header class="group-title1 ma-title">
+          <h2>Deal of the week</h2>
+        </header>
+        <div class="row">
+          <div class="owl-container">
+            <div class="owl-carousel">
+              <div class="row_items">
+                <div class="products-grid  item">
+                  <div class="item-inner">
+                    <div class="image-container product-item-info">
+                      <span class='hot-sale'>sale</span>								
+                      <a href="#" class="product-item-photo">									
+                      <span class="product-image-container" style="width:370px;">
+                      <span class="product-image-wrapper" style="padding-bottom: 122.162162162%;">
+                      <img class="product-image-photo" src="http://127.0.0.1/public_html/health_care_magento/images/1_3_1.jpg" width="370" height="452" alt="Joust Duffle Bag1"/>
+                      </span>
+                      </span>
+                      </a>								
+                      <div class="product-item-details">
+                        <div class="product-name">
+                          <div class="title-name">
+                            Sample Category										
+                          </div>
+                          <strong class="product-item-name">
+                          <a title="Joust Duffle Bag1" href="#" class="product-item-link">
+                          Joust Duffle Bag1											
+                          </a>
+                          </strong>
+                        </div>
+                       
+                        <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                          <span class="special-price">
+                          <span class="price-container price-final_price tax weee" >
+                          <span class="price-label">Special Price</span>
+                          <span data-price-amount="30" data-price-type="finalPrice" class="price-wrapper " >
+                          <span class="price">$30.00</span>   
+                          </span>
+                          </span>
+                          </span>
+                          <span class="old-price">
+                          <span class="price-container price-final_price tax weee" >
+                          <span class="price-label">Regular Price</span>
+                          <span data-price-amount="34" data-price-type="oldPrice" class="price-wrapper " >
+                          <span class="price">$34.00</span> 
+                          </span>
+                          </span>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="box-hover">
+                        <div class="actions-primary">
+                          <button class="action tocart primary" >
+                          <span>Add to Cart</span>
+                          </button>
+                        </div>
+                        <div class="actions-secondary add-to-links" data-role="add-to-links">
+                          <a href="#" class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist">
+                          <span>Add to Wishlist</span>
+                          </a>
+                          <a href="#" class="action tocompare" title="Add to Compare">
+                          <span>Add to Compare</span>
+                          </a>
+                        </div>
+                      </div>
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row_items">
+                <div class="products-grid  item">
+                  <div class="item-inner">
+                    <div class="image-container product-item-info">
+                      <span class='hot-sale'>sale</span>								
+                      <a href="#" class="product-item-photo">									
+                      <span class="product-image-container"
+                        style="width:370px;">
+                      <span class="product-image-wrapper" style="padding-bottom: 122.162162162%;">
+                      <img class="product-image-photo" src="http://127.0.0.1/public_html/health_care_magento/images/10_2_2.jpg" width="370" height="452" alt="Strive Shoulder Pack"/>
+                      </span>
+                      </span>
+                      </a>									
+                      <div class="product-item-details">
+                        <div class="product-name">
+                          <div class="title-name">
+                            Sample Category										
+                          </div>
+                          <strong class="product-item-name">
+                          <a title="Strive Shoulder Pack"
+                            href="#"
+                            class="product-item-link">
+                          Strive Shoulder Pack											</a>
+                          </strong>
+                        </div>
+                        
+                        <div class="price-box price-final_price" data-role="priceBox" data-product-id="18">
+                          <span class="special-price">
+                          <span class="price-container price-final_price tax weee" >
+                          <span class="price-label">Special Price</span>
+                          <span data-price-amount="30"
+                            data-price-type="finalPrice"
+                            class="price-wrapper "
+                            >
+                          <span class="price">$30.00</span>    </span>
+                          </span>
+                          </span>
+                          <span class="old-price">
+                          <span class="price-container price-final_price tax weee" >
+                          <span class="price-label">Regular Price</span>
+                          <span data-price-amount="32"
+                            data-price-type="oldPrice"
+                            class="price-wrapper "
+                            >
+                          <span class="price">$32.00</span>    </span>
+                          </span>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="box-hover">
+                        <div class="actions-primary">
+                          <button class="action tocart primary"  type="button" title="Add to Cart">
+                          <span>Add to Cart</span>
+                          </button>
+                        </div>
+                        <div class="actions-secondary add-to-links" data-role="add-to-links">
+                          <a href="#"
+                            class="action towishlist" data-action="add-to-wishlist"
+                            title="Add to Wishlist">
+                          <span>Add to Wishlist</span>
+                          </a>
+                          <a href="#" class="action tocompare"
+                            title="Add to Compare">
+                          <span>Add to Compare</span>
+                          </a>
+                        </div>
+                      </div>
+                      <!-- Price Countdown -->
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row_items">
+                <div class="products-grid  item">
+                  <div class="item-inner">
+                    <div class="image-container product-item-info">
+                      <span class='hot-sale'>sale</span>								
+                      <a href="#" class="product-item-photo">	
+                      <span class="product-image-container"
+                        style="width:370px;">
+                      <span class="product-image-wrapper"
+                        style="padding-bottom: 122.162162162%;">
+                      <img class="product-image-photo"
+                        src="http://127.0.0.1/public_html/health_care_magento/images/7_6.jpg"
+                        width="370"
+                        height="452"
+                        alt="Crown Summit Backpack"/></span>
+                      </span>
+                      </a>								
+                      <div class="product-item-details">
+                        <div class="product-name">
+                          <div class="title-name">
+                            Sample Category	
+                          </div>
+                          <strong class="product-item-name">
+                          <a title="Crown Summit Backpack" href="#" class="product-item-link">
+                          Crown Summit Backpack											</a>
+                          </strong>
+                        </div>
+                        
+                        <div class="price-box price-final_price" data-role="priceBox" data-product-id="19">
+                          <span class="special-price">
+                          <span class="price-container price-final_price tax weee"
+                            >
+                          <span class="price-label">Special Price</span>
+                          <span
+                            data-price-amount="35"
+                            data-price-type="finalPrice"
+                            class="price-wrapper "
+                            >
+                          <span class="price">$35.00</span>    </span>
+                          </span>
+                          </span>
+                          <span class="old-price">
+                          <span class="price-container price-final_price tax weee" >
+                          <span class="price-label">Regular Price</span>
+                          <span
+                            data-price-amount="38"
+                            data-price-type="oldPrice"
+                            class="price-wrapper "
+                            >
+                          <span class="price">$38.00</span>    </span>
+                          </span>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="box-hover">
+                        <div class="actions-primary">
+                          <button class="action tocart primary"  type="button" title="Add to Cart">
+                          <span>Add to Cart</span>
+                          </button>
+                        </div>
+                        <div class="actions-secondary add-to-links" data-role="add-to-links">
+                          <a href="#"  class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist">
+                          <span>Add to Wishlist</span>
+                          </a>
+                          <a href="#" class="action tocompare" title="Add to Compare">
+                          <span>Add to Compare</span>
+                          </a>
+                        </div>
+                      </div>
+                      <!-- Price Countdown -->
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row_items">
+                <div class="products-grid  item">
+                  <div class="item-inner">
+                    <div class="image-container product-item-info">
+                      <span class='hot-sale'>sale</span>								
+                      <a href="#" class="product-item-photo">									
+                      <span class="product-image-container"
+                        style="width:370px;">
+                      <span class="product-image-wrapper"
+                        style="padding-bottom: 122.162162162%;">
+                      <img class="product-image-photo"
+                        src="http://127.0.0.1/public_html/health_care_magento/images/8_7.jpg"
+                        width="370"
+                        height="452"
+                        alt="Wayfarer Messenger Bag"/></span>
+                      </span>
+                      </a>
+                      <div class="product-item-details">
+                        <div class="product-name">
+                          <div class="title-name">
+                            Sample Category										
+                          </div>
+                          <strong class="product-item-name">
+                          <a title="Wayfarer Messenger Bag"
+                            href="#"
+                            class="product-item-link">
+                          Wayfarer Messenger Bag											</a>
+                          </strong>
+                        </div>
+                        
+                        <div class="price-box price-final_price" data-role="priceBox" data-product-id="20">    
+                          <span class="price-container price-final_price tax weee" >
+                          <span
+                            data-price-amount="40"
+                            data-price-type="finalPrice"
+                            class="price-wrapper "
+                            >
+                          <span class="price">$40.00</span>    </span>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="box-hover">
+                        <div class="actions-primary">
+                          <button class="action tocart primary"
+                            type="button" title="Add to Cart">
+                          <span>Add to Cart</span>
+                          </button>
+                        </div>
+                        <div class="actions-secondary add-to-links" data-role="add-to-links">
+                          <a href="#" 
+                            class="action towishlist" data-action="add-to-wishlist"
+                            title="Add to Wishlist">
+                          <span>Add to Wishlist</span>
+                          </a>
+                          <a href="#" class="action tocompare" 
+                            title="Add to Compare">
+                          <span>Add to Compare</span>
+                          </a>
+                        </div>
+                      </div>
+                      <!-- Price Countdown -->
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row_items">
+                <div class="products-grid  item">
+                  <div class="item-inner">
+                    <div class="image-container product-item-info">
+                      <span class='hot-sale'>sale</span>								
+                      <a href="#" class="product-item-photo">
+                      <span class="product-image-container"
+                        style="width:370px;">
+                      <span class="product-image-wrapper"
+                        style="padding-bottom: 122.162162162%;">
+                      <img class="product-image-photo"
+                        src="http://127.0.0.1/public_html/health_care_magento/images/4_3_2.jpg"
+                        width="370"
+                        height="452"
+                        alt="Impulse Duffle"/></span>
+                      </span>
+                      </a>
+                      <div class="product-item-details">
+                        <div class="product-name">
+                          <div class="title-name">
+                            Sample Category										
+                          </div>
+                          <strong class="product-item-name">
+                          <a title="Impulse Duffle"
+                            href="#"
+                            class="product-item-link">
+                          Impulse Duffle											</a>
+                          </strong>
+                        </div>
+                        
+                        <div class="price-box price-final_price" data-role="priceBox" data-product-id="24">
+                          <span class="special-price">
+                          <span class="price-container price-final_price tax weee"
+                            >
+                          <span class="price-label">Special Price</span>
+                          <span
+                            data-price-amount="70"
+                            data-price-type="finalPrice"
+                            class="price-wrapper "
+                            >
+                          <span class="price">$70.00</span>    </span>
+                          </span>
+                          </span>
+                          <span class="old-price">
+                          <span class="price-container price-final_price tax weee"
+                            >
+                          <span class="price-label">Regular Price</span>
+                          <span
+                            data-price-amount="74"
+                            data-price-type="oldPrice"
+                            class="price-wrapper "
+                            >
+                          <span class="price">$74.00</span>    </span>
+                          </span>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="box-hover">
+                        <div class="actions-primary">
+                          <button class="action tocart primary" 
+                            type="button" title="Add to Cart">
+                          <span>Add to Cart</span>
+                          </button>
+                        </div>
+                        <div class="actions-secondary add-to-links" data-role="add-to-links">
+                          <a href="#"
+                            class="action towishlist" data-action="add-to-wishlist"
+                            title="Add to Wishlist">
+                          <span>Add to Wishlist</span>
+                          </a>
+                          <a href="#" class="action tocompare"
+                            title="Add to Compare">
+                          <span>Add to Compare</span>
+                          </a>
+                        </div>
+                      </div>
+                      <!-- Price Countdown -->
+                     
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Price Countdown -->
+    <div class="static-home-home1">
+      <div class="box-col">
+        <div class="container-inner">
+          <div class="text">
+            <h1>New arrivals</h1>
+            <h2>Organic</h2>
+            <h3>up to 80% off</h3>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+            <div class="shop now" ><a href="#" >Shop now</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <main id="maincontent" class="page-main">
+      <a id="contentarea" tabindex="-1"></a>
+  </div>
+  <!--
+    <div class="columns">
+       <div class="column main">
+          <input name="form_key" type="hidden" value="L2ONhph2riQmo2No" />
+          <div id="authenticationPopup" data-bind="scope:'authenticationPopup'" style="display: none;">
+            
+          </div>                
+          <div id="newsletter_pop_up" class="pt_newsletterpopup hidden-xs" style ='background-image:url(); width:790px ; height:390px ;' >
+             <span class="b-close"><span>X</span></span>
+             <div class="title"><strong>NEWSLETTER</strong></div>
+             <div class="content">
+                <form class="form subscribe"
+                   novalidate
+                   action="#"
+                   method="post"
+                   data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+                   id="newsletter-validate-detail1">
+                   <div class="field newsletter">
+                      <label class="label" for="newsletter1"><span>Subscribe to the organica mailing list to receive updates on new arrivals, special offers and other discount information.</span></label>
+                      <div class="control">
+                         <input name="email" type="email" id="newsletter1"
+                            placeholder="Enter your email address"
+                            data-validate="{required:true, 'validate-email':true}"/>
+                         <div class="actions">
+                            <button class="action subscribe primary" title="Subscribe" type="submit">
+                            <span>Subscribe</span>
+                            </button>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="subscribe-bottom">
+                      <input type="checkbox" id="newsletter_popup_dont_show_again1">
+                      <label for="newsletter_popup_dont_show_again1">Don't show this popup again</label>
+                   </div>
+                </form>
+             </div>
+          </div>
+          
+          <div class="page-content"><em style="display: none;">page-content</em></div>
+       </div>
+    </div>
+    -->
+  </main>
+  <div class="content.home">
+    <div class="main-container col2-left-layout">
+      <div class="container-inner">
+        <div class="group-title1 title-tab">
+          <ul class="tabs">
+            <li rel="tab_new_product"  class="first active" > New Products</li>
+            <li rel="tab_sale_product"  class="" > OnSale</li>
+            <li rel="tab_feature_product"  class="" > Featured</li>
+          </ul>
+        </div>
+        <div class="tab_container producttab_inner">
+          <div class="row">
+            <div class="owl-container">
+              <div id="tab_new_product" class="tab_content">
+                <div class="productTabContent owl-carousel">
+                  <div class="product_row">
+                    <div class="item products-grid">
+                      <div class="item-inner">
+                        <div class="image-container product-item-info">
+                          <span class='hot-sale'>sale</span> <a href="#" class="product-item-photo">
+                          <span class="product-image-container"
+                            style="width:400px;">
+                          <span class="product-image-wrapper"
+                            style="padding-bottom: 100%;">
+                          <img class="product-image-photo"
+                            src="http://127.0.0.1/public_html/health_care_magento/images/1_3_1_nxt.jpg"
+                            width="400"
+                            height="400"
+                            alt="Joust Duffle Bag1"/></span>
+                          </span>
+                          </a>
+                          <div class="product-item-details">
+                            <div class="product-name">
+                              <div class="title-name">
+                                Sample Category														
+                              </div>
+                              <strong class="product-item-name">
+                              <a title="Joust Duffle Bag1"
+                                href="#"
+                                class="product-item-link">
+                              Joust Duffle Bag1															</a>
+                              </strong>
+                            </div>
+                            <div class="product-reviews-summary" itemprop="aggregateRating" itemscope itemtype="#">
+                              <div class="rating-summary">
+                                <span class="label"><span>Rating:</span></span>
+                                <div class="rating-result" title="67%">
+                                  <span style="width:67%"><span><span itemprop="ratingValue">67</span>% of <span itemprop="bestRating">100</span></span></span>
+                                </div>
+                              </div>
+                              <div class="reviews-actions">
+                                <a class="action view" href="#"><span itemprop="reviewCount">1</span>&nbsp;<span>Review</span></a>
+                                <a class="action add" href="#">Add Your Review</a>
+                              </div>
+                            </div>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                              <span class="special-price">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span class="price-label">Special Price</span>
+                              <span
+                                data-price-amount="30"
+                                data-price-type="finalPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$30.00</span>    </span>
+                              </span>
+                              </span>
+                              <span class="old-price">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span class="price-label">Regular Price</span>
+                              <span
+                                data-price-amount="34"
+                                data-price-type="oldPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$34.00</span>    </span>
+                              </span>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="box-hover">
+                            <div class="actions-primary">
+                              <button class="action tocart primary"
+                                type="button" title="Add to cart">
+                              <span>Add to cart</span>
+                              </button>
+                            </div>
+                            <div class="add-to-links actions-secondary" data-role="add-to-links">
+                              <a href="#"  class="action towishlist" data-action="add-to-wishlist" title="Add to Wishlist">
+                              <span>Wishlist</span>
+                              </a>
+                              <a href="#" class="action tocompare"
+                                title="Add to Compare">
+                              <span>Compare</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product_row">
+                    <div class="item products-grid">
+                      <div class="item-inner">
+                        <div class="image-container product-item-info">
+                          <div class="label-pro-new"><span>new</span></div>
+                          <a href="#" class="product-item-photo">
+                          <span class="product-image-container"
+                            style="width:400px;">
+                          <span class="product-image-wrapper"
+                            style="padding-bottom: 100%;">
+                          <img class="product-image-photo"
+                            src="http://127.0.0.1/public_html/health_care_magento/images/11_2_6.jpg"
+                            width="400"
+                            height="400"
+                            alt="Rival Field Messenger"/></span>
+                          </span>
+                          </a>
+                          <div class="product-item-details">
+                            <div class="product-name">
+                              <div class="title-name">
+                                Sample Category														
+                              </div>
+                              <strong class="product-item-name">
+                              <a title="Rival Field Messenger"
+                                href="#"
+                                class="product-item-link">
+                              Rival Field Messenger															</a>
+                              </strong>
+                            </div>
+                            <div class="product-reviews-summary" itemprop="aggregateRating" itemscope itemtype="#">
+                              <div class="rating-summary">
+                                <span class="label"><span>Rating:</span></span>
+                                <div class="rating-result" title="80%">
+                                  <span style="width:80%"><span><span itemprop="ratingValue">80</span>% of <span itemprop="bestRating">100</span></span></span>
+                                </div>
+                              </div>
+                              <div class="reviews-actions">
+                                <a class="action view" href="#"><span itemprop="reviewCount">1</span>&nbsp;<span>Review</span></a>
+                                <a class="action add" href="#">Add Your Review</a>
+                              </div>
+                            </div>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="21">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span
+                                data-price-amount="45"
+                                data-price-type="finalPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$45.00</span>    </span>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="box-hover">
+                            <div class="actions-primary">
+                              <button class="action tocart primary"
+                                type="button" title="Add to cart">
+                              <span>Add to cart</span>
+                              </button>
+                            </div>
+                            <div class="add-to-links actions-secondary" data-role="add-to-links">
+                              <a href="#" 
+                                class="action towishlist" data-action="add-to-wishlist"
+                                title="Add to Wishlist">
+                              <span>Wishlist</span>
+                              </a>
+                              <a href="#" class="action tocompare"
+                                title="Add to Compare">
+                              <span>Compare</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product_row">
+                    <div class="item products-grid">
+                      <div class="item-inner">
+                        <div class="image-container product-item-info">
+                          <span class='hot-sale'>sale</span>
+                          <a href="#" class="product-item-photo">
+                          <span class="product-image-container"
+                            style="width:400px;">
+                          <span class="product-image-wrapper"
+                            style="padding-bottom: 100%;">
+                          <img class="product-image-photo"
+                            src="http://127.0.0.1/public_html/health_care_magento/images/7_6_1.jpg"
+                            width="400"
+                            height="400"
+                            alt="Crown Summit Backpack"/></span>
+                          </span>
+                          </a>
+                          <div class="product-item-details">
+                            <div class="product-name">
+                              <div class="title-name">
+                                Sample Category														
+                              </div>
+                              <strong class="product-item-name">
+                              <a title="Crown Summit Backpack"
+                                href="#"
+                                class="product-item-link">
+                              Crown Summit Backpack															</a>
+                              </strong>
+                            </div>
+                            <div class="product-reviews-summary" itemprop="aggregateRating" itemscope itemtype="#">
+                              <div class="rating-summary">
+                                <span class="label"><span>Rating:</span></span>
+                                <div class="rating-result" title="47%">
+                                  <span style="width:47%"><span><span itemprop="ratingValue">47</span>% of <span itemprop="bestRating">100</span></span></span>
+                                </div>
+                              </div>
+                              <div class="reviews-actions">
+                                <a class="action view" href="#"><span itemprop="reviewCount">1</span>&nbsp;<span>Review</span></a>
+                                <a class="action add" href="#">Add Your Review</a>
+                              </div>
+                            </div>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="19">
+                              <span class="special-price">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span class="price-label">Special Price</span>
+                              <span
+                                data-price-amount="35"
+                                data-price-type="finalPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$35.00</span>    </span>
+                              </span>
+                              </span>
+                              <span class="old-price">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span class="price-label">Regular Price</span>
+                              <span
+                                data-price-amount="38"
+                                data-price-type="oldPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$38.00</span>    </span>
+                              </span>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="box-hover">
+                            <div class="actions-primary">
+                              <button class="action tocart primary"
+                                type="button" title="Add to cart">
+                              <span>Add to cart</span>
+                              </button>
+                            </div>
+                            <div class="add-to-links actions-secondary" data-role="add-to-links">
+                              <a href="#"
+                                class="action towishlist" data-action="add-to-wishlist"
+                                title="Add to Wishlist">
+                              <span>Wishlist</span>
+                              </a>
+                              <a href="#" class="action tocompare"
+                                title="Add to Compare">
+                              <span>Compare</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product_row">
+                    <div class="item products-grid">
+                      <div class="item-inner">
+                        <div class="image-container product-item-info">
+                          <div class="label-pro-new"><span>new</span></div>
+                          <a href="#" class="product-item-photo">
+                          <span class="product-image-container"
+                            style="width:400px;">
+                          <span class="product-image-wrapper"
+                            style="padding-bottom: 100%;">
+                          <img class="product-image-photo"
+                            src="http://127.0.0.1/public_html/health_care_magento/images/5_2_1.jpg"
+                            width="400"
+                            height="400"
+                            alt="MH01-Black"/></span>
+                          </span>
+                          </a>
+                          <div class="product-item-details">
+                            <div class="product-name">
+                              <div class="title-name">
+                                Sample Category														
+                              </div>
+                              <strong class="product-item-name">
+                              <a title="MH01-Black"
+                                href="#"
+                                class="product-item-link">
+                              MH01-Black															</a>
+                              </strong>
+                            </div>
+                            <div class="product-reviews-summary" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                              <div class="rating-summary">
+                                <span class="label"><span>Rating:</span></span>
+                                <div class="rating-result" title="100%">
+                                  <span style="width:100%"><span><span itemprop="ratingValue">100</span>% of <span itemprop="bestRating">100</span></span></span>
+                                </div>
+                              </div>
+                              <div class="reviews-actions">
+                                <a class="action view" href="#"><span itemprop="reviewCount">2</span>&nbsp;<span>Reviews</span></a>
+                                <a class="action add" href="#">Add Your Review</a>
+                              </div>
+                            </div>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="7">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span
+                                data-price-amount="52"
+                                data-price-type="finalPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$52.00</span>    </span>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="box-hover">
+                            <div class="actions-primary">
+                              <button class="action tocart primary"
+                                type="button" title="Add to cart">
+                              <span>Add to cart</span>
+                              </button>
+                            </div>
+                            <div class="add-to-links actions-secondary" data-role="add-to-links">
+                              <a href="#"
+                                class="action towishlist" data-action="add-to-wishlist"
+                                title="Add to Wishlist">
+                              <span>Wishlist</span>
+                              </a>
+                              <a href="#" class="action tocompare"
+                                title="Add to Compare">
+                              <span>Compare</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product_row">
+                    <div class="item products-grid">
+                      <div class="item-inner">
+                        <div class="image-container product-item-info">
+                          <span class='hot-sale'>sale</span>												<a href="#" class="product-item-photo">
+                          <span class="product-image-container"
+                            style="width:400px;">
+                          <span class="product-image-wrapper"
+                            style="padding-bottom: 100%;">
+                          <img class="product-image-photo"
+                            src="http://127.0.0.1/public_html/health_care_magento/images/4_3_2_1.jpg"
+                            width="400"
+                            height="400"
+                            alt="Impulse Duffle"/></span>
+                          </span>
+                          </a>
+                          <div class="product-item-details">
+                            <div class="product-name">
+                              <div class="title-name">
+                                Sample Category														
+                              </div>
+                              <strong class="product-item-name">
+                              <a title="Impulse Duffle"
+                                href="#"
+                                class="product-item-link">
+                              Impulse Duffle															</a>
+                              </strong>
+                            </div>
+                            <div class="product-reviews-summary" itemprop="aggregateRating" itemscope itemtype="#">
+                              <div class="rating-summary">
+                                <span class="label"><span>Rating:</span></span>
+                                <div class="rating-result" title="53%">
+                                  <span style="width:53%"><span><span itemprop="ratingValue">53</span>% of <span itemprop="bestRating">100</span></span></span>
+                                </div>
+                              </div>
+                              <div class="reviews-actions">
+                                <a class="action view" href="#"><span itemprop="reviewCount">1</span>&nbsp;<span>Review</span></a>
+                                <a class="action add" href="#">Add Your Review</a>
+                              </div>
+                            </div>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="24">
+                              <span class="special-price">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span class="price-label">Special Price</span>
+                              <span
+                                data-price-amount="70"
+                                data-price-type="finalPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$70.00</span>    </span>
+                              </span>
+                              </span>
+                              <span class="old-price">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span class="price-label">Regular Price</span>
+                              <span
+                                data-price-amount="74"
+                                data-price-type="oldPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$74.00</span>    </span>
+                              </span>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="box-hover">
+                            <div class="actions-primary">
+                              <button class="action tocart primary"
+                                type="button" title="Add to cart">
+                              <span>Add to cart</span>
+                              </button>
+                            </div>
+                            <div class="add-to-links actions-secondary" data-role="add-to-links">
+                              <a href="#"
+                                class="action towishlist" data-action="add-to-wishlist"
+                                title="Add to Wishlist">
+                              <span>Wishlist</span>
+                              </a>
+                              <a href="#" class="action tocompare"
+                                title="Add to Compare">
+                              <span>Compare</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product_row">
+                    <div class="item products-grid">
+                      <div class="item-inner">
+                        <div class="image-container product-item-info">
+                          <span class='hot-sale'>sale</span><a href="#" class="product-item-photo">
+                          <span class="product-image-container"
+                            style="width:400px;">
+                          <span class="product-image-wrapper"
+                            style="padding-bottom: 100%;">
+                          <img class="product-image-photo"
+                            src="http://127.0.0.1/public_html/health_care_magento/images/8_7.jpg"
+                            width="400"
+                            height="400"
+                            alt="Wayfarer Messenger Bag"/></span>
+                          </span>
+                          </a>
+                          <div class="product-item-details">
+                            <div class="product-name">
+                              <div class="title-name">
+                                Sample Category														
+                              </div>
+                              <strong class="product-item-name">
+                              <a title="Wayfarer Messenger Bag"
+                                href="#"
+                                class="product-item-link">
+                              Wayfarer Messenger Bag															</a>
+                              </strong>
+                            </div>
+                            <div class="product-reviews-summary" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                              <div class="rating-summary">
+                                <span class="label"><span>Rating:</span></span>
+                                <div class="rating-result" title="73%">
+                                  <span style="width:73%"><span><span itemprop="ratingValue">73</span>% of <span itemprop="bestRating">100</span></span></span>
+                                </div>
+                              </div>
+                              <div class="reviews-actions">
+                                <a class="action view" href="http://plazathemes.com/demo/organica/english1/wayfarer-messenger-bag.html#reviews"><span itemprop="reviewCount">1</span>&nbsp;<span>Review</span></a>
+                                <a class="action add" href="http://plazathemes.com/demo/organica/english1/wayfarer-messenger-bag.html#review-form">Add Your Review</a>
+                              </div>
+                            </div>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="20">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span
+                                data-price-amount="40"
+                                data-price-type="finalPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$40.00</span>    </span>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="box-hover">
+                            <div class="actions-primary">
+                              <button class="action tocart primary"
+                                type="button" title="Add to cart">
+                              <span>Add to cart</span>
+                              </button>
+                            </div>
+                            <div class="add-to-links actions-secondary" data-role="add-to-links">
+                              <a href="#"
+                                class="action towishlist" data-action="add-to-wishlist"
+                                title="Add to Wishlist">
+                              <span>Wishlist</span>
+                              </a>
+                              <a href="#" class="action tocompare"
+                                title="Add to Compare">
+                              <span>Compare</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product_row">
+                    <div class="item products-grid">
+                      <div class="item-inner">
+                        <div class="image-container product-item-info">
+                          <span class='hot-sale'>sale</span>												<a href="http://plazathemes.com/demo/organica/english1/strive-shoulder-pack.html" class="product-item-photo">
+                          <span class="product-image-container"
+                            style="width:400px;">
+                          <span class="product-image-wrapper"
+                            style="padding-bottom: 100%;">
+                          <img class="product-image-photo"
+                            src="http://127.0.0.1/public_html/health_care_magento/images/10_2_2.jpg"
+                            width="400"
+                            height="400"
+                            alt="Strive Shoulder Pack"/></span>
+                          </span>
+                          </a>
+                          <div class="product-item-details">
+                            <div class="product-name">
+                              <div class="title-name">
+                                Sample Category														
+                              </div>
+                              <strong class="product-item-name">
+                              <a title="Strive Shoulder Pack"
+                                href="#"
+                                class="product-item-link">
+                              Strive Shoulder Pack															</a>
+                              </strong>
+                            </div>
+                            <div class="product-reviews-summary" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                              <div class="rating-summary">
+                                <span class="label"><span>Rating:</span></span>
+                                <div class="rating-result" title="67%">
+                                  <span style="width:67%"><span><span itemprop="ratingValue">67</span>% of <span itemprop="bestRating">100</span></span></span>
+                                </div>
+                              </div>
+                              <div class="reviews-actions">
+                                <a class="action view" href="#">1</span>&nbsp;<span>Review</span></a>
+                                <a class="action add" href="#">Add Your Review</a>
+                              </div>
+                            </div>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="18">
+                              <span class="special-price">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span class="price-label">Special Price</span>
+                              <span
+                                data-price-amount="30"
+                                data-price-type="finalPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$30.00</span>    </span>
+                              </span>
+                              </span>
+                              <span class="old-price">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span class="price-label">Regular Price</span>
+                              <span
+                                data-price-amount="32"
+                                data-price-type="oldPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$32.00</span>    </span>
+                              </span>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="box-hover">
+                            <div class="actions-primary">
+                              <button class="action tocart primary"
+                                type="button" title="Add to cart">
+                              <span>Add to cart</span>
+                              </button>
+                            </div>
+                            <div class="add-to-links actions-secondary" data-role="add-to-links">
+                              <a href="#"
+                                class="action towishlist" data-action="add-to-wishlist"
+                                title="Add to Wishlist">
+                              <span>Wishlist</span>
+                              </a>
+                              <a href="#" class="action tocompare"
+                                title="Add to Compare">
+                              <span>Compare</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product_row">
+                    <div class="item products-grid">
+                      <div class="item-inner">
+                        <div class="image-container product-item-info">
+                          <div class="label-pro-new"><span>new</span></div>
+                          <a href="#" class="product-item-photo">
+                          <span class="product-image-container"
+                            style="width:400px;">
+                          <span class="product-image-wrapper"
+                            style="padding-bottom: 100%;">
+                          <img class="product-image-photo"
+                            src="http://127.0.0.1/public_html/health_care_magento/images/2_3_1.jpg"
+                            width="400"
+                            height="400"
+                            alt="Chaz Kangeroo Hoodie1"/></span>
+                          </span>
+                          </a>
+                          <div class="product-item-details">
+                            <div class="product-name">
+                              <div class="title-name">
+                                Sample Category														
+                              </div>
+                              <strong class="product-item-name">
+                              <a title="Chaz Kangeroo Hoodie1"
+                                href="#">
+                              Chaz Kangeroo Hoodie1															</a>
+                              </strong>
+                            </div>
+                            <div class="product-reviews-summary" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                              <div class="rating-summary">
+                                <span class="label"><span>Rating:</span></span>
+                                <div class="rating-result" title="67%">
+                                  <span style="width:67%"><span><span itemprop="ratingValue">67</span>% of <span itemprop="bestRating">100</span></span></span>
+                                </div>
+                              </div>
+                              <div class="reviews-actions">
+                                <a class="action view" href="#"><span itemprop="reviewCount">1</span>&nbsp;<span>Review</span></a>
+                                <a class="action add" href="#">Add Your Review</a>
+                              </div>
+                            </div>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="2">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span
+                                data-price-amount="52"
+                                data-price-type="finalPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$52.00</span>    </span>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="box-hover">
+                            <div class="actions-primary">
+                              <button class="action tocart primary"
+                                data-mage-init='{"redirectUrl":{"url":"http://plazathemes.com/demo/organica/english1/chaz-kangeroo-hoodie.html?options=cart"}}'
+                                type="button" title="Add to cart">
+                              <span>Add to cart</span>
+                              </button>
+                            </div>
+                            <div class="add-to-links actions-secondary" data-role="add-to-links">
+                              <a href="#"
+                                class="action towishlist" data-action="add-to-wishlist"
+                                title="Add to Wishlist">
+                              <span>Wishlist</span>
+                              </a>
+                              <a href="#" class="action tocompare"
+                                title="Add to Compare">
+                              <span>Compare</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="owl-container">
+              <div id="tab_sale_product" class="tab_content">
+                <div class="productTabContent owl-carousel">
+                  <div class="product_row">
+                    <div class="item products-grid">
+                      <div class="item-inner">
+                        <div class="image-container product-item-info">
+                          <span class='hot-sale'>sale</span>	
+                          <a href="#" class="product-item-photo">
+                          <span class="product-image-container"
+                            style="width:400px;">
+                          <span class="product-image-wrapper"
+                            style="padding-bottom: 100%;">
+                          <img class="product-image-photo"
+                            src="http://127.0.0.1/public_html/health_care_magento/images/7_6.jpg"
+                            width="400"
+                            height="400"
+                            alt="Crown Summit Backpack"/></span>
+                          </span>
+                          </a>
+                          <div class="product-item-details">
+                            <div class="product-name">
+                              <div class="title-name">
+                                Sample Category														
+                              </div>
+                              <strong class="product-item-name">
+                              <a title="Crown Summit Backpack"
+                                href="#"
+                                class="product-item-link">
+                              Crown Summit Backpack															</a>
+                              </strong>
+                            </div>
+                            <div class="product-reviews-summary" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                              <div class="rating-summary">
+                                <span class="label"><span>Rating:</span></span>
+                                <div class="rating-result" title="47%">
+                                  <span style="width:47%"><span><span itemprop="ratingValue">47</span>% of <span itemprop="bestRating">100</span></span></span>
+                                </div>
+                              </div>
+                              <div class="reviews-actions">
+                                <a class="action view" href="#">1</span>&nbsp;<span>Review</span></a>
+                                <a class="action add" href="#">Add Your Review</a>
+                              </div>
+                            </div>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="19">
+                              <span class="special-price">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span class="price-label">Special Price</span>
+                              <span
+                                data-price-amount="35"
+                                data-price-type="finalPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$35.00</span>    </span>
+                              </span>
+                              </span>
+                              <span class="old-price">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span class="price-label">Regular Price</span>
+                              <span
+                                data-price-amount="38"
+                                data-price-type="oldPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$38.00</span>    </span>
+                              </span>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="box-hover">
+                            <div class="actions-primary">
+                              <button class="action tocart primary"
+                                type="button" title="Add to cart">
+                              <span>Add to cart</span>
+                              </button>
+                            </div>
+                            <div class="add-to-links actions-secondary" data-role="add-to-links">
+                              <a href="#"
+                                class="action towishlist" data-action="add-to-wishlist"
+                                title="Add to Wishlist">
+                              <span>Wishlist</span>
+                              </a>
+                              <a href="#" class="action tocompare"
+                                title="Add to Compare">
+                              <span>Compare</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product_row">
+                    <div class="item products-grid">
+                      <div class="item-inner">
+                        <div class="image-container product-item-info">
+                          <span class='hot-sale'>sale</span>
+                          <a href="#" class="product-item-photo">
+                          <span class="product-image-container"
+                            style="width:400px;">
+                          <span class="product-image-wrapper"
+                            style="padding-bottom: 100%;">
+                          <img class="product-image-photo"
+                            src="http://127.0.0.1/public_html/health_care_magento/images/4_3_2.jpg"
+                            width="400"
+                            height="400"
+                            alt="Impulse Duffle"/></span>
+                          </span>
+                          </a>
+                          <div class="product-item-details">
+                            <div class="product-name">
+                              <div class="title-name">
+                                Sample Category														
+                              </div>
+                              <strong class="product-item-name">
+                              <a title="Impulse Duffle"
+                                href="#"
+                                class="product-item-link">
+                              Impulse Duffle															</a>
+                              </strong>
+                            </div>
+                            <div class="product-reviews-summary" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                              <div class="rating-summary">
+                                <span class="label"><span>Rating:</span></span>
+                                <div class="rating-result" title="53%">
+                                  <span style="width:53%"><span><span itemprop="ratingValue">53</span>% of <span itemprop="bestRating">100</span></span></span>
+                                </div>
+                              </div>
+                              <div class="reviews-actions">
+                                <a class="action view" href="#"><span itemprop="reviewCount">1</span>&nbsp;<span>Review</span></a>
+                                <a class="action add" href="#">Add Your Review</a>
+                              </div>
+                            </div>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="24">
+                              <span class="special-price">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span class="price-label">Special Price</span>
+                              <span
+                                data-price-amount="70"
+                                data-price-type="finalPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$70.00</span>    </span>
+                              </span>
+                              </span>
+                              <span class="old-price">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span class="price-label">Regular Price</span>
+                              <span
+                                data-price-amount="74"
+                                data-price-type="oldPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$74.00</span>    </span>
+                              </span>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="box-hover">
+                            <div class="actions-primary">
+                              <button class="action tocart primary"
+                                type="button" title="Add to cart">
+                              <span>Add to cart</span>
+                              </button>
+                            </div>
+                            <div class="add-to-links actions-secondary" data-role="add-to-links">
+                              <a href="#"
+                                class="action towishlist" data-action="add-to-wishlist"
+                                title="Add to Wishlist">
+                              <span>Wishlist</span>
+                              </a>
+                              <a href="#" class="action tocompare"
+                                title="Add to Compare">
+                              <span>Compare</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product_row">
+                    <div class="item products-grid">
+                      <div class="item-inner">
+                        <div class="image-container product-item-info">
+                          <span class='hot-sale'>sale</span><a href="#" class="product-item-photo">
+                          <span class="product-image-container"
+                            style="width:400px;">
+                          <span class="product-image-wrapper"
+                            style="padding-bottom: 100%;">
+                          <img class="product-image-photo"
+                            src="http://127.0.0.1/public_html/health_care_magento/images/1_3_1.jpg"
+                            width="400"
+                            height="400"
+                            alt="Joust Duffle Bag1"/></span>
+                          </span>
+                          </a>
+                          <div class="product-item-details">
+                            <div class="product-name">
+                              <div class="title-name">
+                                Sample Category														
+                              </div>
+                              <strong class="product-item-name">
+                              <a title="Joust Duffle Bag1"
+                                href="#">
+                              Joust Duffle Bag1</a>
+                              </strong>
+                            </div>
+                            <div class="product-reviews-summary" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                              <div class="rating-summary">
+                                <span class="label"><span>Rating:</span></span>
+                                <div class="rating-result" title="67%">
+                                  <span style="width:67%"><span><span itemprop="ratingValue">67</span>% of <span itemprop="bestRating">100</span></span></span>
+                                </div>
+                              </div>
+                              <div class="reviews-actions">
+                                <a class="action view" href="#"><span itemprop="reviewCount">1</span>&nbsp;<span>Review</span></a>
+                                <a class="action add" href="#">Add Your Review</a>
+                              </div>
+                            </div>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                              <span class="special-price">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span class="price-label">Special Price</span>
+                              <span
+                                data-price-amount="30"
+                                data-price-type="finalPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$30.00</span>    </span>
+                              </span>
+                              </span>
+                              <span class="old-price">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span class="price-label">Regular Price</span>
+                              <span
+                                data-price-amount="34"
+                                data-price-type="oldPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$34.00</span>    </span>
+                              </span>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="box-hover">
+                            <div class="actions-primary">
+                              <button class="action tocart primary"
+                                type="button" title="Add to cart">
+                              <span>Add to cart</span>
+                              </button>
+                            </div>
+                            <div class="add-to-links actions-secondary" data-role="add-to-links">
+                              <a href="#"
+                                class="action towishlist" data-action="add-to-wishlist"
+                                title="Add to Wishlist">
+                              <span>Wishlist</span>
+                              </a>
+                              <a href="#" class="action tocompare"
+                                title="Add to Compare">
+                              <span>Compare</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product_row">
+                    <div class="item products-grid">
+                      <div class="item-inner">
+                        <div class="image-container product-item-info">
+                          <span class='hot-sale'>sale</span><a href="#" class="product-item-photo">
+                          <span class="product-image-container"
+                            style="width:400px;">
+                          <span class="product-image-wrapper"
+                            style="padding-bottom: 100%;">
+                          <img class="product-image-photo"
+                            src="http://127.0.0.1/public_html/health_care_magento/images/10_2_2.jpg"
+                            width="400"
+                            height="400"
+                            alt="Strive Shoulder Pack"/></span>
+                          </span>
+                          </a>
+                          <div class="product-item-details">
+                            <div class="product-name">
+                              <div class="title-name">
+                                Sample Category														
+                              </div>
+                              <strong class="product-item-name">
+                              <a title="Strive Shoulder Pack"
+                                href="#"
+                                class="product-item-link">
+                              Strive Shoulder Pack															</a>
+                              </strong>
+                            </div>
+                            <div class="product-reviews-summary" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                              <div class="rating-summary">
+                                <span class="label"><span>Rating:</span></span>
+                                <div class="rating-result" title="67%">
+                                  <span style="width:67%"><span><span itemprop="ratingValue">67</span>% of <span itemprop="bestRating">100</span></span></span>
+                                </div>
+                              </div>
+                              <div class="reviews-actions">
+                                <a class="action view" href="#"><span itemprop="reviewCount">1</span>&nbsp;<span>Review</span></a>
+                                <a class="action add" href="#">Add Your Review</a>
+                              </div>
+                            </div>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="18">
+                              <span class="special-price">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span class="price-label">Special Price</span>
+                              <span
+                                data-price-amount="30"
+                                data-price-type="finalPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$30.00</span>    </span>
+                              </span>
+                              </span>
+                              <span class="old-price">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span class="price-label">Regular Price</span>
+                              <span
+                                data-price-amount="32"
+                                data-price-type="oldPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$32.00</span>    </span>
+                              </span>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="box-hover">
+                            <div class="actions-primary">
+                              <button class="action tocart primary"
+                                type="button" title="Add to cart">
+                              <span>Add to cart</span>
+                              </button>
+                            </div>
+                            <div class="add-to-links actions-secondary" data-role="add-to-links">
+                              <a href="#"
+                                class="action towishlist" data-action="add-to-wishlist"
+                                title="Add to Wishlist">
+                              <span>Wishlist</span>
+                              </a>
+                              <a href="#" class="action tocompare"
+                                title="Add to Compare">
+                              <span>Compare</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="owl-container">
+              <div id="tab_feature_product" class="tab_content">
+                <div class="productTabContent owl-carousel">
+                  <div class="product_row">
+                    <div class="item products-grid">
+                      <div class="item-inner">
+                        <div class="image-container product-item-info">
+                          <div class="label-pro-new"><span>new</span></div>
+                          <a href="#" class="product-item-photo">
+                          <span class="product-image-container"
+                            style="width:400px;">
+                          <span class="product-image-wrapper"
+                            style="padding-bottom: 100%;">
+                          <img class="product-image-photo"
+                            src="http://127.0.0.1/public_html/health_care_magento/images/2_3_1.jpg"
+                            width="400"
+                            height="400"
+                            alt="Chaz Kangeroo Hoodie1"/></span>
+                          </span>
+                          </a>
+                          <div class="product-item-details">
+                            <div class="product-name">
+                              <div class="title-name">
+                                Sample Category														
+                              </div>
+                              <strong class="product-item-name">
+                              <a title="Chaz Kangeroo Hoodie1"
+                                href="#">
+                              Chaz Kangeroo Hoodie1															</a>
+                              </strong>
+                            </div>
+                            <div class="product-reviews-summary" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                              <div class="rating-summary">
+                                <span class="label"><span>Rating:</span></span>
+                                <div class="rating-result" title="67%">
+                                  <span style="width:67%"><span><span itemprop="ratingValue">67</span>% of <span itemprop="bestRating">100</span></span></span>
+                                </div>
+                              </div>
+                              <div class="reviews-actions">
+                                <a class="action view" href="#"><span itemprop="reviewCount">1</span>&nbsp;<span>Review</span></a>
+                                <a class="action add" href="#">Add Your Review</a>
+                              </div>
+                            </div>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="2">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span
+                                data-price-amount="52"
+                                data-price-type="finalPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$52.00</span>    </span>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="box-hover">
+                            <div class="actions-primary">
+                              <button class="action tocart primary"
+                                data-mage-init='{"redirectUrl":{"url":"http://plazathemes.com/demo/organica/english1/chaz-kangeroo-hoodie.html?options=cart"}}'
+                                type="button" title="Add to cart">
+                              <span>Add to cart</span>
+                              </button>
+                            </div>
+                            <div class="add-to-links actions-secondary" data-role="add-to-links">
+                              <a href="#"
+                                class="action towishlist" data-action="add-to-wishlist"
+                                title="Add to Wishlist">
+                              <span>Wishlist</span>
+                              </a>
+                              <a href="#" class="action tocompare"
+                                title="Add to Compare">
+                              <span>Compare</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product_row">
+                    <div class="item products-grid">
+                      <div class="item-inner">
+                        <div class="image-container product-item-info">
+                          <div class="label-pro-new"><span>new</span></div>
+                          <a href="#" class="product-item-photo">
+                          <span class="product-image-container"
+                            style="width:400px;">
+                          <span class="product-image-wrapper"
+                            style="padding-bottom: 100%;">
+                          <img class="product-image-photo"
+                            src="http://127.0.0.1/public_html/health_care_magento/images_/6_1.jpg"
+                            width="400"
+                            height="400"
+                            alt="Fusion Backpack"/></span>
+                          </span>
+                          </a>
+                          <div class="product-item-details">
+                            <div class="product-name">
+                              <div class="title-name">
+                                Sample Category														
+                              </div>
+                              <strong class="product-item-name">
+                              <a title="Fusion Backpack"
+                                href="#">
+                              Fusion Backpack															</a>
+                              </strong>
+                            </div>
+                            <div class="product-reviews-summary" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                              <div class="rating-summary">
+                                <span class="label"><span>Rating:</span></span>
+                                <div class="rating-result" title="67%">
+                                  <span style="width:67%"><span><span itemprop="ratingValue">67</span>% of <span itemprop="bestRating">100</span></span></span>
+                                </div>
+                              </div>
+                              <div class="reviews-actions">
+                                <a class="action view" href="#"><span itemprop="reviewCount">1</span>&nbsp;<span>Review</span></a>
+                                <a class="action add" href="#">Add Your Review</a>
+                              </div>
+                            </div>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="23">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span
+                                data-price-amount="59"
+                                data-price-type="finalPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$59.00</span>    </span>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="box-hover">
+                            <div class="actions-primary">
+                              <button class="action tocart primary"
+                                type="button" title="Add to cart">
+                              <span>Add to cart</span>
+                              </button>
+                            </div>
+                            <div class="add-to-links actions-secondary" data-role="add-to-links">
+                              <a href="#"
+                                class="action towishlist" data-action="add-to-wishlist"
+                                title="Add to Wishlist">
+                              <span>Wishlist</span>
+                              </a>
+                              <a href="#" class="action tocompare"
+                                title="Add to Compare">
+                              <span>Compare</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product_row">
+                    <div class="item products-grid">
+                      <div class="item-inner">
+                        <div class="image-container product-item-info">
+                          <span class='hot-sale'>sale</span>	
+                          <a href="#" class="product-item-photo">
+                          <span class="product-image-container"
+                            style="width:400px;">
+                          <span class="product-image-wrapper"
+                            style="padding-bottom: 100%;">
+                          <img class="product-image-photo"
+                            src="http://127.0.0.1/public_html/health_care_magento/images/1_3_1.jpg"
+                            width="400"
+                            height="400"
+                            alt="Joust Duffle Bag1"/></span>
+                          </span>
+                          </a>
+                          <div class="product-item-details">
+                            <div class="product-name">
+                              <div class="title-name">
+                                Sample Category														
+                              </div>
+                              <strong class="product-item-name">
+                              <a title="Joust Duffle Bag1"
+                                href="#"
+                                class="product-item-link">
+                              Joust Duffle Bag1															</a>
+                              </strong>
+                            </div>
+                            <div class="product-reviews-summary" itemprop="aggregateRating" itemscope itemtype="#">
+                              <div class="rating-summary">
+                                <span class="label"><span>Rating:</span></span>
+                                <div class="rating-result" title="67%">
+                                  <span style="width:67%"><span><span itemprop="ratingValue">67</span>% of <span itemprop="bestRating">100</span></span></span>
+                                </div>
+                              </div>
+                              <div class="reviews-actions">
+                                <a class="action view" href="#"><span itemprop="reviewCount">1</span>&nbsp;<span>Review</span></a>
+                                <a class="action add" href="#">Add Your Review</a>
+                              </div>
+                            </div>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+                              <span class="special-price">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span class="price-label">Special Price</span>
+                              <span
+                                data-price-amount="30"
+                                data-price-type="finalPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$30.00</span>    </span>
+                              </span>
+                              </span>
+                              <span class="old-price">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span class="price-label">Regular Price</span>
+                              <span
+                                data-price-amount="34"
+                                data-price-type="oldPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$34.00</span>    </span>
+                              </span>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="box-hover">
+                            <div class="actions-primary">
+                              <button class="action tocart primary"
+                                type="button" title="Add to cart">
+                              <span>Add to cart</span>
+                              </button>
+                            </div>
+                            <div class="add-to-links actions-secondary" data-role="add-to-links">
+                              <a href="#"
+                                class="action towishlist" data-action="add-to-wishlist"
+                                title="Add to Wishlist">
+                              <span>Wishlist</span>
+                              </a>
+                              <a href="#" class="action tocompare"
+                                title="Add to Compare">
+                              <span>Compare</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product_row">
+                    <div class="item products-grid">
+                      <div class="item-inner">
+                        <div class="image-container product-item-info">
+                          <div class="label-pro-new"><span>new</span></div>
+                          <a href="#" class="product-item-photo">
+                          <span class="product-image-container"
+                            style="width:400px;">
+                          <span class="product-image-wrapper"
+                            style="padding-bottom: 100%;">
+                          <img class="product-image-photo"
+                            src="http://127.0.0.1/public_html/health_care_magento/images/5_2_1.jpg"
+                            width="400"
+                            height="400"
+                            alt="MH01-Black"/></span>
+                          </span>
+                          </a>
+                          <div class="product-item-details">
+                            <div class="product-name">
+                              <div class="title-name">
+                                Sample Category														
+                              </div>
+                              <strong class="product-item-name">
+                              <a title="MH01-Black"
+                                href="#">
+                              MH01-Black															</a>
+                              </strong>
+                            </div>
+                            <div class="product-reviews-summary" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                              <div class="rating-summary">
+                                <span class="label"><span>Rating:</span></span>
+                                <div class="rating-result" title="100%">
+                                  <span style="width:100%"><span><span itemprop="ratingValue">100</span>% of <span itemprop="bestRating">100</span></span></span>
+                                </div>
+                              </div>
+                              <div class="reviews-actions">
+                                <a class="action view" href="#"><span itemprop="reviewCount">2</span>&nbsp;<span>Reviews</span></a>
+                                <a class="action add" href="#">Add Your Review</a>
+                              </div>
+                            </div>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="7">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span
+                                data-price-amount="52"
+                                data-price-type="finalPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$52.00</span>    </span>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="box-hover">
+                            <div class="actions-primary">
+                              <button class="action tocart primary"
+                                type="button" title="Add to cart">
+                              <span>Add to cart</span>
+                              </button>
+                            </div>
+                            <div class="add-to-links actions-secondary" data-role="add-to-links">
+                              <a href="#"
+                                class="action towishlist" data-action="add-to-wishlist"
+                                title="Add to Wishlist">
+                              <span>Wishlist</span>
+                              </a>
+                              <a href="#" class="action tocompare"
+                                title="Add to Compare">
+                              <span>Compare</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product_row">
+                    <div class="item products-grid">
+                      <div class="item-inner">
+                        <div class="image-container product-item-info">
+                          <div class="label-pro-new"><span>new</span></div>
+                          <a href="#" class="product-item-photo">
+                          <span class="product-image-container"
+                            style="width:400px;">
+                          <span class="product-image-wrapper"
+                            style="padding-bottom: 100%;">
+                          <img class="product-image-photo"
+                            src="http://127.0.0.1/public_html/health_care_magento/images/11_2_6.jpg"
+                            width="400"
+                            height="400"
+                            alt="Rival Field Messenger"/></span>
+                          </span>
+                          </a>
+                          <div class="product-item-details">
+                            <div class="product-name">
+                              <div class="title-name">
+                                Sample Category														
+                              </div>
+                              <strong class="product-item-name">
+                              <a title="Rival Field Messenger"
+                                href="#"
+                                class="product-item-link">
+                              Rival Field Messenger															</a>
+                              </strong>
+                            </div>
+                            <div class="product-reviews-summary" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                              <div class="rating-summary">
+                                <span class="label"><span>Rating:</span></span>
+                                <div class="rating-result" title="80%">
+                                  <span style="width:80%"><span><span itemprop="ratingValue">80</span>% of <span itemprop="bestRating">100</span></span></span>
+                                </div>
+                              </div>
+                              <div class="reviews-actions">
+                                <a class="action view" href="#"><span itemprop="reviewCount">1</span>&nbsp;<span>Review</span></a>
+                                <a class="action add" href="#">Add Your Review</a>
+                              </div>
+                            </div>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="21">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span
+                                data-price-amount="45"
+                                data-price-type="finalPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$45.00</span>    </span>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="box-hover">
+                            <div class="actions-primary">
+                              <button class="action tocart primary"
+                                type="button" title="Add to cart">
+                              <span>Add to cart</span>
+                              </button>
+                            </div>
+                            <div class="add-to-links actions-secondary" data-role="add-to-links">
+                              <a href="#"
+                                class="action towishlist" data-action="add-to-wishlist"
+                                title="Add to Wishlist">
+                              <span>Wishlist</span>
+                              </a>
+                              <a href="#" class="action tocompare"
+                                title="Add to Compare">
+                              <span>Compare</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product_row">
+                    <div class="item products-grid">
+                      <div class="item-inner">
+                        <div class="image-container product-item-info">
+                          <span class='hot-sale'>sale</span><a href="#" class="product-item-photo">
+                          <span class="product-image-container"
+                            style="width:400px;">
+                          <span class="product-image-wrapper"
+                            style="padding-bottom: 100%;">
+                          <img class="product-image-photo"
+                            src="http://127.0.0.1/public_html/health_care_magento/images/10_2_2.jpg"
+                            width="400"
+                            height="400"
+                            alt="Strive Shoulder Pack"/></span>
+                          </span>
+                          </a>
+                          <div class="product-item-details">
+                            <div class="product-name">
+                              <div class="title-name">
+                                Sample Category														
+                              </div>
+                              <strong class="product-item-name">
+                              <a title="Strive Shoulder Pack"
+                                href="#"
+                                class="product-item-link">
+                              Strive Shoulder Pack															</a>
+                              </strong>
+                            </div>
+                            <div class="product-reviews-summary" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                              <div class="rating-summary">
+                                <span class="label"><span>Rating:</span></span>
+                                <div class="rating-result" title="67%">
+                                  <span style="width:67%"><span><span itemprop="ratingValue">67</span>% of <span itemprop="bestRating">100</span></span></span>
+                                </div>
+                              </div>
+                              <div class="reviews-actions">
+                                <a class="action view" href="#"><span itemprop="reviewCount">1</span>&nbsp;<span>Review</span></a>
+                                <a class="action add" href="#">Add Your Review</a>
+                              </div>
+                            </div>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="18">
+                              <span class="special-price">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span class="price-label">Special Price</span>
+                              <span
+                                data-price-amount="30"
+                                data-price-type="finalPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$30.00</span>    </span>
+                              </span>
+                              </span>
+                              <span class="old-price">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span class="price-label">Regular Price</span>
+                              <span
+                                data-price-amount="32"
+                                data-price-type="oldPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$32.00</span>    </span>
+                              </span>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="box-hover">
+                            <div class="actions-primary">
+                              <button class="action tocart primary"
+                                type="button" title="Add to cart">
+                              <span>Add to cart</span>
+                              </button>
+                            </div>
+                            <div class="add-to-links actions-secondary" data-role="add-to-links">
+                              <a href="#"
+                                class="action towishlist" data-action="add-to-wishlist"
+                                title="Add to Wishlist">
+                              <span>Wishlist</span>
+                              </a>
+                              <a href="#" class="action tocompare"
+                                title="Add to Compare">
+                              <span>Compare</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product_row">
+                    <div class="item products-grid">
+                      <div class="item-inner">
+                        <div class="image-container product-item-info">
+                          <span class='hot-sale'>sale</span><a href="#" class="product-item-photo">
+                          <span class="product-image-container"
+                            style="width:400px;">
+                          <span class="product-image-wrapper"
+                            style="padding-bottom: 100%;">
+                          <img class="product-image-photo"
+                            src="http://127.0.0.1/public_html/health_care_magento/images/8_7_1.jpg"
+                            width="400"
+                            height="400"
+                            alt="Wayfarer Messenger Bag"/></span>
+                          </span>
+                          </a>
+                          <div class="product-item-details">
+                            <div class="product-name">
+                              <div class="title-name">
+                                Sample Category														
+                              </div>
+                              <strong class="product-item-name">
+                              <a title="Wayfarer Messenger Bag"
+                                href="#"
+                                class="product-item-link">
+                              Wayfarer Messenger Bag															</a>
+                              </strong>
+                            </div>
+                            <div class="product-reviews-summary" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                              <div class="rating-summary">
+                                <span class="label"><span>Rating:</span></span>
+                                <div class="rating-result" title="73%">
+                                  <span style="width:73%"><span><span itemprop="ratingValue">73</span>% of <span itemprop="bestRating">100</span></span></span>
+                                </div>
+                              </div>
+                              <div class="reviews-actions">
+                                <a class="action view" href="#"><span itemprop="reviewCount">1</span>&nbsp;<span>Review</span></a>
+                                <a class="action add" href="#">Add Your Review</a>
+                              </div>
+                            </div>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="20">
+                              <span class="price-container price-final_price tax weee"
+                                >
+                              <span
+                                data-price-amount="40"
+                                data-price-type="finalPrice"
+                                class="price-wrapper "
+                                >
+                              <span class="price">$40.00</span>    </span>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="box-hover">
+                            <div class="actions-primary">
+                              <button class="action tocart primary"
+                                type="button" title="Add to cart">
+                              <span>Add to cart</span>
+                              </button>
+                            </div>
+                            <div class="add-to-links actions-secondary" data-role="add-to-links">
+                              <a href="#"
+                                class="action towishlist" data-action="add-to-wishlist"
+                                title="Add to Wishlist">
+                              <span>Wishlist</span>
+                              </a>
+                              <a href="#" class="action tocompare" title="Add to Compare">
+                              <span>Compare</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="banner home-group-home1">
+        <div class="row">
+          <div class="col-md-7 col-sm-12 col-xs-12 left">
+            <div class="testimo-slider">
+              <!--<h2 class='ma-title'></h2>-->
+              <div class="pt-testimonial-container">
+                <div id="testimo-item" class="owl-carousel">
+                  <div class="item">
+                    <div class="pt-testimonial">
+                      <div class="content-tes">
+                        <a href="#" class="image">
+                        <img alt="utheya" src="http://127.0.0.1/public_html/health_care_magento/images/1_1.png"/>
+                        </a>
+                      </div>
+                      <div class="des">
+                        Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis							
+                        <div class="info">
+                          <a href="#" class="name">utheya</a>
+                          <span class="job">Webdesigner</span>
+                        </div>
+                        <div class="email">admin@gmail.com</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="pt-testimonial">
+                      <div class="content-tes">
+                        <a href="#" class="image">
+                        <img alt="victor" src="http://127.0.0.1/public_html/health_care_magento/images/2_1_1.png"/>
+                        </a>
+                      </div>
+                      <div class="des">
+                        Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis 							
+                        <div class="info">
+                          <a href="#" class="name">victor</a>
+                          <span class="job">Webdesigner</span>
+                        </div>
+                        <div class="email">admin@gmail.com</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="pt-testimonial">
+                      <div class="content-tes">
+                        <a href="#" class="image">
+                        <img alt="Aussiemines" src="http://127.0.0.1/public_html/health_care_magento/images/1_2.png"/>
+                        </a>
+                      </div>
+                      <div class="des">
+                        Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis 							
+                        <div class="info">
+                          <a href="#" class="name">Aussiemines</a>
+                          <span class="job">Webdesigner</span>
+                        </div>
+                        <div class="email">admin@gmail.com</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5 col-sm-12 col-xs-12 right">
+            <form class="form-subscribe"
+              novalidate
+              action="http://plazathemes.com/demo/organica/english1/newsletter/subscriber/new/"
+              method="post"
+              data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+              id="newsletter-validate-detail">
+              <div class="field newsletter">
+                <div class="title">
+                  <span>Sign up for</span>
+                  <p>send</p>
+                </div>
+                <h3 class="title">Newsletter</h3>
+                <div class="control">
+                  <input name="email" type="email" id="newsletter"
+                    placeholder="Enter your email address"
+                    data-validate="{required:true, 'validate-email':true}"/>
+                  <button class="action subscribe" title="Subscribe" type="submit">
+                  Subscribe <i class="fa fa-long-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="widget box-section block-recent-posts" data-bind="scope: 'recemt-posts'">
+        <div class="container-inner">
+          <header class="group-title1 ma-title">
+            <h2>Blog posts</h2>
+          </header>
+          <div class="row">
+            <div class="owl-container">
+              <div class="block-content">
+                <div id="blog-item" class="owl-carousel">
+                  <div class="item">
+                    <div class="item-inner">
+                      <div class="blog-image">
+                        <a href="#">
+                        <img alt="" src="http://127.0.0.1/public_html/health_care_magento/images/blog2_home1.jpg"/>
+                        </a>
+                      </div>
+                      <div class="blog-content">
+                        <div class="time-conment">
+                          <span class="date-time"><span class="date">08</span><span class="separator">/</span><span class="month">September</span>/</span><span class="year">2016</span>
+                        </div>
+                        <div class="blog-content-inner">
+                          <h3 class="blog-title"><a href="#">Pellentesque massa erat, blandit eget tincidunt porta, eleifend nec ligula.</a></h3>
+                          <p class="short-des">We're releasing 2 premium Magento templates each month. Every template is designed with different styles and targeted for each business trend</p>
+                          <a class="readmore" href="#">
+                          Read more<i class="fa fa-long-arrow-right"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="item-inner">
+                      <div class="blog-image">
+                        <a href="#">
+                        <img alt="" src="http://127.0.0.1/public_html/health_care_magento/images/blog2_home1.jpg"/>
+                        </a>
+                      </div>
+                      <div class="blog-content">
+                        <div class="time-conment">
+                          <span class="date-time"><span class="date">08</span><span class="separator">/</span><span class="month">September</span>/</span><span class="year">2016</span>
+                        </div>
+                        <div class="blog-content-inner">
+                          <h3 class="blog-title"><a href="#">Pellentesque massa erat, blandit eget tincidunt porta, eleifend nec ligula.</a></h3>
+                          <p class="short-des">We're releasing 2 premium Magento templates each month. Every template is designed with different styles and targeted for each business trend</p>
+                          <a class="readmore" href="#">
+                          Read more<i class="fa fa-long-arrow-right"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="item-inner">
+                      <div class="blog-image">
+                        <a href="#">
+                        <img alt="" src="http://127.0.0.1/public_html/health_care_magento/images/blog2_home1.jpg"/>
+                        </a>
+                      </div>
+                      <div class="blog-content">
+                        <div class="time-conment">
+                          <span class="date-time"><span class="date">08</span><span class="separator">/</span><span class="month">September</span>/</span><span class="year">2016</span>
+                        </div>
+                        <div class="blog-content-inner">
+                          <h3 class="blog-title"><a href="#">Pellentesque massa erat, blandit eget tincidunt porta, eleifend nec ligula.</a></h3>
+                          <p class="short-des">We're releasing 2 premium Magento templates each month. Every template is designed with different styles and targeted for each business trend</p>
+                          <a class="readmore" href="#">
+                          Read more<i class="fa fa-long-arrow-right"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="item-inner">
+                      <div class="blog-image">
+                        <a href="#">
+                        <img alt="" src="http://127.0.0.1/public_html/health_care_magento/images/blog2_home1.jpg"/>
+                        </a>
+                      </div>
+                      <div class="blog-content">
+                        <div class="time-conment">
+                          <span class="date-time"><span class="date">08</span><span class="separator">/</span><span class="month">September</span>/</span><span class="year">2016</span>
+                        </div>
+                        <div class="blog-content-inner">
+                          <h3 class="blog-title"><a href="#">Pellentesque massa erat, blandit eget tincidunt porta, eleifend nec ligula.</a></h3>
+                          <p class="short-des">We're releasing 2 premium Magento templates each month. Every template is designed with different styles and targeted for each business trend</p>
+                          <a class="readmore" href="#">
+                          Read more<i class="fa fa-long-arrow-right"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="item-inner">
+                      <div class="blog-image">
+                        <a href="#">
+                        <img alt="" src="http://127.0.0.1/public_html/health_care_magento/images/blog2_home1.jpg"/>
+                        </a>
+                      </div>
+                      <div class="blog-content">
+                        <div class="time-conment">
+                          <span class="date-time"><span class="date">08</span><span class="separator">/</span><span class="month">September</span>/</span><span class="year">2016</span>
+                        </div>
+                        <div class="blog-content-inner">
+                          <h3 class="blog-title"><a href="#">Pellentesque massa erat, blandit eget tincidunt porta, eleifend nec ligula.</a></h3>
+                          <p class="short-des">We're releasing 2 premium Magento templates each month. Every template is designed with different styles and targeted for each business trend</p>
+                          <a class="readmore" href="#">
+                          Read more<i class="fa fa-long-arrow-right"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="item-inner">
+                      <div class="blog-image">
+                        <a href="#">
+                        <img alt="" src="http://127.0.0.1/public_html/health_care_magento/images/blog2_home1.jpg"/>
+                        </a>
+                      </div>
+                      <div class="blog-content">
+                        <div class="time-conment">
+                          <span class="date-time"><span class="date">08</span><span class="separator">/</span><span class="month">September</span>/</span><span class="year">2016</span>
+                        </div>
+                        <div class="blog-content-inner">
+                          <h3 class="blog-title"><a href="#">Pellentesque massa erat, blandit eget tincidunt porta, eleifend nec ligula.</a></h3>
+                          <p class="short-des">We're releasing 2 premium Magento templates each month. Every template is designed with different styles and targeted for each business trend</p>
+                          <a class="readmore" href="#">
+                          Read more<i class="fa fa-long-arrow-right"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="item-inner">
+                      <div class="blog-image">
+                        <a href="#">
+                        <img alt="" src="http://127.0.0.1/public_html/health_care_magento/images/blog2_home1.jpg"/>
+                        </a>
+                      </div>
+                      <div class="blog-content">
+                        <div class="time-conment">
+                          <span class="date-time"><span class="date">08</span><span class="separator">/</span><span class="month">September</span>/</span><span class="year">2016</span>
+                        </div>
+                        <div class="blog-content-inner">
+                          <h3 class="blog-title"><a href="#">Pellentesque massa erat, blandit eget tincidunt porta, eleifend nec ligula.</a></h3>
+                          <p class="short-des">We're releasing 2 premium Magento templates each month. Every template is designed with different styles and targeted for each business trend</p>
+                          <a class="readmore" href="#">
+                          Read more<i class="fa fa-long-arrow-right"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="item-inner">
+                      <div class="blog-image">
+                        <a href="#">
+                        <img alt="" src="http://127.0.0.1/public_html/health_care_magento/images/blog2_home1.jpg"/>
+                        </a>
+                      </div>
+                      <div class="blog-content">
+                        <div class="time-conment">
+                          <span class="date-time"><span class="date">08</span><span class="separator">/</span><span class="month">September</span>/</span><span class="year">2016</span>
+                        </div>
+                        <div class="blog-content-inner">
+                          <h3 class="blog-title"><a href="#">Pellentesque massa erat, blandit eget tincidunt porta, eleifend nec ligula.</a></h3>
+                          <p class="short-des">We're releasing 2 premium Magento templates each month. Every template is designed with different styles and targeted for each business trend</p>
+                          <a class="readmore" href="#">
+                          Read more<i class="fa fa-long-arrow-right"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="item-inner">
+                      <div class="blog-image">
+                        <a href="#">
+                        <img alt="" src="http://127.0.0.1/public_html/health_care_magento/images/blog2_home1.jpg"/>
+                        </a>
+                      </div>
+                      <div class="blog-content">
+                        <div class="time-conment">
+                          <span class="date-time"><span class="date">08</span><span class="separator">/</span><span class="month">September</span>/</span><span class="year">2016</span>
+                        </div>
+                        <div class="blog-content-inner">
+                          <h3 class="blog-title"><a href="#">Pellentesque massa erat, blandit eget tincidunt porta, eleifend nec ligula.</a></h3>
+                          <p class="short-des">We're releasing 2 premium Magento templates each month. Every template is designed with different styles and targeted for each business trend</p>
+                          <a class="readmore" href="#">
+                          Read more<i class="fa fa-long-arrow-right"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="brandslider-container">
+        <div class="container-inner">
+          <div class="ma-title">
+          </div>
+          <div class="pt-brand-container">
+            <div id="brand-item" class="owl-carousel owl-theme">
+              <div class="item">
+                <div class="pt-brand">
+                  <a href="#" class="pt-brand-url">
+                  <img alt="" src="http://127.0.0.1/public_html/health_care_magento/images/1.png"/>
+                  </a>
+                  <p></p>
+                </div>
+              </div>
+              <div class="item">
+                <div class="pt-brand">
+                  <a href="#" class="pt-brand-url">
+                  <img alt="" src="http://127.0.0.1/public_html/health_care_magento/images/2.png"/>
+                  </a>
+                  <p></p>
+                </div>
+              </div>
+              <div class="item">
+                <div class="pt-brand">
+                  <a href="#" class="pt-brand-url">
+                  <img alt="" src="http://127.0.0.1/public_html/health_care_magento/images/3.png"/>
+                  </a>
+                  <p></p>
+                </div>
+              </div>
+              <div class="item">
+                <div class="pt-brand">
+                  <a href="#" class="pt-brand-url">
+                  <img alt="" src="http://127.0.0.1/public_html/health_care_magento/images/4.png"/>
+                  </a>
+                  <p></p>
+                </div>
+              </div>
+              <div class="item">
+                <div class="pt-brand">
+                  <a href="#" class="pt-brand-url">
+                  <img alt="" src="http://127.0.0.1/public_html/health_care_magento/images/5.png"/>
+                  </a>
+                  <p></p>
+                </div>
+              </div>
+              <div class="item">
+                <div class="pt-brand">
+                  <a href="#" class="pt-brand-url">
+                  <img alt="" src="http://127.0.0.1/public_html/health_care_magento/images/6.png"/>
+                  </a>
+                  <p></p>
+                </div>
+              </div>
+              <div class="item">
+                <div class="pt-brand">
+                  <a href="#" class="pt-brand-url">
+                  <img alt="" src="http://127.0.0.1/public_html/health_care_magento/images/2_1.png"/>
+                  </a>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <?php echo $this->getChildHtml('footer_before') ?>
+  <?php echo $this->getChildHtml('footer') ?> 
+  <?php echo $this->getChildHtml('global_cookie_notice') ?> 
+  <?php echo $this->getChildHtml('before_body_end') ?>
+  <?php echo $this->getAbsoluteFooter() ?>
+  </div>
+</body>
+</html>
+

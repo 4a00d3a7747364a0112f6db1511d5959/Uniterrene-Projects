@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<package>
+    <name>padoo_testimonial</name>
+    <version>1.2.3</version>
+    <stability>stable</stability>
+    <license uri="http://www.opensource.org/licenses/gpl-license.php">GNU General Public License (GPL)</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Allow customers post testimonial text and their image. And support flexible how display testimonials sliders on home page or other page with static block.</summary>
+    <description>&lt;div&gt;&#xD;
+	&lt;p&gt;Customer satisfied  is  one of best marketing asset that can give a boost your business. And testimonial is inexpensive and effortless way of displaying proof of your company &#x2018;s worth and convincing to new customers. And nowadays all business online  have it.&lt;/p&gt;&#xD;
+	&lt;p&gt;By install and use our testimonial extension. It will help you easy display testimonials on your website and allow your customers post their review.&lt;/p&gt;&#xD;
+&lt;/div&gt;&#xD;
+&lt;div&gt;&#xD;
+	&lt;h3&gt;Features and benefits&lt;/h3&gt;&#xD;
+	&lt;ul&gt;&#xD;
+		&lt;li&gt;100% opensource&lt;/li&gt;&#xD;
+		&lt;li&gt;Very easy to install and use&lt;/li&gt;&#xD;
+		&lt;li&gt;Doesn&#x2019;t override core Magento ( core class or core template)&lt;/li&gt;&#xD;
+                &lt;li&gt;Support responsive for difference devices&lt;/li&gt;&#xD;
+		&lt;li&gt;Works perfectly with popular browsers including Firefox, Chrome, IE  and Safari&lt;/li&gt;&#xD;
+		&lt;li&gt;Friendly and easy to configurable&lt;/li&gt;&#xD;
+		&lt;li&gt;Compatibility: Magento CE 1.4, 1.5, 1.6, 1.7, 1.8, 1.9&lt;/li&gt;&#xD;
+	&lt;/ul&gt;&#xD;
+&lt;/div&gt;&#xD;
+&lt;div&gt;&#xD;
+	&lt;h3&gt;How to use the our Testimonials extension&lt;/h3&gt;&#xD;
+	&lt;ol&gt;&#xD;
+		&lt;li&gt;Install via Magentoconnect or get it from our site Mage-addons.com&lt;/li&gt;&#xD;
+		&lt;li&gt;Configuration Testimonial options are available in administration panel: System --&amp;gt; Configuration --&amp;gt; Padoosoft extension --&amp;gt; Testimonial&lt;img alt="" src="http://www.mage-addons.com/media/wysiwyg/testimonial/settings.png" /&gt;&lt;/li&gt;&#xD;
+		&lt;li&gt;On On the backend, go to Testimonial=&amp;gt; Manage Testimonial&lt;img alt="" src="http://www.mage-addons.com/media/wysiwyg/testimonial/manage-testimonials.png" /&gt;&#xD;
+To create a new item, click on the Add New Testimonial button:&#xD;
+You can input the Position, image, name, text and select the displaying store view, then enable the Testimonial items.&#xD;
+&lt;img alt="" src="http://www.mage-addons.com/media/wysiwyg/testimonial/add-testimonial.png" /&gt;&#xD;
+&lt;/li&gt;&#xD;
+&lt;li&gt;By default, the module supports to show testimonials on the sidebar block like slider and has a link to testimonials page&#xD;
+&lt;img alt="" src="http://www.mage-addons.com/media/wysiwyg/testimonial/testimonials-page.png" /&gt;&#xD;
+&lt;/li&gt;&#xD;
+&lt;li&gt;Customers can submit their own testimonial at the frontend. After finishing, their testimonials will be listed at Manage Testimonials page from the backend to wait for the store owner&#x2019;s approval. &#xD;
+To navigate to the submit form, customer can click on the Submit Your Testimonial link at top of Testimonial List page.&#xD;
+&lt;img alt="" src="http://www.mage-addons.com/media/wysiwyg/testimonial/submit-testiminial.png" /&gt;&#xD;
+&lt;/li&gt;&#xD;
+	&lt;/ol&gt;&#xD;
+&lt;/div&gt;&#xD;
+&lt;div&gt;&#xD;
+	&lt;h3&gt;How to disable the extension&lt;/h3&gt;&#xD;
+	&lt;p&gt;Set &amp;quot;No&amp;quot; on System &amp;gt; Configuration&amp;gt; Testimonial &amp;gt; General&lt;/p&gt;&#xD;
+	&lt;p&gt;Open the file &#x201C;app/etc/modules/ Padoo_Testimonial.xml&#x201D;  and change the following line: Form &amp;quot;True&amp;quot; To  &amp;quot; False&amp;quot;&#xD;
+&lt;/p&gt;&#xD;
+&lt;/div&gt;</description>
+    <notes>Allow customers post testimonial text and their image. And support flexible how display testimonials sliders on home page or other page with static block.</notes>
+    <authors><author><name>Padoosoft</name><user>Padoo</user><email>stdspace@gmail.com</email></author></authors>
+    <date>2016-09-06</date>
+    <time>08:32:43</time>
+    <contents><target name="magelocal"><dir name="Padoo"><dir name="Testimonial"><dir name="Block"><dir name="Adminhtml"><dir name="Testimonial"><dir name="Edit"><file name="Form.php" hash="5749dbeb7f1fe7ab8b78dbe884c7040e"/></dir><file name="Edit.php" hash="914b023cec2b1402dccb031d4deb2e12"/><file name="Grid.php" hash="722f186ab879bf3d4112f6adf24ec274"/></dir><file name="Testimonial.php" hash="f9dbe9544ed6930394cf3fa7256b22fd"/></dir><file name="Testimonial.php" hash="f0edf369e74a58bc3f2d8fb42f316832"/></dir><dir name="Helper"><file name="Data.php" hash="924a16124019b4e449971dd25366da1d"/></dir><dir name="Model"><dir name="Mysql4"><dir name="Testimonial"><file name="Collection.php" hash="c07706f21811ce990785236f833bb69b"/></dir><file name="Testimonial.php" hash="d4696cae8433d116a667f5c15a5ebf61"/></dir><file name="Status.php" hash="7df6f57de6d7345c739d4f679ae32596"/><dir name="System"><dir name="Conf"><dir name="Source"><file name="Effect.php" hash="4c626e35adcb612e899eee6c37ff68fa"/></dir></dir></dir><file name="Testimonial.php" hash="f76dde45980ad4404e9b25cef879569a"/><dir name="Wysiwyg"><file name="Config.php" hash="eb660301a3a3920c658e47a73f5862d9"/></dir></dir><dir name="controllers"><dir name="Adminhtml"><file name="TestimonialController.php" hash="34c2dcec439012b90b9600d46990030f"/></dir><file name="IndexController.php" hash="6b5430e76115b8bd1234e1a7083ebbf5"/><file name="SubmitController.php" hash="34391f2a9ca966bbad4dd1e6921f6271"/></dir><dir name="etc"><file name="adminhtml.xml" hash="1de85fe62eceb0069649b02e55cacb25"/><file name="config.xml" hash="aaf42374fa68da14f4700a7576dba965"/><file name="system.xml" hash="3acbe960f7c683338d2090b6b0d38a7f"/></dir><dir name="sql"><dir name="padoo_testimonial_setup"><file name="mysql4-install-1.0.0.php" hash="2f3b794d43922cfc4db1f3e7ccfb18c2"/><file name="mysql4-upgrade-1.1.1-1.1.2.php" hash="318b75675441e3a7c94126a2cd01ccc1"/><file name="mysql4-upgrade-1.1.3-1.1.4.php" hash="2f3b794d43922cfc4db1f3e7ccfb18c2"/><file name="mysql4-upgrade-1.2.1-1.2.2.php" hash="3c7148f289ad51e16e8a0bb8841e7a32"/></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Padoo_Testimonial.xml" hash="37cb5152f7d09a25593523de5e3066f1"/></dir></target><target name="magedesign"><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="padoo_testimonial.xml" hash="2511123fd1ae491cc5102b5327f3182f"/></dir><dir name="template"><dir name="padoo"><dir name="testimonial"><file name="slider.phtml" hash="16e39697578d73bee0c88f94c806e75d"/><file name="submit.phtml" hash="020909c556dd0e832a1586809a3af382"/><file name="testimonials.phtml" hash="bd2df0475fe75d24769462e78d97b5dc"/><file name="testimonials_box.phtml" hash="f7d17d8aff58c234c65397537adea94f"/></dir></dir></dir></dir></dir></dir><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="layout"><file name="padoo_testimonial.xml" hash="005c2c5f1501c093ed99751189870982"/></dir></dir></dir></dir></target><target name="magelocale"><dir name="en_US"><file name="Padoo_Testimonial.csv" hash="1d27ca49b4c4a6378a24a61dadd7e3d1"/></dir></target><target name="mage"><dir name="js"><dir name="padoo"><file name="checkValue.js" hash="963c1c86bbd0462be3c4793399a86024"/><file name="jquery.js" hash="b08031186fb28716dcbb38bcbd3ace0d"/><file name="jquery_noconflict.js" hash="afdd9b4ecb226d898fe655136f849752"/><file name="scriptaculous.js" hash="b592273cfa1d97643325ad77f7030879"/><file name="simplecheckout.js" hash="7158c0b30c4fbf2cbfc9b87c3f065043"/><file name="storelocator.js" hash="4cd94ab10a4cd421fff843a3854f71c4"/><file name="tinybox.js" hash="7e8a0b5f8e639947f494c9668caa169c"/></dir></dir></target><target name="mageskin"><dir name="frontend"><dir name="base"><dir name="default"><dir name="css"><dir name="testimonial"><file name="testimonial.css" hash="aadfb6b347aac28e11773af0cbbc2c03"/></dir><dir name="padoo"><file name="jquery-ui.css" hash="c932ef4ca169d744a94855e65fa39531"/><file name="jquery.bxslider.css" hash="951b49dc2e2d9639063f8d74fae1c8f9"/><file name="testimonial.css" hash="11f853c031875b77b31ff818bccd8682"/></dir></dir><dir name="images"><dir name="padoo"><file name="ajax-loader-tr.gif" hash="1ae32bc8232ff2527c627e5b38eb319a"/><file name="bg-btn-delete.gif" hash="2e447b3ea9a8e86d5e620bd8ed895423"/><file name="bg-btn-update.gif" hash="67dd70c9aaa8f568ca34d0698989c6ce"/><file name="btn_trash.gif" hash="bcb22f558a0eb32243a2a36645189e9f"/><file name="controls.png" hash="ace48756f4799305ae30e1167e0ff1f9"/><file name="loading.gif" hash="94b7ff6d24d260848bdd112fdac6a3f1"/><file name="process.jpg" hash="9c3130b318ec087449837bcf1886de7f"/><file name="slider_controls.png" hash="d9d25372f38c6b242b9b51d5841fe86e"/></dir></dir><dir name="js"><dir name="padoo"><file name="jquery.bxslider.js" hash="eea4ef92150fe92c5e75aef6507d06cf"/><file name="jquery.cycle.js" hash="ce83808c0a5a3fd7143adc6fdd6295f3"/></dir></dir></dir></dir></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.2.0</min><max>6.0.0</max></php></required></dependencies>
+</package>

@@ -1,0 +1,520 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+<link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,400i,700,700i" rel="stylesheet"> 
+<!--
+<div class="header-language-background">
+    <div class="header-language-container">
+        <div class="store-language-container">
+            <?php echo $this->getChildHtml('store_language') ?>
+        </div>
+
+        <?php echo $this->getChildHtml('currency_switcher') ?>
+
+        <p class="welcome-msg"><?php echo $this->getChildHtml('welcome') ?> <?php echo $this->getChildHtml('accountLinks') ?></p>
+    </div>
+</div>
+
+<header id="header" class="page-header">
+    <div class="page-header-container">
+        <a class="logo" href="<?php echo $this->getUrl('') ?>">
+            <img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" class="large" />
+            <img src="<?php echo $this->getLogoSrcSmall() ?>" alt="<?php echo $this->getLogoAlt() ?>" class="small" />
+        </a>
+
+        <?php // In order for the language switcher to display next to logo on smaller viewports, it will be moved here.
+              // See app.js for details ?>
+        <div class="store-language-container"></div>
+
+      
+
+        <div class="skip-links">
+            <a href="#header-nav" class="skip-link skip-nav">
+                <span class="icon"></span>
+                <span class="label"><?php echo $this->__('Menu'); ?></span>
+            </a>
+
+            <a href="#header-search" class="skip-link skip-search">
+                <span class="icon"></span>
+                <span class="label"><?php echo $this->__('Search'); ?></span>
+            </a>
+
+            <div class="account-cart-wrapper">
+                <a href="<?php echo $this->helper('customer')->getAccountUrl(); ?>" data-target-element="#header-account" class="skip-link skip-account">
+                    <span class="icon"></span>
+                    <span class="label"><?php echo $this->__('Account'); ?></span>
+                </a>
+
+
+                <div class="header-minicart">
+                    <?php echo $this->getChildHtml('minicart_head'); ?>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div id="header-nav" class="skip-content">
+            <?php echo $this->getChildHtml('topMenu') ?>
+        </div>
+
+     
+
+        <div id="header-search" class="skip-content">
+            <?php echo $this->getChildHtml('topSearch') ?>
+        </div>
+
+       
+
+        <div id="header-account" class="skip-content">
+            <?php echo $this->getChildHtml('topLinks') ?>
+        </div>
+    </div>
+</header>
+
+
+<?php// echo $this->getChildHtml('topContainer'); ?>
+-->
+ <script type="text/javascript" src="http://www.uniterreneprojects.com/dev/fabcollection/skin/frontend/rwd/fabcollection/js/owl.carousel.min.js"></script>  
+<link rel="stylesheet" type="text/css" href="http://www.uniterreneprojects.com/dev/fabcollection/skin/frontend/rwd/fabcollection/css/owl.carousel.min.css" />
+<header class="header-container">
+  <div class="top-bar visible-lg visible-md">
+    <div class="container-inner">
+      <div class="row">
+        <div class="col-md-4 col-sm-12">
+          <div class="logo-home">
+           <span data-action="toggle-nav" class="action nav-toggle"><span>Toggle Nav</span></span> 
+          <strong class="logo"> <a href="<?php echo Mage::getBaseUrl();?>"><img src="http://www.uniterreneprojects.com/dev/health/images/logo.png" alt="Magento Commerce"/></a>  </strong> </div>
+        </div>
+        <div class="col-md-8 col-sm-12">
+          <div class="iner-header">
+            <div class="right-header">
+              <!--<div class="header-top">
+                <div class="hotline pull-left">
+                  <p>Order online or call us : <strong>+0123 456 789</strong></p>
+                </div>
+                <div class="switcher currency switcher-currency" id="switcher-currency">
+                  <div class="actions dropdown options switcher-options">
+                    <div class="action toggle switcher-trigger" id="switcher-currency-trigger"> <strong class="language-USD"> <span>US Dollar<i class="fa fa-angle-down">&nbsp;</i></span> </strong> </div>
+                    <ul class="dropdown switcher-dropdown">
+                      <li class="currency-EUR switcher-option"> <a href="#" data-post="{&quot;action&quot;:&quot;http:\/\/plazathemes.com\/demo\/organica\/english1\/directory\/currency\/switch\/&quot;,&quot;data&quot;:{&quot;currency&quot;:&quot;EUR&quot;,&quot;uenc&quot;:&quot;aHR0cDovL3BsYXphdGhlbWVzLmNvbS9kZW1vL29yZ2FuaWNhL2VuZ2xpc2gxLw,,&quot;}}">EUR</a> </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="switcher language switcher-language" data-ui-id="language-switcher" id="switcher-language">
+                  <div class="actions dropdown options switcher-options">
+                    <div class="action toggle switcher-trigger" id="switcher-language-trigger"> <strong class="view-english1"> <span>English1<i class="fa fa-angle-down">&nbsp;</i></span> </strong> </div>
+                    <ul class="dropdown switcher-dropdown">
+                      <li class="view-english2 switcher-option"> <a href="#" data-post="{&quot;action&quot;:&quot;http:\/\/plazathemes.com\/demo\/organica\/english1\/stores\/store\/switch\/&quot;,&quot;data&quot;:{&quot;___store&quot;:&quot;english2&quot;,&quot;uenc&quot;:&quot;aHR0cDovL3BsYXphdGhlbWVzLmNvbS9kZW1vL29yZ2FuaWNhL2VuZ2xpc2gxLw,,&quot;}}"> English2 </a> </li>
+                    </ul>
+                  </div>
+                </div>
+                <form class="form minisearch" id="search_mini_form" action="http://plazathemes.com/demo/organica/english1/catalogsearch/result/" method="get">
+                  <div class="field search">
+                    <div class="control">
+                      <input id="search" name="q" value="" placeholder="Search for item..." class="input-text" maxlength="128" role="combobox" aria-haspopup="false" aria-autocomplete="both" autocomplete="off" type="text">
+                      <button type="submit" title="Search" class="action search" disabled=""> <span>Search</span> </button>
+                    </div>
+                  </div>
+                </form>
+              </div>-->
+              
+              <div class="header-top">
+                
+                <div class="top-menu-row">
+                 <ul>
+                  <li><a href="javascript:void(0)"> Shipping Policy </a> </li>
+                  <li><a href="javascript:void(0)"> Return Policy </a> </li>
+                  <li><a href="javascript:void(0)"> About Us </a> </li>
+                  <li><a href="javascript:void(0)"> Contact Us </a> </li>
+                  <li class="sign-out-icon"><a href="javascript:void(0)" style="font-size: 13px;"> <i class="fa fa-sign-in"></i> Sign In</a> </li>
+                 </ul>
+                </div>
+                
+                
+                <div class="search-box-right">
+                <form class="form minisearch" id="search_mini_form" action="http://plazathemes.com/demo/organica/english1/catalogsearch/result/" method="get">
+                  <div class="field search">
+                    <div class="control">
+                      <input id="search" name="q" value="" placeholder="Search for item..." class="input-text" maxlength="128" role="combobox" aria-haspopup="false" aria-autocomplete="both" autocomplete="off" type="text">
+                      <button type="submit" title="Search" class="action search" disabled=""> <span>Search</span> </button>
+                    </div>
+                  </div>
+                </form>
+               </div> 
+              </div>
+              
+              <!--<div class="header-bottom nav-ozmegamenu">
+                <div class="nav-ozmegamenu-inner">
+                  <nav class="nav-container visible-lg visible-md">
+                    <div id="pt_custommenu" class="pt_custommenu">
+                      <div id="pt_menu_home" class="pt_menu act">
+                        <div class="parentMenu"> <a href="http://plazathemes.com/demo/organica/english1/"> <span>Home</span> </a> </div>
+                      </div>
+                      <div id="pt_menu4" class="pt_menu nav-1">
+                        <div class="parentMenu" style=""> <a href="#" class="pt_cate "> <span>Shop</span> <span class="is_sale"></span> <span class="is_new"></span> </a> </div>
+                        <div id="popup4" class="popup" style="display: none; width: 1228px;">
+                          <div class="block1" id="block14">
+                            <div class="column first col1">
+                              <div class="itemMenu level1"><a class="itemMenuName level1" href="http://plazathemes.com/demo/organica/english1/men/tops-tees.html"><span>Tops &amp; Tees</span><span class="is_sale"></span><span class="is_new"></span></a>
+                                <div class="itemSubMenu level1">
+                                  <div class="itemMenu level2"><a class="itemMenuName level2" href="http://plazathemes.com/demo/organica/english1/men/tops-tees/polo-short-sleeve.html"><span>Polo Short Sleeve</span></a><a class="itemMenuName level2" href="http://plazathemes.com/demo/organica/english1/men/tops-tees/sleeveless.html"><span>Sleeveless</span></a></div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="column col2">
+                              <div class="itemMenu level1"><a class="itemMenuName level1" href="http://plazathemes.com/demo/organica/english1/men/jackets.html"><span>Jackets</span></a>
+                                <div class="itemSubMenu level1">
+                                  <div class="itemMenu level2"><a class="itemMenuName level2" href="http://plazathemes.com/demo/organica/english1/men/jackets/jeans-pants.html"><span>Sweaters</span></a><a class="itemMenuName level2" href="http://plazathemes.com/demo/organica/english1/men/jackets/hoodies.html"><span>Hoodies</span></a><a class="itemMenuName level2" href="http://plazathemes.com/demo/organica/english1/men/jackets/wedges.html"><span>Wedges</span></a><a class="itemMenuName level2" href="http://plazathemes.com/demo/organica/english1/men/jackets/vests.html"><span>Vests</span></a></div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="column last col3">
+                              <div class="itemMenu level1"><a class="itemMenuName level1" href="http://plazathemes.com/demo/organica/english1/men/jeans-pants.html"><span>Jeans pants</span></a>
+                                <div class="itemSubMenu level1">
+                                  <div class="itemMenu level2"><a class="itemMenuName level2" href="http://plazathemes.com/demo/organica/english1/men/jeans-pants/polo-short-sleeve.html"><span>Polo Short Sleeve </span></a><a class="itemMenuName level2" href="http://plazathemes.com/demo/organica/english1/men/jeans-pants/sleeveless.html"><span>Sleeveless </span></a><a class="itemMenuName level2" href="http://plazathemes.com/demo/organica/english1/men/jeans-pants/graphic-t-shirts.html"><span>Graphic T-Shirts </span></a><a class="itemMenuName level2" href="http://plazathemes.com/demo/organica/english1/men/jeans-pants/hoodies.html"><span>Hoodies</span></a></div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="clearBoth"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div id="pt_menu5" class="pt_menu nav-2">
+                        <div class="parentMenu" style=""> <a href="#" class="pt_cate "> <span>Kids</span> </a> </div>
+                        <div id="popup5" class="popup" style="display: none; width: 1228px;">
+                          <div class="block1" id="block15">
+                            <div class="column first col1">
+                              <div class="itemMenu level1"><a class="itemMenuName level1" href="http://plazathemes.com/demo/organica/english1/kids/tops.html"><span>Tops</span></a>
+                                <div class="itemSubMenu level1">
+                                  <div class="itemMenu level2"><a class="itemMenuName level2" href="http://plazathemes.com/demo/organica/english1/kids/tops/shirts.html"><span>Shirts</span></a><a class="itemMenuName level2" href="http://plazathemes.com/demo/organica/english1/kids/tops/florals.html"><span>Florals</span></a><a class="itemMenuName level2" href="http://plazathemes.com/demo/organica/english1/kids/tops/crochet.html"><span>Crochet</span></a><a class="itemMenuName level2" href="http://plazathemes.com/demo/organica/english1/kids/tops/stripes.html"><span>Stripes</span></a></div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="column col2">
+                              <div class="itemMenu level1"><a class="itemMenuName level1" href="http://plazathemes.com/demo/organica/english1/kids/bottoms.html"><span>Bottoms</span></a>
+                                <div class="itemSubMenu level1">
+                                  <div class="itemMenu level2"><a class="itemMenuName level2" href="http://plazathemes.com/demo/organica/english1/kids/bottoms/shorts.html"><span>Shorts</span></a><a class="itemMenuName level2" href="http://plazathemes.com/demo/organica/english1/kids/bottoms/dresses.html"><span>Dresses</span></a><a class="itemMenuName level2" href="http://plazathemes.com/demo/organica/english1/kids/bottoms/jeans.html"><span>Jeans</span></a></div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="column last col3">
+                              <div class="itemMenu level1"><a class="itemMenuName level1" href="http://plazathemes.com/demo/organica/english1/kids/shoes.html"><span>Shoes</span></a>
+                                <div class="itemSubMenu level1">
+                                  <div class="itemMenu level2"><a class="itemMenuName level2" href="http://plazathemes.com/demo/organica/english1/kids/shoes/heeled-sandals.html"><span>Heeled sandals</span></a><a class="itemMenuName level2" href="http://plazathemes.com/demo/organica/english1/kids/shoes/flat-sandals.html"><span>Flat sandals</span></a><a class="itemMenuName level2" href="http://plazathemes.com/demo/organica/english1/kids/shoes/wedges.html"><span>Wedges</span></a><a class="itemMenuName level2" href="http://plazathemes.com/demo/organica/english1/kids/shoes/ankle-boots.html"><span>Ankle boots</span></a></div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="clearBoth"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div id="pt_menu7" class="pt_menu nav-3">
+                        <div class="parentMenu" style=""> <a href="#" class="pt_cate "> <span>womem's</span> <span class="is_sale"></span> <span class="is_new"></span> </a> </div>
+                        <div id="popup7" class="popup" style="display: none; width: 1228px;">
+                          <div class="block1" id="block17">
+                            <div class="column first col1">
+                              <div class="itemMenu level1"><a class="itemMenuName level1" href="http://plazathemes.com/demo/organica/english1/accessories/books.html"><span>Books</span></a></div>
+                            </div>
+                            <div class="column col2">
+                              <div class="itemMenu level1"><a class="itemMenuName level1" href="http://plazathemes.com/demo/organica/english1/accessories/electtronic.html"><span>Electtronic</span></a></div>
+                            </div>
+                            <div class="column last col3">
+                              <div class="itemMenu level1"><a class="itemMenuName level1" href="http://plazathemes.com/demo/organica/english1/accessories/tablet.html"><span>Tablet</span></a></div>
+                            </div>
+                            <div class="clearBoth"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="pt_menu_link pt_menu">
+                        <div class="parentMenu">
+                          <ul class="mobilemenu">
+                            <li><a href="http://plazathemes.com/demo/organica/english1/blog/">Blog</a></li>
+                            <li class="last"><a href="http://plazathemes.com/demo/organica/english1/contact/">Contact Us</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </nav>
+                  
+                 
+                  <div class="mobile-bar-icon"><span>mobile icon</span></div>
+                </div>
+              </div>-->
+              
+              <div class="header-bottom nav-ozmegamenu">
+                <div class="nav-ozmegamenu-inner">
+                  <nav class="nav-container visible-lg visible-md">
+                    <div id="pt_custommenu" class="pt_custommenu">
+                    
+                       <div id="pt_menu4" class="pt_menu nav-1">
+                        <div class="parentMenu" style=""> <a href="#" class="pt_cate "> <span>Shop</span> <span class="is_sale"></span> <span class="is_new"></span> </a> </div>
+                        <div id="popup4" class="popup" style="display: none; width: 1228px;">
+                          <div class="block1" id="block14">
+                            <div class="column first col1">
+                              <div class="itemMenu level1"><a class="itemMenuName level1" href="javascript:void(0)"><span>Shop</span><span class="is_sale"></span><span class="is_new"></span></a>
+                                <div class="itemSubMenu level1">
+                                  <div class="itemMenu level2">
+                                    <a class="itemMenuName level2" href="javascript:void(0)"><span>Health Topics </span></a>
+                                    <a class="itemMenuName level2" href="javascript:void(0)"><span>In.Form </span></a>
+                                    <a class="itemMenuName level2" href="javascript:void(0)"><span>Product Categories </span></a>
+                                    <a class="itemMenuName level2" href="javascript:void(0)"><span>Body Systems </span></a>
+                                    <a class="itemMenuName level2" href="javascript:void(0)"><span>Ingredients</span></a>
+                                    
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                           
+                            <div class="clearBoth"></div>
+                          </div>
+                        </div>
+                      </div>
+                    
+                    
+                      <div id="pt_menu_home" class="pt_menu act">
+                        <div class="parentMenu"> <a href="javascript:void(0)"> <span>Top Sellers</span> </a> </div>
+                      </div>
+                      <div id="pt_menu_home" class="pt_menu act">
+                        <div class="parentMenu"> <a href="javascript:void(0)"> <span>A-Z Product</span> </a> </div>
+                      </div>
+                     
+                      <div id="pt_menu_home" class="pt_menu act">
+                        <div class="parentMenu"> <a href="javascript:void(0)"> <span>Become a Member</span> </a> </div>
+                      </div>
+                      
+                      <div id="pt_menu_home" class="pt_menu act">
+                        <div class="parentMenu"> <a href="javascript:void(0)"> <span>Why Nature's Sunshine?</span> </a> </div>
+                      </div>
+                                            
+                    </div>
+                  </nav>
+                  
+                 
+                  <div class="mobile-bar-icon"><span>mobile icon</span></div>
+                </div>
+              </div>
+              
+            </div>
+            <div class="card">
+              <div data-block="minicart" class="minicart-wrapper"> <a class="action showcart" href="javascript:void(0)" data-bind="scope: 'minicart_content'"> <span class="text">My Cart</span> <span class="counter qty empty" data-bind="css: { empty: !!getCartParam('summary_count') == false }, blockLoader: isLoading"> <span class="counter-number"><!-- ko text: getCartParam('summary_count') --><!-- /ko --></span> <span class="counter-label"> 
+                <!-- ko if: getCartParam('summary_count') --><!-- /ko --> 
+                </span> </span> </a> 
+                
+                <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front mage-dropdown-dialog" style="display: none;" tabindex="-1" role="dialog" aria-describedby="ui-id-1">
+                  <div class="block block-minicart empty ui-dialog-content ui-widget-content" data-role="dropdownDialog" id="ui-id-1" style="display: block;">
+                    <div id="minicart-content-wrapper" data-bind="scope: 'minicart_content'"> 
+                      <!-- ko template: getTemplate() -->
+                      <div class="block-title"> <strong> <span class="text"><!-- ko i18n: 'My Cart' --><span>My Cart</span><!-- /ko --></span> <span class="qty empty" data-bind="css: { empty: !!getCartParam('summary_count') == false },
+                       attr: { title: $t('Items in Cart') }" title="Items in Cart"> 
+                        <!-- ko text: getCartParam('summary_count') --><!-- /ko --> 
+                        </span> </strong> </div>
+                      <div class="block-content">
+                        <button type="button" id="btn-minicart-close" class="action close" data-action="close" data-bind="attr: { title: $t('Close') }" title="Close"> <span><!-- ko i18n: 'Close' --><span>Close</span><!-- /ko --></span> </button>
+                        
+                        <!-- ko if: getCartParam('summary_count') --><!-- /ko --> 
+                        
+                        <!-- ko if: getCartParam('summary_count') --><!-- /ko --> 
+                        
+                        <!-- ko ifnot: getCartParam('summary_count') --> 
+                        <strong class="subtitle empty" data-bind="visible: closeSidebar()"> 
+                        <!-- ko i18n: 'You have no items in your shopping cart.' --><span>You have no items in your shopping cart.</span><!-- /ko --> 
+                        </strong> 
+                        <!-- ko if: getCartParam('cart_empty_message') --><!-- /ko --> 
+                        <!-- /ko --> 
+                        
+                        <!-- ko if: getCartParam('summary_count') --><!-- /ko -->
+                        
+                        <div id="minicart-widgets" class="minicart-widgets"> 
+                          <!-- ko foreach: getRegion('promotion') --> 
+                          <!-- ko template: getTemplate() --> 
+                          <!-- ko foreach: {data: elems, as: 'element'} --><!-- /ko --> 
+                          <!-- /ko --> 
+                          <!-- /ko --> 
+                        </div>
+                      </div>
+                      <!-- ko foreach: getRegion('sign-in-popup') --><!-- /ko --> 
+                      <!-- /ko --> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-bar-content">
+    <div class="mobile-bar-close">Close</div>
+    <ul class="tabs-mobile">
+      <li class="item item-menu active">Menu</li>
+      <li class="item item-setting">Setting</li>
+    </ul>
+    
+    <!--<div class="tabs-content-mobile tabs-menu">
+      <nav class="ma-nav-mobile-container">
+        <ul id="ma-mobilemenu" class="mobilemenu">
+          <li class="level1 have_sub"><a href="javascript:void(0)"><span class="name">Shop</span></a>
+            <ul class="level2" style="display: none;">
+              <li class="have_sub"><a href="javascript:void(0)"><span class="name">Tops &amp; Tees</span></a>
+                <ul class="level3" style="display: none;">
+                  <li><a href="javascript:void(0)"><span class="name">Polo Short Sleeve</span></a></li>
+                  <li><a href="javascript:void(0)"><span class="name">Sleeveless</span></a></li>
+                </ul>
+                <span class="head"><a href="javascript:void(0)"></a></span></li>
+              <li class="have_sub"><a href="http://plazathemes.com/demo/organica/english1/men/jackets.html"><span class="name">Jackets</span></a>
+                <ul class="level3" style="display: none;">
+                  <li><a href="http://plazathemes.com/demo/organica/english1/men/jackets/jeans-pants.html"><span class="name">Sweaters</span></a></li>
+                  <li><a href="http://plazathemes.com/demo/organica/english1/men/jackets/hoodies.html"><span class="name">Hoodies</span></a></li>
+                  <li><a href="http://plazathemes.com/demo/organica/english1/men/jackets/wedges.html"><span class="name">Wedges</span></a></li>
+                  <li><a href="http://plazathemes.com/demo/organica/english1/men/jackets/vests.html"><span class="name">Vests</span></a></li>
+                </ul>
+                <span class="head"><a href="javascript:void(0)"></a></span></li>
+              <li class="have_sub"><a href="http://plazathemes.com/demo/organica/english1/men/jeans-pants.html"><span class="name">Jeans pants</span></a>
+                <ul class="level3" style="display: none;">
+                  <li><a href="http://plazathemes.com/demo/organica/english1/men/jeans-pants/polo-short-sleeve.html"><span class="name">Polo Short Sleeve </span></a></li>
+                  <li><a href="http://plazathemes.com/demo/organica/english1/men/jeans-pants/sleeveless.html"><span class="name">Sleeveless </span></a></li>
+                  <li><a href="http://plazathemes.com/demo/organica/english1/men/jeans-pants/graphic-t-shirts.html"><span class="name">Graphic T-Shirts </span></a></li>
+                  <li><a href="http://plazathemes.com/demo/organica/english1/men/jeans-pants/hoodies.html"><span class="name">Hoodies</span></a></li>
+                </ul>
+                <span class="head"><a href="javascript:void(0)"></a></span></li>
+            </ul>
+            <span class="head"><a href="javascript:void(0)"></a></span></li>
+          <li class="level1 have_sub"><a href="http://plazathemes.com/demo/organica/english1/kids.html"><span class="name">Kids</span></a>
+            <ul class="level2" style="display: none;">
+              <li class="have_sub"><a href="http://plazathemes.com/demo/organica/english1/kids/tops.html"><span class="name">Tops</span></a>
+                <ul class="level3" style="display: none;">
+                  <li><a href="http://plazathemes.com/demo/organica/english1/kids/tops/shirts.html"><span class="name">Shirts</span></a></li>
+                  <li><a href="http://plazathemes.com/demo/organica/english1/kids/tops/florals.html"><span class="name">Florals</span></a></li>
+                  <li><a href="http://plazathemes.com/demo/organica/english1/kids/tops/crochet.html"><span class="name">Crochet</span></a></li>
+                  <li><a href="http://plazathemes.com/demo/organica/english1/kids/tops/stripes.html"><span class="name">Stripes</span></a></li>
+                </ul>
+                <span class="head"><a href="javascript:void(0)"></a></span></li>
+              <li class="have_sub"><a href="http://plazathemes.com/demo/organica/english1/kids/bottoms.html"><span class="name">Bottoms</span></a>
+                <ul class="level3" style="display: none;">
+                  <li><a href="http://plazathemes.com/demo/organica/english1/kids/bottoms/shorts.html"><span class="name">Shorts</span></a></li>
+                  <li><a href="http://plazathemes.com/demo/organica/english1/kids/bottoms/dresses.html"><span class="name">Dresses</span></a></li>
+                  <li><a href="http://plazathemes.com/demo/organica/english1/kids/bottoms/jeans.html"><span class="name">Jeans</span></a></li>
+                </ul>
+                <span class="head"><a href="javascript:void(0)"></a></span></li>
+              <li class="have_sub"><a href="http://plazathemes.com/demo/organica/english1/kids/shoes.html"><span class="name">Shoes</span></a>
+                <ul class="level3" style="display: none;">
+                  <li><a href="http://plazathemes.com/demo/organica/english1/kids/shoes/heeled-sandals.html"><span class="name">Heeled sandals</span></a></li>
+                  <li><a href="http://plazathemes.com/demo/organica/english1/kids/shoes/flat-sandals.html"><span class="name">Flat sandals</span></a></li>
+                  <li><a href="http://plazathemes.com/demo/organica/english1/kids/shoes/wedges.html"><span class="name">Wedges</span></a></li>
+                  <li><a href="http://plazathemes.com/demo/organica/english1/kids/shoes/ankle-boots.html"><span class="name">Ankle boots</span></a></li>
+                </ul>
+                <span class="head"><a href="javascript:void(0)"></a></span></li>
+            </ul>
+            <span class="head"><a href="javascript:void(0)"></a></span></li>
+          <li class="level1 have_sub"><a href="http://plazathemes.com/demo/organica/english1/accessories.html"><span class="name">womem's</span></a>
+            <ul class="level2" style="display: none;">
+              <li><a href="http://plazathemes.com/demo/organica/english1/accessories/books.html"><span class="name">Books</span></a>
+                <ul class="level3" style="display: none;">
+                </ul>
+              </li>
+              <li><a href="http://plazathemes.com/demo/organica/english1/accessories/electtronic.html"><span class="name">Electtronic</span></a>
+                <ul class="level3" style="display: none;">
+                </ul>
+              </li>
+              <li><a href="http://plazathemes.com/demo/organica/english1/accessories/tablet.html"><span class="name">Tablet</span></a>
+                <ul class="level3" style="display: none;">
+                </ul>
+              </li>
+            </ul>
+            <span class="head"><a href="javascript:void(0)"></a></span></li>
+        </ul>
+      </nav>
+    </div>-->
+    
+    <div class="tabs-content-mobile tabs-menu">
+      <nav class="ma-nav-mobile-container">
+        <ul id="ma-mobilemenu" class="mobilemenu">
+          <li class="level1 have_sub"><a href="javascript:void(0)"><span class="name">Shop</span></a>
+            <span class="head"><a href="javascript:void(0)"></a></span></li>
+          <li class="level1 have_sub"><a href="javascript:void(0)"><span class="name">Health Topics</span></a>
+            
+            <span class="head"><a href="javascript:void(0)"></a></span></li>
+            
+          <li class="level1 have_sub"><a href="javascript:void(0)"><span class="name">Product Categories</span></a>
+           
+            <span class="head"><a href="javascript:void(0)"></a></span></li>
+            
+          <li class="level1 have_sub"><a href="javascript:void(0)"><span class="name">Body Systems</span></a>
+           
+            <span class="head"><a href="javascript:void(0)"></a></span></li>
+            
+          <li class="level1 have_sub"><a href="javascript:void(0)"><span class="name">Ingredients</span></a>
+           
+            <span class="head"><a href="javascript:void(0)"></a></span></li>
+            
+          <li class="level1 have_sub"><a href="javascript:void(0)"><span class="name">Top Sellers</span></a>
+           
+            <span class="head"><a href="javascript:void(0)"></a></span></li> 
+          <li class="level1 have_sub"><a href="javascript:void(0)"><span class="name">A-Z Product</span></a>
+           
+            <span class="head"><a href="javascript:void(0)"></a></span></li>          
+        </ul>
+      </nav>
+    </div>
+    
+    <div class="tabs-content-mobile tabs-setting" style="display:none;">
+      <ul class="header links">
+        <li><a href="javascript:void(0)">Shipping Policy</a></li>
+        <li><a href="javascript:void(0)">Return Policy</a></li>
+        <li><a href="javascript:void(0)">About Us</a></li>
+        <li><a href="javascript:void(0)">Contact Us</a></li>
+        <li><a href="javascript:void(0)">My Account</a></li>
+        <!--<li class="link wishlist" data-bind="scope: 'wishlist'"> <a href="javascript:void(0)">My Wish List </a> </li>
+        <li class="authorization-link" data-label="or"> <a href="javascript:void(0)"> Sign In </a> </li>-->
+      </ul>
+      <div class="switcher language switcher-language" data-ui-id="language-switcher" id="switchers-language"> 
+        <!--<strong class="label switcher-label"><span></span></strong>-->
+        <!--<div class="actions dropdown options switcher-options">
+          <div class="action toggle switcher-trigger" id="switchers-language-trigger"> <strong class="view-english1"> <span>English1<i class="fa fa-angle-down">&nbsp;</i></span> </strong> </div>
+          <ul class="dropdown switcher-dropdown">
+            <li class="view-english2 switcher-option"> <a href="#" data-post="{&quot;action&quot;:&quot;http:\/\/plazathemes.com\/demo\/organica\/english1\/stores\/store\/switch\/&quot;,&quot;data&quot;:{&quot;___store&quot;:&quot;english2&quot;,&quot;uenc&quot;:&quot;aHR0cDovL3BsYXphdGhlbWVzLmNvbS9kZW1vL29yZ2FuaWNhL2VuZ2xpc2gxLw,,&quot;}}"> English2 </a> </li>
+          </ul>
+        </div>-->
+      </div>
+      <div class="switcher currency switcher-currency" id="switchers-currency"> 
+        <!--<strong class="label switcher-label"><span></span></strong>-->
+        <!--<div class="actions dropdown options switcher-options">
+          <div class="action toggle switcher-trigger" id="switchers-currency-trigger"> <strong class="language-USD"> <span>US Dollar<i class="fa fa-angle-down">&nbsp;</i></span> </strong> </div>
+          <ul class="dropdown switcher-dropdown">
+            <li class="currency-EUR switcher-option"> <a href="#" data-post="{&quot;action&quot;:&quot;http:\/\/plazathemes.com\/demo\/organica\/english1\/directory\/currency\/switch\/&quot;,&quot;data&quot;:{&quot;currency&quot;:&quot;EUR&quot;,&quot;uenc&quot;:&quot;aHR0cDovL3BsYXphdGhlbWVzLmNvbS9kZW1vL29yZ2FuaWNhL2VuZ2xpc2gxLw,,&quot;}}">EUR</a> </li>
+          </ul>
+        </div>-->
+      </div>
+    </div>
+  </div>
+</header>
+
