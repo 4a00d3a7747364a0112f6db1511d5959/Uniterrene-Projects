@@ -1,0 +1,1 @@
+[23-Jun-2015 01:12:52 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/ozlensre/public_html/blog/wp-content/plugins/hello.php on line 60

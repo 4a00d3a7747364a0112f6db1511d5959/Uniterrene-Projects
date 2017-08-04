@@ -1,0 +1,45 @@
+.error-box-home
+{
+	background-color: #FFEAEA;
+    border: 1px solid #D69393;
+    color: #FF0000;
+    display: block;
+    font-family: Monaco,Verdana,Sans-serif;
+    font-size: 12px;   
+    padding: 10px;
+    text-align: left;
+}
+
+.error-box
+{
+	background-color: #FFEAEA;
+    border: 1px solid #D69393;
+    color: #FF0000;
+    display: block;
+    font-family: Monaco,Verdana,Sans-serif;
+    font-size: 12px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    padding: 10px;
+    text-align: left;
+	border-radius: 4px 4px 4px 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	-moz-border-radius: 4px 4px 4px 4px;
+}
+
+.success-box
+{
+	background-color: #EFFFEA;
+    border: 1px solid #58A43F;
+    color: #2E9300;
+    display: block;
+    font-family: Monaco,Verdana,Sans-serif;
+    font-size: 12px;
+    margin-top: 15px;
+	margin-bottom: 5px;
+    padding: 10px;
+    text-align: left;
+	border-radius: 4px 4px 4px 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	-moz-border-radius: 4px 4px 4px 4px;
+}

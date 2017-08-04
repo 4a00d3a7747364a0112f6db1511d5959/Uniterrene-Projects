@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.raty.js"></script>
+</head>
+
+<body>
+
+
+<!-- to make rating-->
+<div id="half"></div>
+<script type="text/javascript">
+$('#half').raty({
+	half: true,
+	starHalf:   'star-half-big.png',
+	starOff:    'star-off-big.png',
+	starOn:     'star-on-big.png',
+	start:       3.3,
+	size:        45,
+	click: function(score, evt) 
+	{
+		document.getElementById('rating').value = score;
+		alert(document.getElementById('rating').value);
+		
+		//alert('ID: ' + $(this).attr('id') + '\nscore: ' + score + '\nevent: ' + evt);
+	},
+	 start: $(this).attr('value')	
+});
+
+</script>
+<input type="hidden" name="rating" id="rating" value="" />
+<!-- end to make rating-->
+
+<!-- to display-->
+<div id="half1"></div>
+<script type="text/javascript">
+$('#half1').raty({
+	half: true,	
+	start: 3.3,
+	readOnly:true	
+});
+</script>
+<!-- end to display-->
+
+</body>
+</html>

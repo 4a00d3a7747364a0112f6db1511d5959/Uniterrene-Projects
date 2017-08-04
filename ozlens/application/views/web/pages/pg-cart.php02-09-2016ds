@@ -1,0 +1,1429 @@
+
+
+<script>
+
+    $bt(document).ready(function() {
+
+		
+
+		
+
+		
+
+        $bt('#a1_up').bubbletip($('#tip1_up'));
+
+		$bt('#a2_up').bubbletip($('#tip2_up'));
+
+		$bt('#a3_up').bubbletip($('#tip3_up'));
+
+
+
+        $('input').change(function() {
+
+            $('#checkoutBtn').attr({ disabled:true, 'class':'btnDisable' } );
+
+            $('#update_cart_err').show();
+
+        });
+
+
+
+    });
+
+	
+
+</script>
+
+<script>
+
+
+
+function dp()
+
+{
+
+	//alert();
+
+	//$('.date').datepicker({minDate: 0});
+
+	//$('.date').datepicker("option", "dateFormat", "dd/mm/yyyy");
+
+	
+
+}
+
+
+
+function update_date(fieldid, i, itemid)
+
+{
+
+	var datetxt = document.getElementById(fieldid+i).value;
+
+	var rentdays = document.getElementById('rental_days'+i).value;
+
+	
+
+	if(datetxt != ''){
+
+	var date_arr  = datetxt.split('/');
+
+	var newdate = date_arr[2]+'-'+date_arr[1]+'-'+date_arr[0];
+
+	var url = '<?php echo base_url(); ?>cart/update_item_date/'+itemid+'/'+fieldid+'/'+rentdays+'/'+newdate+'';
+
+	var result = ajaxcal(url);
+
+	}
+
+	
+
+	/*else {var url = '<?php //echo base_url(); ?>cart/update_item_date/'+itemid+'/'+fieldid+'';}*/
+
+	
+
+				
+
+	
+
+	//alert();
+
+	
+
+}
+
+
+
+function ajaxcal(url) {
+
+		//var status=$('#status');
+
+    
+
+			return $.ajax({
+
+				type: "POST",
+
+				url: url,
+
+				cache: false,
+
+				beforeSend: function(){
+
+				//here you can display, smth like "Please wait" in some div
+
+				//alert(1);
+
+				//$('#accstatus').text('Loading ...');
+
+				},
+
+				async: false
+
+			}).responseText;
+
+			
+
+			}
+
+
+
+
+
+function disable_dates(disabledDays)
+
+{
+
+
+
+	$('.date').datepicker("destroy");  
+
+		
+
+			
+
+		var ddts = disabledDays.split(","); 
+
+		
+
+		//alert(disabledDays);
+
+		//var enabledDays = [""+ddts[0]+"",""+ddts[1]+""];	
+
+		//console.log(ddts);
+
+		var enabledDays = ddts;
+
+		
+
+		$('.date').datepicker({
+
+			beforeShowDay : disabledAll,
+
+			minDate: 0,
+
+			dateFormat: 'dd/mm/yy'
+
+		});
+
+		
+
+		function disabledAll(date) 
+
+		{
+
+			var m = date.getMonth() + 1, d = date.getDate(), y = date.getFullYear();
+
+			for (var i = 0; i < enabledDays.length; i++) {
+
+				if($.inArray(d + '-' + m + '-' + y,enabledDays) != -1) {
+
+					return [0];
+
+				}
+
+			}
+
+			return [1];
+
+		}
+
+	}
+
+	
+
+
+
+
+
+
+
+</script>
+
+<script>
+
+function set_price(selectfield, subtotal, discount, currency)
+
+{
+
+	var fieldvalue = selectfield.value;
+
+	var shipparr = fieldvalue.split('-');
+
+	var shipp_cost = parseFloat(shipparr[1]);
+
+	subtotal = parseFloat(subtotal);
+
+	discount = parseFloat(discount);
+
+	//alert(shipp_cost+ " - "+subtotal+ " - "+discount+ " - "+currency);
+
+	var total = shipp_cost + subtotal;
+
+	total = total - discount;
+
+	document.getElementById('totaltd').innerHTML = currency+" "+total.toFixed(2);
+
+}
+
+</script>
+
+
+
+<div id="tip1_up" style="display:none;" class="txt15">When purchased, the damage waiver limits your liability in the case of damage on covered equipment.<br/> By selecting this option you agree that you have read and understood the <a href="<?PHP echo base_url().$this->db_model->get_row('content',array('id'=>'149'))->slug;?>" class="txt12" style="text-decoration: underline;" target="_blank"><?PHP echo $this->db_model->get_row('content',array('id'=>'149'))->title;?></a></div>
+
+
+
+<div id="tip2_up" style="display:none;" class="txt15">Maximum of 1 gift code per order.</div>
+
+
+
+<style>
+
+    body { font-size: 65.2% }
+
+    label { display: inline-block; width: 8em; }
+
+    label.error { color: red; margin-left: 0.5em; width: 20em; }
+
+
+
+    .btnDisable
+
+    {
+
+        background: #C60F19;
+
+        border: medium none;
+
+        border-radius: 4px;
+
+        color: #ccc;
+
+        display: inline-block;
+
+        font-family: Arial,Helvetica,sans-serif;
+
+        font-size: 12px;
+
+        height: 28px;
+
+        line-height: normal;
+
+        text-align: center;
+
+        text-indent: 0;
+
+        width: 100%;
+
+    }
+
+</style>
+
+
+
+<form name="cartFrm" id="cartFrm" action="<?PHP echo base_url();?>cart/update" method="post">
+
+<div class="middle-main">
+
+
+
+<!--inner div start-->
+
+<div class="inner-main-01">
+
+<div class="txt13 middle-l-f-items-hdng">
+
+    <div class="inner-main-02 txt13"><h1 class="txt13">SHOPPING<span class="txt14"> CART</span></h1></div>
+
+    <!--<div class="inner-main-03">
+
+      <div class="cart-bt-01">
+
+        <input type="button" class="c-here-bt1" value="Save this Cart"/>
+
+      </div>
+
+    </div>-->
+
+</div>
+
+<div class="middle-l-f-items-1 txt15">
+
+
+
+<!--cart div start-->
+
+<div class="inner-main-07" style="width:100%;">
+
+<div class="middle-l-f-items-1 txt15">
+
+
+
+<?PHP
+
+$cart_items = $this->db_model->get_rows('cart',array('sess_id'=>$this->session->userdata('session_id')));
+
+if($cart_items)
+
+{
+
+
+
+    ?>
+
+
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+    <tr>
+
+        <td align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+                <!-- <tr>
+
+                   <td align="left" class="txt6">What</td>
+
+                 </tr>
+
+                 <tr>
+
+                   <td>&nbsp;</td>
+
+                 </tr>-->
+
+                <tr>
+
+                    <td align="center">&nbsp;</td>
+
+                </tr>
+
+                <tr>
+
+                    <td align="center">
+
+                        <style>
+
+                            .cartTd
+
+                            {
+
+                                border-top: 1px solid #ccc;
+
+                                border-bottom: 1px solid #ccc;
+
+                                height:30px;
+
+                            }
+
+                        </style>
+
+
+
+                        <table width="95%" border="0" cellspacing="0" cellpadding="3">
+
+                            <tr>
+
+                                <td  class="cartTd" align="left"><strong>Product</strong></td>
+
+                                <td  class="cartTd" align="left">&nbsp;</td>
+
+                                <td  class="cartTd" align="left"><strong>Rental Period</strong></td>
+
+                                <td  class="cartTd" align="left"><strong>Start Date</strong></td>
+
+                                <td  class="cartTd" align="left"><strong>Return Date</strong></td>
+
+                                <td  class="cartTd"><strong>Qty</strong></td>
+
+                                <td  class="cartTd"><strong>Price</strong></td>
+
+                                <td  class="cartTd"><strong>Remove Item</strong><!--<img src="<?PHP /*echo base_url();*/?>assets/images/close-bt.jpg" width="16" height="16" align="left" />--></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>&nbsp;</td>
+
+                                <td>&nbsp;</td>
+
+                                <td>&nbsp;</td>
+
+                                <td>&nbsp;</td>
+
+                                <td>&nbsp;</td>
+
+                                <td>&nbsp;</td>
+
+                                <td>&nbsp;</td>
+
+                                <td>&nbsp;</td>
+
+                            </tr>
+
+
+
+
+
+                            <?PHP
+
+                            $sub_total = 0;
+
+                            
+
+                            $i=0;
+
+                            $s_charges = array();
+
+                            foreach($cart_items as $ci)
+
+                            {
+
+                                $sub_total += ($ci->r_qty * $ci->r_price) + ($ci->w_qty * $ci->w_price);
+
+
+
+                                $p_data = $this->db_model->get_row('products',array('id'=>$ci->product_id));
+
+
+
+                                $s_charges[]= $p_data->postage_amount;
+
+
+
+                                $p_images = $this->db_model->get_rows('product_photos',array('product_id'=>$p_data->id,'is_featured'=>'Yes'));
+
+
+
+                                if($p_images)
+
+                                {
+
+                                    $caption = $p_images[0]->photo_caption;
+
+                                    $image =  base_url()."rent/get_image/".$p_images[0]->photo_image."/1000/43";
+
+                                }
+
+                                else
+
+                                {
+
+                                    $caption = $p_data->product_title;
+
+                                    $image = base_url()."assets/images/image-notFound.jpg";
+
+                                }
+
+								
+
+								$disableDates = $this->db_model->get_disabled_dates($ci->product_id);
+
+								//echo $disableDates ;
+
+								/*echo '<script type="text/javascript">disable_dates('.$i.','.$dd.');</script>';*/
+
+								//echo $ci->id;
+
+								
+
+                                ?>
+
+                               
+
+                                <input type="hidden" name="item_id[]" id="item_id" value="<?PHP echo $ci->id;?>"/>
+
+                                <input type="hidden" name="product_id[]" id="product_id" value="<?PHP echo $ci->product_id;?>"/>
+
+                                <tr>
+
+                                    <td  align="left"><img src="<?PHP echo $image;?>" height="43" /></td>
+
+                                    <td  align="left" ><a class="txt16" href="<?PHP echo $this->product_model->gen_product_url($ci->product_id);?>"><?PHP echo $p_data->product_title;?></a><br/><?php if($p_data->includes != '') echo "<br/><strong>Includes:</strong><br/>".$p_data->includes;?></td>
+
+                                    <td  align="left" class="txt16"><input onKeyUp="calDays(<?PHP echo $i;?>);"  name="rental_days[]" type="text" class="fld-03 required" id="rental_days<?PHP echo $i;?>" value="<?PHP echo $ci->rental_days;?>" /> days</td>
+
+                                    <td  align="left" class="txt16"><input onChange="cal_no_of_days(<?PHP echo $i?>);update_date('start_date',<?PHP echo $i;?>,<?PHP echo $ci->id;?>);" name="start_date[]" type="text" class="fld-04 required date" id="start_date<?PHP echo $i;?>" value="<?PHP echo date('d/m/Y',strtotime($ci->start_date));?>" onmouseover='disable_dates("<?php echo $disableDates; ?>");' onclick='disable_dates("<?php echo $disableDates; ?>");' />
+
+                                    
+
+                                    
+
+                                    
+
+                                    </td>
+
+                                    <td  align="left" class="txt16"><input onChange="cal_no_of_days(<?PHP echo $i?>);update_date('return_date',<?PHP echo $i;?>,<?PHP echo $ci->id;?>);" name="return_date[]" type="text" class="fld-04 date" id="return_date<?PHP echo $i;?>" value="<?PHP echo date('d/m/Y',strtotime($ci->return_date));?>" onmouseover='disable_dates("<?php echo $disableDates; ?>");' onclick='disable_dates("<?php echo $disableDates; ?>");'/></td>
+
+                                    <td><input name="r_qty[]" type="text" class="fld-03" id="r_qty<?PHP echo $i;?>" value="<?PHP echo $ci->r_qty;?>" /></td>
+
+                                    <td width="14%"><?PHP echo $this->config->item('currency_symbol')."&nbsp;".$ci->r_qty * $ci->r_price;?></td>
+
+                                    <td width="5%"><input type="checkbox" name="del_item_id[]" id="del_item_id" value="<?PHP echo $ci->id;?>" /></td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td  align="left">&nbsp;</td>
+
+                                    <td  align="left" class="txt16"><img src="<?PHP echo base_url();?>assets/images/icon_child-44b4f6e2e33de1d8a96f496bc4678a75.png" width="11" height="11" /> <input id="is_waiver<?PHP echo $i;?>" type="checkbox" <?PHP if($ci->w_qty >0){?>checked="checked"<?PHP }?> onClick="update_waiver_qty(<?PHP echo $ci->w_price;?>,<?PHP echo $i;?>);" /><span class="txt15">Waiver Charges&nbsp;<a class="txt16" id="a1_up" href="#">(?)</a></span></td>
+
+                                    <td  align="left" class="txt16">&nbsp;</td>
+
+                                    <td  align="left" class="txt16">&nbsp;</td>
+
+                                    <td  align="left" class="txt16">&nbsp;</td>
+
+                                    <td><input name="w_qty[]" type="text" class="fld-03" id="w_qty<?PHP echo $i;?>" value="<?PHP echo $ci->w_qty;?>" onChange="set_waiver_price(<?PHP echo $ci->w_price;?>,<?PHP echo $i;?>)"  /></td>
+
+                                    <td id="w_price<?PHP echo $i;?>"><?PHP echo $this->config->item('currency_symbol')."&nbsp;".$ci->w_qty * $ci->w_price;?></td>
+
+                                    <td>&nbsp;</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td style="height:5px;" colspan="100%;"></td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td style="border-top:1px solid #ccc; height:25px;" colspan="100%;"></td>
+
+                                </tr>
+
+                                
+
+                                <?PHP
+
+                                $i++;
+
+                            }
+
+
+
+                          /*  $max_shipping_charges = max ($s_charges);
+
+
+
+                            if($max_shipping_charges == 0)
+
+                            {
+
+                                $shipping_charges = 0;
+
+                            }
+
+                            else if($max_shipping_charges <> 0 && sizeof($cart_items)>1)
+
+                            {
+
+                                $shipping_charges =  $max_shipping_charges + $this->db_model->get_row('settings',array('key'=>'es_charges'))->value;
+
+                            }
+
+                            else
+
+                            {
+
+                                $shipping_charges =  $max_shipping_charges;
+
+                            }
+
+							*/
+
+							$standard_shipp =  $this->db_model->get_row('settings',array('key'=>'standard_shipping'))->value;
+
+							$express_shipp =  $this->db_model->get_row('settings',array('key'=>'express_shipping'))->value;
+
+							
+
+							if($standard_shipp <> 0 && $express_shipp <> 0 && sizeof($cart_items)>1)
+
+                            {
+
+                                $standard_shipp =  $standard_shipp + $this->db_model->get_row('settings',array('key'=>'es_charges'))->value;
+
+								$express_shipp =  $express_shipp + $this->db_model->get_row('settings',array('key'=>'es_charges'))->value;
+
+                            }
+
+							
+
+							$shipping_charges =  $standard_shipp; // default shipping charges are standard shipping charges
+
+							if($this->session->userdata('shipping_charges') != null)
+							{
+								$shipping_charges = $this->session->userdata('shipping_charges');	
+							}
+
+                            ?>
+
+
+
+                        </table></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>&nbsp;</td>
+
+                </tr>
+
+                <tr>
+
+                    <td align="center"><table width="95%" border="0" cellspacing="0" cellpadding="3">
+
+                            <tr>
+
+                                <td colspan="2" align="left">
+
+                                    <span class="txt16" id="update_cart_err" style="display: none;"> <strong>Please press "Update Cart" to confirm the changes you have made.</strong></span>&nbsp;
+
+                                </td>
+
+                                <td width="18%" align="right" class="txt19">Subtotal :&nbsp;&nbsp;</td>
+
+                                <td width="19%" class="txt19"><?PHP echo $this->config->item('currency_symbol')."&nbsp;".$this->helper_model->format_currency($sub_total);?>
+
+                                <input type="hidden" value="<?php echo $sub_total; ?>" name="dis_sub_total" />
+
+                                </td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <td width="28%" align="left" colspan="2">
+
+
+
+                                    <strong>Gift Code:</strong>
+
+
+
+                                    &nbsp;
+
+                                    <input name="gift_card_code" type="text" class="fld-04" id="gift_card_code" value="" style="width: 150px;" />&nbsp;<span class="txt15"><a class="txt16" id="a2_up" href="#">(?)</a></span>
+
+                                </td>
+
+                                <td align="right" class="txt19">Shipping :&nbsp;&nbsp;</td>
+
+                                <td class="txt19">
+
+									<?php //echo $this->config->item('currency_symbol')."&nbsp;".$this->helper_model->format_currency($shipping_charges);?>
+
+								<?PHP //echo $this->config->item('currency_symbol')."&nbsp;".$this->helper_model->calculate_shipping($this->helper_model->calculate_gst($shipping_charges),$shipping_charges);?>
+
+
+
+<?php 
+
+$shipping_val = '';
+
+if($this->session->userdata('shipping_type') != null && $this->session->userdata('shipping_charges') != null)
+
+{ 
+
+	$shipping_val = $this->session->userdata('shipping_type').'-'.$this->session->userdata('shipping_charges');
+
+	
+
+}
+
+?>
+
+
+
+                                <select name="shipping" class="fld-04" style="width:180px;" onchange="set_price(this,'<?PHP echo $sub_total ?>','<?PHP if($this->session->userdata('discount_amount') != '') echo $this->session->userdata('discount_amount'); else echo 0; ?>','<?PHP echo $this->config->item('currency_symbol')?>');">
+
+                                <option value="<?php echo "Standard Shipping-".$standard_shipp; ?>" <?php if($shipping_val != '' && $shipping_val == "Standard Shipping-".$standard_shipp){ echo "selected='selected'";} ?>><?php echo $this->config->item('currency_symbol');?> <?php echo $standard_shipp." - Standard Shipping"; ?></option>
+
+                                <option value="<?php echo "Express Shipping-".$express_shipp; ?>" <?php if($shipping_val != '' && $shipping_val == "Express Shipping-".$express_shipp){ echo "selected='selected'";} ?>><?php echo $this->config->item('currency_symbol');?> <?php echo $express_shipp." - Express Shipping"; ?></option>
+
+                                </select>  <a class="txt16" id="a3_up" href="#">(?)</a>
+
+                                <div id="tip3_up" style="display:none; width:400px;" class="txt15">Please use Express Shipping when you require your gear within 48hrs of placing your order. Use Standard Shipping in all other cases.</div>
+
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td align="left">&nbsp;</td>
+
+                                <td>&nbsp;</td>
+
+                                <td align="right" class="txt19">Discount :&nbsp;&nbsp;</td>
+
+                                <td class="txt19"><?PHP echo $this->config->item('currency_symbol')."&nbsp;".$this->helper_model->format_currency($this->session->userdata('discount_amount'));?></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td align="left">&nbsp;</td>
+
+                                <td>&nbsp;</td>
+
+                                <td align="right" class="txt19">Total :&nbsp;&nbsp;</td>
+
+                                <td class="txt19" id="totaltd"><?PHP echo $this->config->item('currency_symbol')."&nbsp;".$this->helper_model->calculate_total($sub_total,$shipping_charges);?>
+
+                                
+
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td align="left">&nbsp;</td>
+
+                                <td>&nbsp;</td>
+
+                                <td align="right" class="txt19">Order total includes GST :&nbsp;&nbsp;</td>
+
+                                <td class="txt19"><?php 
+
+									$total = $this->helper_model->calculate_total($sub_total,$shipping_charges);
+
+									$gst = $total/11;
+
+								   echo $this->config->item('currency_symbol')."&nbsp;".number_format($gst,2);
+
+								  //echo $this->config->item('currency_symbol')."&nbsp;".$this->helper_model->calculate_gst($sub_total);?></td>
+
+                            </tr>
+
+                        </table></td>
+
+                </tr>
+
+            </table></td>
+
+    </tr>
+
+    <tr>
+
+        <td align="center" valign="top">&nbsp;</td>
+
+    </tr>
+
+    <!--<tr>
+
+      <td align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+          <tr>
+
+            <td align="left" class="txt6">Where</td>
+
+          </tr>
+
+          <tr>
+
+            <td>&nbsp;</td>
+
+          </tr>
+
+          <tr>
+
+            <td bgcolor="#e5e5e5" height="1"></td>
+
+          </tr>
+
+          <tr>
+
+            <td>&nbsp;</td>
+
+          </tr>
+
+          <tr>
+
+            <td align="center"><table width="95%" border="0" cellspacing="0" cellpadding="3">
+
+                <tr>
+
+                  <td width="28%" align="left">Shipping round trip to </td>
+
+                  <td width="42%" align="left" class="txt16"><table width="35" border="0" cellspacing="0" cellpadding="0">
+
+                      <tr>
+
+                        <td width="91" align="right"><input type="text" class="fld-03" /></td>
+
+                      </tr>
+
+                    </table></td>
+
+                  <td width="11%">&nbsp;</td>
+
+                  <td width="14%">$124.00</td>
+
+                  <td width="5%">&nbsp;</td>
+
+                </tr>
+
+              </table></td>
+
+          </tr>
+
+          <tr>
+
+            <td align="center">&nbsp;</td>
+
+          </tr>
+
+          <tr>
+
+            <td align="center"><table width="95%" border="0" cellspacing="0" cellpadding="0">
+
+                <tr>
+
+                  <td width="8%" align="left">Via</td>
+
+                  <td align="left" class="txt16"><select name="select" id="select" class="fld-01">
+
+                    </select></td>
+
+                </tr>
+
+              </table></td>
+
+          </tr>
+
+          <tr>
+
+            <td>&nbsp;</td>
+
+          </tr>
+
+          <tr>
+
+            <td align="center"><table width="95%" border="0" cellspacing="0" cellpadding="3">
+
+                <tr>
+
+                  <td align="left"> LensRentals™ HD would save $25.00 on the shipping of this order. </td>
+
+                  <td width="19%" class="txt19"><div class="sndmsg-bt-01">
+
+                      <input type="button" class="c-here-bt1" value="LEARN MORE"/>
+
+                    </div></td>
+
+                </tr>
+
+              </table></td>
+
+          </tr>
+
+          <tr>
+
+            <td>&nbsp;</td>
+
+          </tr>
+
+          <tr>
+
+            <td bgcolor="#e5e5e5" height="1"></td>
+
+          </tr>
+
+          <tr>
+
+            <td>&nbsp;</td>
+
+          </tr>
+
+          <tr>
+
+            <td align="center"><table width="95%" border="0" cellspacing="0" cellpadding="3">
+
+                <tr>
+
+                  <td width="28%" align="left">&nbsp;</td>
+
+                  <td width="24%">&nbsp;</td>
+
+                  <td width="29%" class="txt19">Total <em>(excluding tax) :</em></td>
+
+                  <td width="19%" class="txt19">$149.00</td>
+
+                </tr>
+
+              </table></td>
+
+          </tr>
+
+          <tr>
+
+            <td>&nbsp;</td>
+
+          </tr>
+
+          <tr>
+
+            <td align="center"></td>
+
+          </tr>
+
+          <tr>
+
+            <td>&nbsp;</td>
+
+          </tr>
+
+        </table></td>
+
+    </tr>-->
+
+    <tr>
+
+        <td align="left" valign="top">
+
+            <table width="95%" border="0" cellspacing="0" cellpadding="3">
+
+                <tr>
+
+                    <td align="left" valign="middle">
+
+
+
+                        <div class="sndmsg-bt-01" style="margin-right:10px;">
+
+                            <!--<input type="button" id="checkoutBtn" class="c-here-bt1" value="Proceed to Checkout" onClick="window.location='<?PHP //echo base_url();?>cart/checkout'"/>-->
+
+                       <input type="submit" name="checkoutBtn" id="checkoutBtn" class="c-here-bt1" value="Proceed to Checkout" />
+
+                       
+
+                        </div>
+
+                        <div class="sndmsg-bt-01" style="margin-right:10px;">
+
+                            <input name="Submit" type="submit" class="c-here-bt1" value="Update Cart"/>
+
+                        </div>
+
+                        <div class="sndmsg-bt-01" style="margin-right:10px;">
+
+                            <input type="button" class="c-here-bt1" value="Continue Shopping" onClick="window.location='<?PHP echo base_url();?>'"/>
+
+                        </div>
+
+                        <!--<div class="sndmsg-bt-01" style="margin-right:10px;">
+
+                            	<input type="button" class="c-here-bt1" value="Proceed to Checkout"/>
+
+                            </div><a href="<?PHP echo base_url();?>" class="txt12">Continue Shopping</a>--></td>
+
+
+
+                </tr>
+
+            </table>
+
+        </td>
+
+    </tr>
+
+    <tr>
+
+        <td align="left" valign="top">&nbsp;</td>
+
+    </tr>
+
+    </table>
+
+<?PHP }else{
+
+$this->session->unset_userdata('discount_amount');
+
+$this->session->unset_userdata('gift_card_code');
+
+$this->session->unset_userdata('global_code');
+
+$this->session->unset_userdata('paypal_product');
+
+$this->session->unset_userdata('paypal_product_amounts');
+
+
+
+
+
+
+
+?>
+
+    <div style="height:200px;">
+
+        <span class="txt16">No products found in your cart, please use the below link.</span><br/><br/>
+
+        <a href="<?PHP echo base_url();?>" class="txt12">Continue Shopping</a>
+
+    </div>
+
+<?PHP }?>
+
+</div>
+
+</div>
+
+<!--cart div end-->
+
+
+
+<!--redeem div start-->
+
+<!--<div class="inner-main-05-a">
+
+        <table width="92%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+          <tr>
+
+            <td>&nbsp;</td>
+
+          </tr>
+
+          <tr>
+
+            <td class="txt5">When</td>
+
+          </tr>
+
+          <tr>
+
+            <td>&nbsp;</td>
+
+          </tr>
+
+          <tr>
+
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+                <tr>
+
+                  <td align="center" style="background-color:#FFF; border-radius:6px; height:48px;"><table width="92%" border="0" cellspacing="0" cellpadding="3">
+
+                      <tr></tr>
+
+                      <tr>
+
+                        <td width="74%" class="txt15"><strong>I want my gear to arrive on</strong></td>
+
+                        <td width="26%" align="right"><table width="80" border="0" cellspacing="0" cellpadding="0">
+
+                            <tr>
+
+                              <td><input type="text" class="search-fld" value="01/27/14" /></td>
+
+                            </tr>
+
+                          </table></td>
+
+                      </tr>
+
+                    </table></td>
+
+                </tr>
+
+              </table></td>
+
+          </tr>
+
+          <tr>
+
+            <td>&nbsp;</td>
+
+          </tr>
+
+          <tr>
+
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+                <tr>
+
+                  <td align="center" style="background-color:#FFF; border-radius:6px; height:48px;"><table width="92%" border="0" cellspacing="0" cellpadding="3">
+
+                      <tr>
+
+                        <td width="61%"><strong>I want to have my gear for</strong></td>
+
+                        <td width="29%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+                            <tr>
+
+                              <td width="91" align="right"><input type="text" class="fld-03" value="4" /></td>
+
+                            </tr>
+
+                          </table></td>
+
+                        <td width="10%" align="right">Days</td>
+
+                      </tr>
+
+                    </table></td>
+
+                </tr>
+
+              </table></td>
+
+          </tr>
+
+          <tr>
+
+            <td>&nbsp;</td>
+
+          </tr>
+
+          <tr>
+
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+                <tr>
+
+                  <td align="center" style="background-color:#FFF; border-radius:6px; height:48px;"><table width="92%" border="0" cellspacing="0" cellpadding="3">
+
+                      <tr></tr>
+
+                      <tr>
+
+                        <td width="74%" class="txt15"><strong>I will ship my gear back on</strong></td>
+
+                        <td width="26%" align="right"><table width="80" border="0" cellspacing="0" cellpadding="0">
+
+                            <tr>
+
+                              <td><input type="text" class="search-fld" value="01/31/14" /></td>
+
+                            </tr>
+
+                          </table></td>
+
+                      </tr>
+
+                    </table></td>
+
+                </tr>
+
+              </table></td>
+
+          </tr>
+
+        <tr>
+
+            <td>&nbsp;</td>
+
+          </tr>
+
+          <tr>
+
+            <td align="center" valign="top"><img src="<?PHP echo base_url();?>assets/images//clndr-img.jpg" width="83%" /></td>
+
+          </tr>
+
+          <tr>
+
+            <td>&nbsp;</td>
+
+          </tr>
+
+        </table>
+
+      </div>-->
+
+
+
+<!--redeem div end-->
+
+
+
+</div>
+
+
+
+<!--<div class="middle-l-f-items-viewall"><a href="#" class="txt16">VIEW ALL...</a></div>-->
+
+
+
+</div>
+
+<!--inner items div end-->
+
+
+
+</div>
+
+</form>
+
+
+
+<script>
+
+
+
+    function update_waiver_qty(w_price,i){
+
+        if(document.getElementById('is_waiver'+i+'').checked){
+
+            document.getElementById('w_qty'+i+'').value = document.getElementById('r_qty'+i+'').value;
+
+        }
+
+        else{
+
+            document.getElementById('w_qty'+i+'').value = 0;
+
+        }
+
+        set_waiver_price(w_price,i);
+
+    }
+
+
+
+
+
+    function set_waiver_price(w_price,i){
+
+        qty = document.getElementById('w_qty'+i+'').value;
+
+        document.getElementById('w_price'+i+'').innerHTML = "<?PHP echo $this->config->item('currency_symbol').'&nbsp;'?>"+qty*w_price;
+
+    }
+
+
+
+    function calDays(i) {
+
+
+
+$.ajax({
+
+type: "POST",
+
+url: "<?php echo base_url("cart/calc_dates");?>",
+
+data: { start_date: document.getElementById('start_date'+i+'').value, no_days: document.getElementById('rental_days'+i+'').value }
+
+})
+
+.done(function( msg ) {
+
+//alert( "Data Saved: " + msg );
+
+document.getElementById('return_date'+i+'').value = msg;
+
+});
+
+
+
+		/*
+
+        arival_date = document.getElementById('start_date'+i+'').value;
+
+        arival_date = new Date(arival_date);
+
+        no_of_days = document.getElementById('rental_days'+i+'').value;
+
+        return_date = new Date(arival_date.getTime() + no_of_days*24*60*60*1000);
+
+        var date = ("0" + return_date.getDate()).slice(-2);
+
+        var month = ("0" + (return_date.getMonth() + 1)).slice(-2); //Months are zero based
+
+        var year = return_date.getFullYear();
+
+
+
+        document.getElementById('return_date'+i+'').value = date +"/"+ month +"/"+ year;
+
+		*/
+
+    }
+
+
+
+    function cal_no_of_days(i){
+
+		
+
+        arival_date = document.getElementById('start_date'+i+'').value;
+
+        return_date = document.getElementById('return_date'+i+'').value;
+
+		var parts = arival_date.split('/');
+
+		var parts2 = return_date.split('/');
+
+		//alert(arival_date);
+
+		
+
+        var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+
+        var firstDate = new Date(parts[2],parts[1]-1,parts[0]); // months are 0-based thats y add -1
+
+        var secondDate = new Date(parts2[2],parts2[1]-1,parts2[0]); // months are 0-based thats y add -1
+
+		var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+
+		
+
+		if(secondDate < firstDate) {
+
+				alert('Return date should be greater than start date.'); 
+
+				document.getElementById('return_date'+i+'').value = '';
+
+				document.getElementById('rental_days'+i+'').value =  '';
+
+			}
+
+			else
+
+			{
+
+       
+
+				if(diffDays < 3){ alert('Minimal rental is 3 days.');
+
+				document.getElementById('return_date'+i+'').value = '';}
+
+				///alert(diffDays);
+
+				document.getElementById('rental_days'+i+'').value =  diffDays;
+
+			}
+
+    }
+
+</script>
+
+
+
+<script>
+
+
+
+
+
+
+
+    $jqvalidation(document).ready(function() {
+
+        $jqvalidation("#cartFrm").validate({});
+
+
+
+    });
+
+	
+
+	/*$(document).ready(function() {
+
+
+
+       disable_dates('[5-29-2014]');
+
+
+
+    });*/
+
+	
+
+	
+
+	//$('.xyz').datepicker({minDate: 0});
+
+	
+
+	/*$( ".xyz" ).click(function() {
+
+
+
+        alert($(this).val());
+
+
+
+    });
+
+	*/
+
+
+
+</script>
+
+
+
