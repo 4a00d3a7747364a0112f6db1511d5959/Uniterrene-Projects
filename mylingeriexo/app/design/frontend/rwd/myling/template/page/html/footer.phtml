@@ -1,0 +1,771 @@
+<?php
+
+/**
+
+ * Magento
+
+ *
+
+ * NOTICE OF LICENSE
+
+ *
+
+ * This source file is subject to the Academic Free License (AFL 3.0)
+
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+
+ * It is also available through the world-wide-web at this URL:
+
+ * http://opensource.org/licenses/afl-3.0.php
+
+ * If you did not receive a copy of the license and are unable to
+
+ * obtain it through the world-wide-web, please send an email
+
+ * to license@magento.com so we can send you a copy immediately.
+
+ *
+
+ * DISCLAIMER
+
+ *
+
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+
+ * versions in the future. If you wish to customize Magento for your
+
+ * needs please refer to http://www.magento.com for more information.
+
+ *
+
+ * @category    design
+
+ * @package     rwd_default
+
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+
+ */
+
+?>
+
+<footer>
+
+  <div class="footer-top clearfix">
+
+    <div class="container">
+
+      <div class="footer-top-left"> 100% Secure Shopping </div>
+
+      <div class="footer-top-right"> We Accept:
+
+        <ul>
+
+          <li> <img src="<?php echo $this->getSkinUrl('images/cart-1.png') ?>" /> </li>
+
+          <li> <img src="<?php echo $this->getSkinUrl('images/cart-2.png') ?>" /> </li>
+
+          <li> <img src="<?php echo $this->getSkinUrl('images/cart-3.png') ?>" /> </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer-bottom clearfix">
+
+    <div class="footer-bottom-top">
+
+      <div class="container">
+
+        <h4> Need assistance? Give us a call toll free: </h4>
+
+        <h2> 00 008 058 0405 </h2>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom-bottom clearfix">
+
+      <div class="container">
+
+       <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('customer-service')->toHTML(); ?>
+
+        <!---------------->
+
+        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('be-part-community')->toHTML(); ?>
+
+        
+
+        <!---------------->
+
+        <div class="three-column footer-bottom-heding">
+
+          <h4> MY ACCOUNT </h4>
+
+          <ul>
+
+            <li> <a href="{{store url='customer/account'}}">Register</a></li>
+
+           
+
+             <?php if (Mage::helper('customer')->isLoggedIn() ): ?>
+
+        <li><a href="<?php echo Mage::helper('customer')->getLogoutUrl(); ?>"><?php echo 'Sign Out'; ?></a></li>
+
+
+
+    <?php 
+
+
+
+else: ?>
+
+        <li><a href="<?php echo Mage::helper('customer')->getLoginUrl(); ?>">SIGN IN</a></li>
+
+    <?php 
+
+
+
+endif; ?>
+
+          </ul>
+
+        </div>
+
+        <!---------------->
+
+          
+
+          <?php echo $this->getChildHtml('newsletter'); ?>
+
+        
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="copy-right-div">
+
+  <div class="container">
+
+  <div class="footer-logo"> <a href="#"><img src="<?php echo $this->getSkinUrl('images/logo.png') ?>" /> </a>
+
+    <p> <?php echo $this->getCopyright() ?> </p>
+
+  </div>
+
+  
+
+  <div class="live-chat">
+
+   <button class="chat-close-btn">X</button>
+
+   <div class="chat-box">
+
+    <div class="chat-icon-div">
+
+    <a href="#"><img src="<?php echo $this->getSkinUrl('images/live-chat-icon.png') ?>" /> </a>
+
+   </div>
+
+    <div class="chat-text">
+
+   <span class="chat-time"><a href="#"> 24X7  </a></span>
+
+   <span><a href="#"> Chat with us </a></span>
+
+ </div>
+
+   </div>
+
+  </div>
+
+  
+
+  <div class="back-top-top-div"> <a href="javascript:" id="return-to-top"><i class="fa fa-angle-up" aria-hidden="true"></i></a> </div>
+
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/jquery.min.js') ?>"></script>
+
+<!--<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>-->
+
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/jquery.ba-cond.min.js') ?>"></script>
+
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/jquery.slitslider.js') ?>"></script>
+
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/custom.js') ?>"></script>
+
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/owl.carousel.min.js') ?>"></script>
+
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/sidenav.js') ?>"></script>
+
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/classie.js') ?>"></script>
+
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/index.js') ?>"></script>
+
+
+
+
+
+<!-- toggle menu ----->
+
+<!--<script>
+
+$(document).ready(function () {
+
+	"use strict";
+
+	var myNav = {
+
+		init: function () {
+
+			this.cacheDOM();
+
+			this.browserWidth();
+
+			this.bindEvents();
+
+		},
+
+		cacheDOM: function () {
+
+			this.navBars = $(".navBars");
+
+			this.toggle = $("#toggle");
+
+			this.navMenu = $("#menu");
+
+		},
+
+		browserWidth: function () {
+
+			$(window).resize(this.bindEvents.bind(this));
+
+		},
+
+		bindEvents: function () {
+
+			var width = window.innerWidth;
+
+
+
+			if (width < 767) {
+
+				this.navBars.click(this.animate.bind(this));
+
+				this.navMenu.hide();
+
+				this.toggle[0].checked = false;
+
+			} else {
+
+				this.resetNav();
+
+			}
+
+		},
+
+		animate: function (e) {
+
+			var checkbox = this.toggle[0];
+
+
+
+			if (!checkbox.checked) {
+
+				this.navMenu.slideDown();
+
+			} else {
+
+				this.navMenu.slideUp();
+
+			}
+
+
+
+		},
+
+		resetNav: function () {
+
+			this.navMenu.show();
+
+		}
+
+	};
+
+	myNav.init();
+
+});
+
+</script>-->
+
+<script type="text/javascript">	
+
+			$(function() {
+
+				$('.chat-close-btn').click(function(e) {
+
+					$(this).next().hide();
+
+                   $(this).hide();
+
+                });
+
+			
+
+				var Page = (function() {
+
+
+
+					var $nav = $( '#nav-dots > span' ),
+
+						slitslider = $( '#slider' ).slitslider( {
+
+							onBeforeChange : function( slide, pos ) {
+
+
+
+								$nav.removeClass( 'nav-dot-current' );
+
+								$nav.eq( pos ).addClass( 'nav-dot-current' );
+
+
+
+							}
+
+						} ),
+
+
+
+						init = function() {
+
+
+
+							initEvents();
+
+							
+
+						},
+
+						initEvents = function() {
+
+
+
+							$nav.each( function( i ) {
+
+							
+
+								$( this ).on( 'click', function( event ) {
+
+									
+
+									var $dot = $( this );
+
+									
+
+									if( !slitslider.isActive() ) {
+
+
+
+										$nav.removeClass( 'nav-dot-current' );
+
+										$dot.addClass( 'nav-dot-current' );
+
+									
+
+									}
+
+									
+
+									slitslider.jump( i + 1 );
+
+									return false;
+
+								
+
+								} );
+
+								
+
+							} );
+
+
+
+						};
+
+
+
+						return { init : init };
+
+
+
+				})();
+
+
+
+				Page.init();
+
+
+
+			
+
+			});
+
+</script>		
+
+<!-- END BANNER-->
+
+<script>
+
+ $('.owl-carousel').owlCarousel({
+
+  loop: true,
+
+  margin: 10,
+
+  nav: true,
+
+  navText: [
+
+    "<i class='fa fa-angle-left'></i>",
+
+    "<i class='fa fa-angle-right'></i>"
+
+  ],
+
+  autoplay: false,
+
+  autoplayHoverPause: true,
+
+  responsive: {
+
+    0: {
+
+      items: 1
+
+    },
+
+    600: {
+
+      items: 2
+
+    },
+
+    1000: {
+
+      items: 5
+
+    }
+
+  }
+
+})
+
+</script>
+
+
+
+<script>
+
+$('#hot-happening').owlCarousel({
+
+  loop: true,
+
+  margin: 15,
+
+  nav: true,
+
+  navText: [
+
+    "<i class='fa fa-angle-left'></i>",
+
+    "<i class='fa fa-angle-right'></i>"
+
+  ],
+
+  autoplay: false,
+
+  autoplayHoverPause: true,
+
+  responsive: {
+
+    0: {
+
+      items: 1
+
+    },
+
+    600: {
+
+      items: 2
+
+    },
+
+    1000: {
+
+      items: 4
+
+    }
+
+  }
+
+})
+
+</script>
+
+
+
+<!--- Scroll to Top ----->
+
+<script>
+
+$(window).scroll(function() {
+
+    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+
+        $('#return-to-top').fadeIn(200);    // Fade in the arrow
+
+    } else {
+
+        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+
+    }
+
+});
+
+$('#return-to-top').click(function() {      // When arrow is clicked
+
+    $('body,html').animate({
+
+        scrollTop : 0                       // Scroll to top of body
+
+    }, 500);
+
+});
+
+</script>
+
+<!--- Scroll to Top End ----->
+
+
+
+<!-- search -->
+
+<script>
+
+$(function () {
+
+    $('a[href="#search"]').on('click', function(event) {
+
+        event.preventDefault();
+
+        $('#search').addClass('open');
+
+        $('#search > form > input[type="search"]').focus();
+
+    });
+
+    
+
+    $('#search, #search button.close').on('click keyup', function(event) {
+
+        if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
+
+            $(this).removeClass('open');
+
+        }
+
+    });
+
+    
+
+    $('form').submit(function(event) {
+
+        event.preventDefault();
+
+        return false;
+
+    })
+
+});
+
+</script>
+
+<!-- search End-->
+
+
+
+<!-- nav menu --->
+
+
+
+<script>
+
+ $(function(){
+
+    var responsiveWidth = 767;
+
+    var _widthResize;
+
+
+
+    $(window).resize(function() {
+
+        _widthResize = $(this).width() > responsiveWidth;
+
+    }).resize();
+
+
+
+    $('.navBox >ul >li').hover(function(){
+
+      if(_widthResize){
+
+        var _this = $(this);
+
+        _this.addClass('active').children('.dropNav').stop(true, true).slideDown(300);        
+
+      }  
+
+    } , function(){
+
+      if(_widthResize){
+
+        $(this).removeClass('active').children('.dropNav').stop(true, true).hide();
+
+      }   
+
+    });
+
+
+
+    $('.dropNav').parent('li').click(function(e) {
+
+      if(!_widthResize){
+
+        $(this).children('.dropNav').stop(true, true).slideToggle(300);
+
+        e.preventDefault();
+
+      }    
+
+    });
+
+
+
+    $("#openPageslide").sideNav();
+
+
+
+}); 
+
+</script>
+
+
+
+<!-- nav menu end --->
+
+
+
+<script>
+
+  $(document).ready(function(e) {
+
+    $('.owl-carousel .item > span').hover(function(e) {
+
+        $(this).find('a i').toggleClass('fa-heart-o fa-heart');
+
+    });
+
+	
+
+});
+
+</script>
+
+
+
+<script>
+
+  $(function(){
+
+   $('.menu-close').click(function(e) {
+
+	 $('.pageslideBg').click();
+
+    });
+
+  });
+
+</script>
+
+
+
+<script>
+
+    function init() {
+
+        window.addEventListener('scroll', function(e){
+
+			
+
+			if(scrollY>58){
+
+				$(".steky-div").addClass("smaller");
+
+			}
+
+			else{
+
+				 $(".steky-div").removeClass("smaller");
+
+			}
+
+            /*var distanceY = window.pageYOffset || document.documentElement.scrollTop,
+
+                shrinkOn = 58,
+
+                header = document.querySelector(".steky-div");
+
+            if (distanceY > shrinkOn) {
+
+                classie.add(header,"smaller");
+
+            } else {
+
+                if (classie.has(header,"smaller")) {
+
+                    classie.remove(header,"smaller");
+
+                }
+
+            }*/
+
+        });
+
+    }
+
+    window.onload = init();
+
+</script>

@@ -1,0 +1,280 @@
+
+
+<div class="slider-container">
+
+  <div class="slider" id="slider">
+
+    <div class="slide"> <img src="<?php echo $this->getSkinUrl('images/banner1.jpg') ?>" />
+
+     <span class="caption"><h2>25% OFF</h2>
+
+          <h3>SITEWIDE!</h3>
+
+          <blockquote>
+
+            <h5>NO CODE REQUIRED</h5>
+
+            <span>+</span>
+
+            <p>FREE SHIPPING ON ALL</p> <p>ORDERS OVER $49</p>
+
+          </blockquote>
+
+          <button type="button" class="banner-button">SHOP NOW</button></span> </div>
+
+    <div class="slide"> <img src="<?php echo $this->getSkinUrl('images/banner2.jpg') ?>" /> 
+
+    <span class="caption">
+
+   <h2>50% OFF</h2>
+
+          <h3>SITEWIDE!</h3>
+
+          <blockquote>
+
+            <h5>NO CODE REQUIRED</h5>
+
+            <span>+</span>
+
+            <p>FREE SHIPPING ON ALL </p><p>ORDERS</p>
+
+          </blockquote>
+
+          <button type="button" class="banner-button">SHOP NOW</button></span> </div>
+
+  </div>
+
+  </div>
+
+
+
+<!-------- top-products --------->
+
+<div class="top-products clearfix">
+
+   <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('home-page-first-section')->toHTML(); ?>
+
+</div>
+
+<!-------- top-products end ---------> 
+
+
+
+<!-- NEW COLLECTIONS -->
+
+<div id="new-collections-div" class="new-collections-div">
+
+  <div class="products-div">
+
+    <h1> NEW COLLECTIONS </h1>
+
+  </div>
+
+  <div class="container">
+
+    <div class="carousel-wrap">
+
+      <div class="owl-carousel">
+
+      
+
+      
+
+      <?php 
+
+                            $collection = Mage::getSingleton('catalog/product')->getCollection()
+
+                                ->addAttributeToFilter('status', 1)
+
+                                ->addAttributeToSelect('*');
+
+                            $collection->addAttributeToFilter('status', 1);
+
+                            $collection->addAttributeToFilter('newcollections',1);
+
+                            $_helper = $this->helper('catalog/output');
+
+                            $backendModel = $collection->getResource()->getAttribute('media_gallery')->getBackend();
+
+                            foreach($collection as $productpop):
+
+                                $productBlock = $this->getLayout()->createBlock('catalog/product_price');
+
+                                $prdpop = $productBlock->getPriceHtml($productpop);
+
+                        ?>
+
+
+
+
+
+                        
+
+                       <div class="item">
+
+                                   <img src="<?php echo Mage::helper('catalog/image')->init($productpop, 'thumbnail');?>" ><span> 
+
+                                   <a href="<?php echo Mage::helper('wishlist')->getAddUrl($productpop) ?>">
+                                   <i class="fa fa-heart-o" aria-hidden="true"></i> </a></span>
+
+                                   <div class="product-name"><?php echo $productpop->getName(); ?></div>
+
+                                   <div class="product-price"><?php echo $prdpop; ?> </div>
+
+                                   
+
+                               
+
+                                </div>
+
+                         <?php endforeach; ?> 
+
+           
+
+
+
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- NEW COLLECTIONS End --> 
+
+
+
+<!-- NEW COLLECTIONS -->
+
+<div id="top-sellers-div" class="top-sellers-div">
+
+  <div class="products-div">
+
+    <h1> TOP SELLERS </h1>
+
+  </div>
+
+  <div class="container">
+
+    <div class="carousel-wrap">
+
+      <div class="owl-carousel">
+
+       
+
+       
+
+       <?php 
+
+                            $collectionnew = Mage::getSingleton('catalog/product')->getCollection()
+
+                                ->addAttributeToFilter('status', 1)
+
+                                ->addAttributeToSelect('*');
+								
+								
+
+                            $collectionnew->addAttributeToFilter('status', 1);
+
+                           $colnew =  $collectionnew->addAttributeToFilter('topseller',1);
+						   
+						   
+							//print_r($colnew);
+
+                            $_helper = $this->helper('catalog/output');
+
+                            $backendModel1 = $collectionnew->getResource()->getAttribute('media_gallery')->getBackend();
+
+                            foreach($collectionnew as $productpopone):
+							
+							
+
+                                $productBlock = $this->getLayout()->createBlock('catalog/product_price');
+
+                                $prdpop1 = $productBlock->getPriceHtml($productpopone);
+
+                        ?>
+
+
+
+
+
+                        
+
+                       <div class="item">
+
+                                   <img src="<?php echo Mage::helper('catalog/image')->init($productpopone, 'thumbnail');?>" ><span> 
+
+                                   <a href="<?php echo Mage::helper('wishlist')->getAddUrl($productpopone) ?>"><i class="fa fa-heart-o" aria-hidden="true"></i> </a></span>
+
+                                   <div class="product-name"><?php echo $productpopone->getName(); ?></div>
+
+                                   <div class="product-price"><?php echo $prdpop1; ?> </div>
+
+                                   
+
+                               
+
+                                </div>
+
+                         <?php endforeach; ?> 
+
+       
+
+       
+
+       
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- NEW COLLECTIONS End --> 
+
+
+
+<!-- HOT HAPPENING -->
+
+<div id="hot-happening-div" class="hot-happening-div">
+
+  <h1><span><img src="<?php echo $this->getSkinUrl('images/instagram-icon.png') ?>" /></span> HOT & HAPPENING </h1>
+
+  <div class="container">
+
+    <div class="carousel-wrap">
+
+      <div class="owl-carousel" id="hot-happening">
+
+        <div class="item"><img src="<?php echo $this->getSkinUrl('images/instagram-1.jpg') ?>" /> </div>
+
+        <div class="item"><img src="<?php echo $this->getSkinUrl('images/instagram-2.jpg') ?>" /> </div>
+
+        <div class="item"><img src="<?php echo $this->getSkinUrl('images/instagram-3.jpg') ?>" /> </div>
+
+        <div class="item"><img src="<?php echo $this->getSkinUrl('images/instagram-4.jpg') ?>" /></div>
+
+        <div class="item"><img src="<?php echo $this->getSkinUrl('images/instagram-1.jpg') ?>" /> </div>
+
+        <div class="item"><img src="<?php echo $this->getSkinUrl('images/instagram-2.jpg') ?>" /></div>
+
+        <div class="item"><img src="<?php echo $this->getSkinUrl('images/instagram-3.jpg') ?>" /></div>
+
+        <div class="item"><img src="<?php echo $this->getSkinUrl('images/instagram-4.jpg') ?>" /></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- HOT HAPPENING End -->
+
